@@ -1,0 +1,11 @@
+import type { Metadata } from "next";
+import ForgotPassword from "@/views/auth/ForgotPassword";
+
+export const metadata: Metadata = {
+  title: "Forgot password",
+  robots: { index: false, follow: false },
+};
+
+export default function BusinessForgotPasswordPage() {
+  return <ForgotPassword />;
+}

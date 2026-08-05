@@ -1,0 +1,445 @@
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core brand colors */
+    --background: 0 0% 98%; /* light background */
+    --foreground: 0 20% 10%; /* dark foreground text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 20% 10%;
+
+    /* Red primary */
+    --primary: 0 80% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 0 75% 60%;
+    --primary-dark: 0 85% 40%;
+
+    /* Red accent */
+    --accent: 0 85% 60%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 0 90% 70%;
+    --accent-dark: 0 80% 50%;
+
+    /* Secondary - cool gray */
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 25%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 0%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 80% 50%;
+
+    --radius: 0.75rem;
+
+    /* Semantic tokens */
+    --success: 0 70% 45%; /* red-tinted success if you want consistent red feel */
+    --success-foreground: 0 0% 100%;
+    --warning: 0 85% 60%;
+    --warning-foreground: 0 0% 100%;
+    --info: 0 80% 50%;
+    --info-foreground: 0 0% 100%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(0, 80%, 50%) 0%,
+      hsl(0, 85%, 40%) 100%
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(0, 85%, 60%) 0%,
+      hsl(0, 80%, 50%) 100%
+    );
+    --gradient-hero: linear-gradient(
+      180deg,
+      hsl(0, 0%, 98%) 0%,
+      hsl(0, 80%, 95%) 100%
+    );
+    --gradient-card: linear-gradient(
+      145deg,
+      hsl(0, 0%, 100%) 0%,
+      hsl(0, 0%, 98%) 100%
+    );
+    --gradient-glass: linear-gradient(
+      135deg,
+      hsla(0, 0%, 100%, 0.9) 0%,
+      hsla(0, 0%, 100%, 0.7) 100%
+    );
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsla(0, 20%, 10%, 0.05);
+    --shadow-md:
+      0 4px 6px -1px hsla(0, 20%, 10%, 0.1),
+      0 2px 4px -2px hsla(0, 20%, 10%, 0.1);
+    --shadow-lg:
+      0 10px 15px -3px hsla(0, 20%, 10%, 0.1),
+      0 4px 6px -4px hsla(0, 20%, 10%, 0.1);
+    --shadow-xl:
+      0 20px 25px -5px hsla(0, 20%, 10%, 0.1),
+      0 8px 10px -6px hsla(0, 20%, 10%, 0.1);
+    --shadow-glow: 0 0 40px hsla(0, 80%, 50%, 0.25);
+    --shadow-accent-glow: 0 0 30px hsla(0, 85%, 60%, 0.3);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 97%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 0 80% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 20% 95%;
+    --sidebar-accent-foreground: 0 80% 50%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 0 80% 50%;
+
+    /* Chart colors */
+    --chart-1: 0 80% 50%;
+    --chart-2: 0 85% 60%;
+    --chart-3: 0 80% 50%;
+    --chart-4: 0 85% 55%;
+    --chart-5: 0 90% 50%;
+  }
+
+  .dark {
+    --background: 0 20% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 20% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 20% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 80% 50%;
+    --primary-foreground: 0 0% 98%;
+
+    --accent: 0 85% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --secondary: 0 20% 18%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 20% 18%;
+    --muted-foreground: 0 0% 0%;
+
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 20% 18%;
+    --input: 0 20% 18%;
+    --ring: 0 80% 50%;
+
+    --sidebar-background: 0 20% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 0 80% 50%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 0 20% 15%;
+    --sidebar-accent-foreground: 0 85% 60%;
+    --sidebar-border: 0 20% 15%;
+    --sidebar-ring: 0 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: var(--font-outfit), "Outfit", system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-outfit), "Outfit", system-ui, sans-serif;
+    @apply tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-accent-glow {
+    box-shadow: var(--shadow-accent-glow);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 3s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-out;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* React DatePicker Custom Styling */
+.react-datepicker {
+  @apply bg-card border-2 border-border shadow-xl rounded-xl;
+  font-family: var(--font-outfit), "Outfit", system-ui, sans-serif;
+}
+
+.react-datepicker__header {
+  @apply bg-secondary/50 border-b-2 border-border rounded-t-xl pt-4 pb-2;
+}
+
+.react-datepicker__current-month {
+  @apply text-foreground font-bold text-base mb-2;
+}
+
+.react-datepicker__day-names {
+  @apply mt-2;
+}
+
+.react-datepicker__day-name {
+  @apply text-muted-foreground font-semibold text-xs;
+}
+
+.react-datepicker__month {
+  @apply m-2;
+}
+
+.react-datepicker__day {
+  @apply text-foreground hover:bg-primary/20 rounded-lg transition-all duration-200 font-medium;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  margin: 0.2rem;
+}
+
+.react-datepicker__day--selected {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90 font-bold shadow-md;
+}
+
+.react-datepicker__day--keyboard-selected {
+  @apply bg-primary/50 text-foreground;
+}
+
+.react-datepicker__day--in-range {
+  @apply bg-primary/10 text-foreground;
+}
+
+.react-datepicker__day--in-selecting-range {
+  @apply bg-primary/20 text-foreground;
+}
+
+.react-datepicker__day--range-start,
+.react-datepicker__day--range-end {
+  @apply bg-primary text-primary-foreground font-bold;
+}
+
+.react-datepicker__day--disabled {
+  @apply text-muted-foreground/30 hover:bg-transparent cursor-not-allowed;
+}
+
+.react-datepicker__day--today {
+  @apply font-bold border-2 border-primary/50 bg-primary/5;
+}
+
+.react-datepicker__day--highlighted {
+  @apply bg-accent/20 border border-accent;
+}
+
+.react-datepicker__navigation {
+  @apply top-4;
+}
+
+.react-datepicker__navigation-icon::before {
+  @apply border-foreground;
+  border-width: 2px 2px 0 0;
+  height: 7px;
+  width: 7px;
+}
+
+.react-datepicker__navigation:hover *::before {
+  @apply border-primary;
+}
+
+.react-datepicker__triangle {
+  @apply hidden;
+}
+
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
+
+.react-datepicker__week {
+  @apply flex justify-around;
+}
+
+/* Dark mode support */
+.dark .react-datepicker {
+  @apply bg-card border-border;
+}
+
+.dark .react-datepicker__header {
+  @apply bg-secondary/30;
+}
+
+.dark .react-datepicker__day--today {
+  @apply bg-primary/10;
+}
+
+/* Phone Input Styling - Match with other form inputs */
+.PhoneInput {
+  @apply w-full;
+}
+
+.PhoneInputInput {
+  @apply w-full bg-transparent border-0 outline-none text-foreground text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50;
+  padding: 0;
+  height: auto;
+}
+
+.PhoneInputCountrySelect {
+  @apply border-0 bg-transparent cursor-pointer outline-none;
+  margin-right: 0.5rem;
+  padding: 0;
+  height: auto;
+}
+
+.PhoneInputCountrySelectArrow {
+  @apply text-muted-foreground;
+  opacity: 0.5;
+  width: 0.5em;
+  margin-left: 0.3em;
+}
+
+.PhoneInputCountryIcon {
+  @apply shadow-sm;
+  width: 1.5rem !important;
+  height: 1rem !important;
+}
+
+.PhoneInputCountryIcon--square {
+  @apply rounded-sm;
+}
+
+.PhoneInputCountryIcon--border {
+  border: 1px solid hsl(var(--border));
+}
+
+/* Dark mode support for phone input */
+.dark .PhoneInputInput {
+  @apply text-foreground;
+}
+
+.dark .PhoneInputCountrySelectArrow {
+  @apply text-muted-foreground;
+}
+
+
