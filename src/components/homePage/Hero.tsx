@@ -263,8 +263,8 @@ const Hero: React.FC = () => {
         </picture>
 
         <div className="hd-hero__tickets" aria-label="Popular deal categories">
-          {cards.map((card) => (
-            <TicketCard card={card} key={card.key} />
+          {cards.map((card, index) => (
+            <TicketCard card={card} index={index} key={card.key} />
           ))}
         </div>
 
@@ -280,6 +280,7 @@ const Hero: React.FC = () => {
                 href={category.href}
                 key={category.href}
               >
+                <StarBullet />
                 {category.label}
               </Link>
             ))}
@@ -308,7 +309,7 @@ const Hero: React.FC = () => {
   );
 };
 
-function TicketCard({ card }: { card: HeroCard }) {
+function TicketCard({ card, index }: { card: HeroCard; index: number }) {
   const style = {
     left: pct(card.x, ARTBOARD.width),
     top: pct(card.y, ARTBOARD.height),
@@ -318,6 +319,9 @@ function TicketCard({ card }: { card: HeroCard }) {
     "--ticket-color": card.color,
     "--ticket-label": card.labelColor,
     "--badge-color": card.badgeColor,
+    "--ticket-index": index,
+    "--ticket-rotate": `${card.rotate}deg`,
+    animationDelay: `${index * 90}ms`,
   } as React.CSSProperties;
 
   const theme = CARD_THEMES[card.key] || {
@@ -395,6 +399,46 @@ function TicketCard({ card }: { card: HeroCard }) {
         <BadgeIcon name={card.icon} />
       </div>
     </Link>
+  );
+}
+
+function StarBullet() {
+  return (
+    <svg
+      className="hd-hero__category-icon"
+      viewBox="0 0 24 24"
+      width="13"
+      height="13"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M12 2.5c.8 4.6 4.4 8.2 9 9-4.6.8-8.2 4.4-9 9-.8-4.6-4.4-8.2-9-9 4.6-.8 8.2-4.4 9-9Z" />
+    </svg>
+  );
+}
+
+function SparkleIcon() {
+  return (
+    <svg
+      className="hd-hero__categories-star"
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M12 2.5c.8 4.6 4.4 8.2 9 9-4.6.8-8.2 4.4-9 9-.8-4.6-4.4-8.2-9-9 4.6-.8 8.2-4.4 9-9Z"
+        fill="#f5c55c"
+      />
+      <path
+        d="M19.5 15.5c.35 1.9 1.8 3.35 3.7 3.7-1.9.35-3.35 1.8-3.7 3.7-.35-1.9-1.8-3.35-3.7-3.7 1.9-.35 3.35-1.8 3.7-3.7Z"
+        fill="#f5c55c"
+        opacity="0.7"
+      />
+    </svg>
   );
 }
 

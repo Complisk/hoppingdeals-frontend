@@ -49,7 +49,7 @@ const AdminLogin = () => {
           title: "Welcome Admin!",
           description: "You've successfully logged in.",
         });
-        window.location.href = "/admin/";
+        window.location.href = "/admin/dashboard";
       } else {
         throw new Error("Invalid response from server");
       }
