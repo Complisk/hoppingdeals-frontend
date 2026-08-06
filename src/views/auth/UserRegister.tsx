@@ -128,7 +128,7 @@ const UserRegister = () => {
     <div className="min-h-screen flex bg-background">
       <Seo
         title="Create your account"
-        description="Create a Complisk account to follow local businesses and discover nearby promotions."
+        description="Create a Hopping Deals account to follow local businesses and discover nearby promotions."
         pathname="/auth/register"
         noindex
       />

@@ -10,10 +10,10 @@ const InstallApp = () => {
             {/* Title Section */}
             <div className="text-center mb-12">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Complisk Photos
+                Hopping Deals Photos
               </h1>
               <p className="text-lg sm:text-xl text-gray-600">
-                Gallery of Complisk app guides and resources
+                Gallery of Hopping Deals app guides and resources
               </p>
             </div>
 
@@ -24,13 +24,13 @@ const InstallApp = () => {
                 <div className="aspect-square overflow-hidden bg-gray-100">
                   <img
                     src="/46283196-7c44-4b52-a0c6-be62db26f67f.png"
-                    alt="Complisk App Installation Guide"
+                    alt="Hopping Deals App Installation Guide"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-4">
                   <p className="text-gray-700 text-sm leading-relaxed font-medium">
-                    To get the Complisk icon on phone. Simply open the website,
+                    To get the Hopping Deals icon on phone. Simply open the website,
                     tap the share button (box with upward arrow), scroll down,
                     and select &quot;Add to Home Screen&quot;.
                   </p>

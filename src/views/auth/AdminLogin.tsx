@@ -67,7 +67,7 @@ const AdminLogin = () => {
     <div className="min-h-screen flex bg-background">
       <Seo
         title="Admin sign in"
-        description="Secure admin access for the Complisk platform."
+        description="Secure admin access for the Hopping Deals platform."
         pathname="/admin/login"
         noindex
       />

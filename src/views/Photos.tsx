@@ -51,13 +51,13 @@ const Photos = ({ initialPhotos }: PhotosProps = {}) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Seo
-        title="Complisk Photos Gallery"
-        description="Browse Complisk photos and images of our app, guides, and promotional materials."
+        title="Hopping Deals Photos Gallery"
+        description="Browse Hopping Deals photos and images of our app, guides, and promotional materials."
         structuredData={[
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Complisk Photos",
+            name: "Hopping Deals Photos",
             url: `${SITE_URL}/photos`,
           },
         ]}
@@ -76,7 +76,7 @@ const Photos = ({ initialPhotos }: PhotosProps = {}) => {
                   No photos available right now
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                  The Complisk admin team has not published any gallery items
+                  The Hopping Deals admin team has not published any gallery items
                   yet.
                 </p>
               </div>

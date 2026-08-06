@@ -13,16 +13,16 @@ const AboutUs = () => {
 
       <div className="min-h-screen flex flex-col bg-background">
         <Seo
-          title="About Complisk"
-          description="Learn how Complisk helps local businesses launch location-based promotions and helps customers discover timely local deals."
+          title="About Hopping Deals"
+          description="Learn how Hopping Deals helps local businesses launch location-based promotions and helps customers discover timely local deals."
           pathname="/about-us"
           structuredData={{
             "@context": "https://schema.org",
             "@type": "AboutPage",
-            name: "About Complisk",
+            name: "About Hopping Deals",
             url: `${SITE_URL}/about-us`,
             description:
-              "Complisk connects local businesses with nearby customers through targeted promotions and transparent campaign tools.",
+              "Hopping Deals connects local businesses with nearby customers through targeted promotions and transparent campaign tools.",
           }}
         />
 
@@ -40,7 +40,7 @@ const AboutUs = () => {
               <section className="mb-12">
                 <h2 className="text-2xl font-bold  mb-4">Our Mission</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Complisk is a specialized promotion platform designed to
+                  Hopping Deals is a specialized promotion platform designed to
                   bridge the gap between businesses and consumers. Our goal is
                   to empower business owners to create customizable promotional
                   banners targeted to specific locations, allowing users to
@@ -56,7 +56,7 @@ const AboutUs = () => {
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   We believe in a transparent marketplace. Every deal banner you
                   see on our platform is created directly by the business owner
-                  for you. By eliminating the "middleman," Complisk takes no
+                  for you. By eliminating the "middleman," Hopping Deals takes no
                   commissions or cuts from these transactions. This allows
                   businesses to save money on marketing and pass those direct
                   savings on to their customers.
@@ -66,13 +66,13 @@ const AboutUs = () => {
               <section className="mb-12">
                 <h2 className="text-2xl font-bold  mb-4">Our Story</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Complisk was born from real-world experience. Our founder, a
+                  Hopping Deals was born from real-world experience. Our founder, a
                   former business owner, understood the immense effort and high
                   costs required to attract new customers. For years, small
                   local businesses have sought a technology platform that offers
                   a simple, automated way to launch micro-promotions without the
                   complexity of social media advertising, SEO, or traditional
-                  coupon sites. Complisk is the solution to those challenges.
+                  coupon sites. Hopping Deals is the solution to those challenges.
                 </p>
               </section>
 
@@ -82,7 +82,7 @@ const AboutUs = () => {
                   Your Local Deals, All in One Place
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                  Complisk is your all-in-one platform for discovering the best
+                  Hopping Deals is your all-in-one platform for discovering the best
                   deals and promotions right in your neighborhood. We partner
                   with local merchants to bring you exclusive offers, making it
                   easier than ever to spend consciously and save money.
@@ -91,7 +91,7 @@ const AboutUs = () => {
                   You Build the Platform
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Don't see your favorite local business on Complisk? You have
+                  Don't see your favorite local business on Hopping Deals? You have
                   the power to change that! Simply sign up and use the Tagging
                   feature on your Profile Page to nominate your go-to spots.
                   Once a business receives enough tags from our community, our
@@ -130,7 +130,7 @@ const AboutUs = () => {
                   Every promotion includes a unique QR code (future version
                   release), allowing customers to scan directly from the
                   promotion. This creates measurable engagement and trackable
-                  response. Complisk provides real-time analytics so businesses
+                  response. Hopping Deals provides real-time analytics so businesses
                   can monitor views, QR scans, and overall engagement. Promotion
                   dashboards display activity over the last 7 days, 30 days, and
                   total campaign performance, giving clear visibility into
@@ -140,11 +140,11 @@ const AboutUs = () => {
 
               <section className="mb-12">
                 <h2 className="text-2xl font-bold mb-4">
-                  How Complisk Is Different
+                  How Hopping Deals Is Different
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-4">
                   Traditional advertising platforms are often expensive,
-                  complicated, and unpredictable. Complisk is structured around
+                  complicated, and unpredictable. Hopping Deals is structured around
                   clarity and control. Each campaign runs for up to a fixed
                   30-day period from your selected start date. Businesses know
                   exactly what they are paying and exactly how long their
@@ -176,10 +176,10 @@ const AboutUs = () => {
                   </li>
                 </ul>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Complisk was built from real-world business experience. We
+                  Hopping Deals was built from real-world business experience. We
                   understand how difficult and costly it can be to attract new
                   customers through traditional social media advertising, search
-                  engine ads, or coupon marketplaces. Complisk provides a
+                  engine ads, or coupon marketplaces. Hopping Deals provides a
                   direct, structured alternative — predictable cost, geographic
                   precision, measurable performance, and full control in the
                   hands of the business owner.

@@ -72,7 +72,7 @@ const ForgotPassword = () => {
     <div className="relative min-h-screen flex overflow-hidden bg-background">
       <Seo
         title="Forgot password"
-        description="Request a secure password reset link for your Complisk account."
+        description="Request a secure password reset link for your Hopping Deals account."
         pathname={location.pathname}
         noindex
       />

@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!promotion) {
     return {
       title: "Promotion",
-      description: "Browse this local promotion on Complisk.",
+      description: "Browse this local promotion on Hopping Deals.",
       alternates: { canonical: `/promotion/${id}` },
     };
   }
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description =
     typeof promotion.description === "string"
       ? promotion.description
-      : "Browse this local promotion on Complisk.";
+      : "Browse this local promotion on Hopping Deals.";
   const image = promotion.bannerImage || promotion.imageUrl || "";
 
   return {
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       url: `${SITE_URL}/promotion/${id}`,
-      siteName: "Complisk",
+      siteName: "Hopping Deals",
       type: "website",
       images: image ? [{ url: toAbsoluteUrl(image) }] : undefined,
     },

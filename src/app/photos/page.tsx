@@ -5,18 +5,18 @@ import JsonLd from "@/components/seo/JsonLd";
 import Photos from "@/views/Photos";
 
 export const metadata: Metadata = {
-  title: "Complisk Photos Gallery",
+  title: "Hopping Deals Photos Gallery",
   description:
-    "Browse Complisk photos and images of our app, guides, and promotional materials.",
+    "Browse Hopping Deals photos and images of our app, guides, and promotional materials.",
   alternates: {
     canonical: "/photos",
   },
   openGraph: {
-    title: "Complisk Photos Gallery",
+    title: "Hopping Deals Photos Gallery",
     description:
-      "Browse Complisk photos and images of our app, guides, and promotional materials.",
+      "Browse Hopping Deals photos and images of our app, guides, and promotional materials.",
     url: `${SITE_URL}/photos`,
-    siteName: "Complisk",
+    siteName: "Hopping Deals",
     type: "website",
   },
 };
@@ -42,7 +42,7 @@ export default async function PhotosPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "ImageGallery",
-          name: "Complisk Photos Gallery",
+          name: "Hopping Deals Photos Gallery",
           url: `${SITE_URL}/photos`,
           image: imageObjects,
         }}

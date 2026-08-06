@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { category } = await params;
   const name = formatCategoryName(category);
   const title = `${name} promotions`;
-  const description = `Browse active ${name.toLowerCase()} promotions and local deals on Complisk.`;
+  const description = `Browse active ${name.toLowerCase()} promotions and local deals on Hopping Deals.`;
 
   return {
     title,
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       url: `${SITE_URL}/category/${category}`,
-      siteName: "Complisk",
+      siteName: "Hopping Deals",
       type: "website",
     },
     twitter: {
@@ -48,7 +48,7 @@ export default async function CategoryRoute({ params }: PageProps) {
           "@type": "CollectionPage",
           name: `${name} promotions`,
           url: `${SITE_URL}/category/${category}`,
-          description: `Browse active ${name.toLowerCase()} promotions and local deals on Complisk.`,
+          description: `Browse active ${name.toLowerCase()} promotions and local deals on Hopping Deals.`,
         }}
       />
       <Suspense fallback={<PageLoader />}>

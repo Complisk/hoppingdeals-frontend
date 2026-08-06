@@ -144,15 +144,15 @@ const BusinessVisitor = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Seo
         title="Promotion marketing for local businesses"
-        description="Launch geo-targeted local promotions, schedule campaigns, and track results with Complisk's business marketing platform."
+        description="Launch geo-targeted local promotions, schedule campaigns, and track results with Hopping Deals's business marketing platform."
         pathname="/business/visitor"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Complisk promotion platform",
+          name: "Hopping Deals promotion platform",
           provider: {
             "@type": "Organization",
-            name: "Complisk",
+            name: "Hopping Deals",
             url: SITE_URL,
           },
           areaServed: "US",

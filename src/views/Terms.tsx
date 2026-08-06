@@ -13,12 +13,12 @@ const Terms = () => {
       <div className="min-h-screen flex flex-col bg-background">
         <Seo
           title="Terms of Use"
-          description="Read the Complisk terms of use for platform access, business responsibilities, payments, and service limitations."
+          description="Read the Hopping Deals terms of use for platform access, business responsibilities, payments, and service limitations."
           pathname="/terms"
           structuredData={{
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Complisk Terms of Use",
+            name: "Hopping Deals Terms of Use",
             url: `${SITE_URL}/terms`,
           }}
         />
@@ -43,7 +43,7 @@ const Terms = () => {
                     1. Acceptance of Terms
                   </h2>
                   <p>
-                    By accessing or using the Complisk platform, you agree to be
+                    By accessing or using the Hopping Deals platform, you agree to be
                     bound by these Terms of Use and all applicable laws and
                     regulations. If you do not agree, you must not access or use
                     the platform.
@@ -55,10 +55,10 @@ const Terms = () => {
                     2. Description of Services
                   </h2>
                   <p>
-                    Complisk is a technology platform that provides tools for
+                    Hopping Deals is a technology platform that provides tools for
                     businesses to publish promotional content, including offers
                     and QR codes, viewable by users based on location and
-                    category. Complisk provides infrastructure only and does not
+                    category. Hopping Deals provides infrastructure only and does not
                     guarantee exposure, traffic, customer engagement,
                     redemptions, or business results.
                   </p>
@@ -69,7 +69,7 @@ const Terms = () => {
                     3. No Guarantees or Endorsements
                   </h2>
                   <p>
-                    Complisk does not endorse, verify, validate, or guarantee
+                    Hopping Deals does not endorse, verify, validate, or guarantee
                     any promotion, business, or offer listed on the platform.
                     Any interaction between businesses and customers occurs
                     solely at their discretion and risk.
@@ -91,7 +91,7 @@ const Terms = () => {
                     <li>Honoring promotional terms they publish</li>
                   </ul>
                   <p className="mt-2">
-                    Complisk does not monitor, enforce, or mediate disputes
+                    Hopping Deals does not monitor, enforce, or mediate disputes
                     between businesses and customers.
                   </p>
                 </section>
@@ -123,7 +123,7 @@ const Terms = () => {
                     6. Accounts and Access
                   </h2>
                   <p>
-                    Complisk may suspend or terminate accounts at its sole
+                    Hopping Deals may suspend or terminate accounts at its sole
                     discretion for violations of these terms, misuse of the
                     platform, or actions that pose legal, security, or
                     reputational risk.
@@ -138,7 +138,7 @@ const Terms = () => {
                     If subscription fees apply, they are billed in advance
                     according to the selected plan. Refunds, if any, are
                     governed by the cancellation policy in effect at the time of
-                    purchase. Complisk reserves the right to change pricing,
+                    purchase. Hopping Deals reserves the right to change pricing,
                     billing methods, or subscription terms with notice.
                   </p>
                 </section>
@@ -148,8 +148,8 @@ const Terms = () => {
                     8. Third-Party Services
                   </h2>
                   <p>
-                    Complisk relies on third-party infrastructure, hosting,
-                    payment processors, and service providers. Complisk is not
+                    Hopping Deals relies on third-party infrastructure, hosting,
+                    payment processors, and service providers. Hopping Deals is not
                     responsible for service interruptions, data loss, or
                     failures caused by third parties.
                   </p>
@@ -161,8 +161,8 @@ const Terms = () => {
                   </h2>
                   <p>
                     All platform software, design, branding, and infrastructure
-                    are the exclusive property of Complisk. Users retain
-                    ownership of their promotional content but grant Complisk a
+                    are the exclusive property of Hopping Deals. Users retain
+                    ownership of their promotional content but grant Hopping Deals a
                     non-exclusive license to display and distribute it within
                     the platform.
                   </p>
@@ -173,8 +173,8 @@ const Terms = () => {
                     10. Privacy and Data Use
                   </h2>
                   <p>
-                    Complisk collects and processes data in accordance with its
-                    Privacy Policy. Complisk does not sell personal data. Use of
+                    Hopping Deals collects and processes data in accordance with its
+                    Privacy Policy. Hopping Deals does not sell personal data. Use of
                     the platform constitutes consent to data handling practices
                     as described in that policy.
                   </p>
@@ -185,10 +185,10 @@ const Terms = () => {
                     11. Cookies and Similar Technologies
                   </h2>
                   <p>
-                    Complisk may use cookies and similar technologies to enable
+                    Hopping Deals may use cookies and similar technologies to enable
                     basic platform functionality, security, and user
                     preferences, such as remembering location selections or
-                    maintaining session integrity. Complisk does not use cookies
+                    maintaining session integrity. Hopping Deals does not use cookies
                     for behavioral advertising or cross-site tracking unless
                     expressly disclosed.
                   </p>
@@ -211,7 +211,7 @@ const Terms = () => {
                     13. Limitation of Liability
                   </h2>
                   <p>
-                    To the maximum extent permitted by law, Complisk shall not
+                    To the maximum extent permitted by law, Hopping Deals shall not
                     be liable for indirect, incidental, consequential, special,
                     or punitive damages, including lost profits, lost data,
                     business interruption, or reputational harm.
@@ -223,7 +223,7 @@ const Terms = () => {
                     14. Indemnification
                   </h2>
                   <p>
-                    Users agree to indemnify and hold harmless Complisk from any
+                    Users agree to indemnify and hold harmless Hopping Deals from any
                     claims, damages, losses, or liabilities arising from their
                     use of the platform, their promotions, or violations of
                     these terms.
@@ -236,7 +236,7 @@ const Terms = () => {
                   </h2>
                   <p>
                     Nothing in these terms creates a partnership, agency, joint
-                    venture, or employment relationship between Complisk and any
+                    venture, or employment relationship between Hopping Deals and any
                     user or business.
                   </p>
                 </section>
@@ -248,7 +248,7 @@ const Terms = () => {
                   <p>
                     These Terms of Use are governed by and construed in
                     accordance with the laws of the jurisdiction in which
-                    Complisk is operated, without regard to conflict-of-law
+                    Hopping Deals is operated, without regard to conflict-of-law
                     principles.
                   </p>
                 </section>
@@ -258,7 +258,7 @@ const Terms = () => {
                     17. Changes to Terms
                   </h2>
                   <p>
-                    Complisk may update these Terms of Use at any time.
+                    Hopping Deals may update these Terms of Use at any time.
                     Continued use of the platform after changes constitutes
                     acceptance of the revised terms.
                   </p>

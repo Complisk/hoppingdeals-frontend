@@ -113,8 +113,8 @@ const BusinessHeader: React.FC = () => {
                     <MenuItem icon={<Info />} label="About Us" to="/about-us" />
                     <MenuItem
                       icon={<Building2 />}
-                      label="Complisk Business Directory"
-                      to="/complisk-business-directory"
+                      label="Hopping Deals Business Directory"
+                      to="/hopping-deals-business-directory"
                     />
                     {!isBusinessLoggedIn && (
                       <>

@@ -5,21 +5,21 @@ import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn more about Complisk and how we support local businesses.",
+  description: "Learn more about Hopping Deals and how we support local businesses.",
   alternates: {
     canonical: "/about-us",
   },
   openGraph: {
-    title: "About Complisk",
-    description: "Learn more about Complisk and how we support local businesses.",
+    title: "About Hopping Deals",
+    description: "Learn more about Hopping Deals and how we support local businesses.",
     url: `${SITE_URL}/about-us`,
-    siteName: "Complisk",
+    siteName: "Hopping Deals",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Complisk",
-    description: "Learn more about Complisk and how we support local businesses.",
+    title: "About Hopping Deals",
+    description: "Learn more about Hopping Deals and how we support local businesses.",
   },
 };
 
@@ -30,10 +30,10 @@ export default function AboutUsPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "AboutPage",
-          name: "About Complisk",
+          name: "About Hopping Deals",
           url: `${SITE_URL}/about-us`,
           description:
-            "Complisk connects local businesses with nearby customers through targeted promotions and deals.",
+            "Hopping Deals connects local businesses with nearby customers through targeted promotions and deals.",
         }}
       />
       <AboutUs />

@@ -79,7 +79,7 @@ const ResetPassword = () => {
     <div className="relative min-h-screen flex overflow-hidden bg-background">
       <Seo
         title="Reset password"
-        description="Set a new password for your Complisk account."
+        description="Set a new password for your Hopping Deals account."
         pathname={location.pathname}
         noindex
       />
@@ -201,7 +201,7 @@ const ResetPassword = () => {
           <KeyRound className="h-24 w-24 mx-auto mb-8 opacity-90" />
           <h2 className="text-3xl font-bold mb-4">Create a Strong Password</h2>
           <p className="text-lg opacity-90 leading-relaxed">
-            Choose a new password and restore secure access to your Complisk{" "}
+            Choose a new password and restore secure access to your Hopping Deals{" "}
             {accountType} account.
           </p>
 

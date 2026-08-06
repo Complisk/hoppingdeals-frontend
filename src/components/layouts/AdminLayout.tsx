@@ -48,8 +48,8 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-4">
           <NavLink to="/" className="flex min-w-0 items-center gap-2">
             <img
-              src="/Capture-removebg-preview.png"
-              alt="Complisk logo"
+              src="/logo.png"
+              alt="Hopping Deals logo"
               className={`${sidebarCollapsed ? "h-8" : "h-10"} w-auto shrink-0`}
             />
           </NavLink>

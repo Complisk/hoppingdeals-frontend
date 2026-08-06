@@ -442,4 +442,462 @@
   @apply text-muted-foreground;
 }
 
+/* ── Hopping Deals home hero (ported 1:1 from HoppingDeals home hero UI) ─────── */
+.hd-hero {
+  min-height: max(38rem, 100svh);
+  display: grid;
+  place-items: center;
+  background: #02040a;
+  overflow: hidden;
+}
 
+.hd-hero__poster {
+  position: relative;
+  width: 100%;
+  min-height: max(38rem, 100svh);
+  overflow: hidden;
+  isolation: isolate;
+  background: #02040a;
+}
+
+.hd-hero__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hd-hero__background img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.hd-hero__logo {
+  position: absolute;
+  z-index: 5;
+  left: clamp(0.75rem, 3vw, 2.5rem);
+  top: clamp(7.25rem, 15vh, 8.5rem);
+  width: clamp(8.5rem, 16vw, 13rem);
+  height: auto;
+  filter: drop-shadow(0 8px 7px rgb(0 0 0 / 0.55));
+  user-select: none;
+}
+
+.hd-hero__intro {
+  position: absolute;
+  z-index: 4;
+  top: clamp(8.5rem, 17vh, 10.5rem);
+  right: clamp(1rem, 6vw, 5.5rem);
+  max-width: min(48rem, 58vw);
+  text-align: right;
+  color: white;
+  text-shadow: 0 3px 12px rgb(0 0 0 / 0.85);
+}
+
+.hd-hero__intro h1 {
+  max-width: 22ch;
+  margin-left: auto;
+  font-size: clamp(2.35rem, 3.9vw, 3.9rem);
+  font-weight: 900;
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+
+.hd-hero__intro p {
+  margin-top: 1rem;
+  max-width: 31rem;
+  margin-left: auto;
+  color: rgb(255 255 255 / 0.92);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.hd-hero__tickets {
+  position: absolute;
+  z-index: 6;
+  top: 0;
+  bottom: 0;
+  width: min(100%, 61rem);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hd-hero__more {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  top: 79%;
+  bottom: auto;
+  width: clamp(9rem, 18vw, 12rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.72));
+}
+
+.hd-hero__more--expanded {
+  top: 91%;
+}
+
+.hd-hero__more img {
+  width: 100%;
+  height: auto;
+}
+
+.hd-hero__more:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.hd-hero__more:focus-visible {
+  outline: 2px solid #f5c55c;
+  outline-offset: 0.35rem;
+  border-radius: 6px;
+}
+
+.hd-hero__category-links {
+  position: absolute;
+  z-index: 7;
+  top: 73.5%;
+  left: 50%;
+  width: min(56rem, calc(100% - 2rem));
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.5rem;
+  transform: translateX(-50%);
+}
+
+.hd-hero__category-item-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.hd-hero__category-link {
+  min-height: 2.3rem;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    ),
+    rgba(3, 8, 25, 0.75);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(0.7rem, 0.9vw, 0.82rem);
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    border-color 200ms ease,
+    background 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.hd-hero__category-icon {
+  color: #f5c55c;
+  margin-right: 0.45rem;
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+
+.hd-hero__category-link:hover {
+  border-color: #f5c55c;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245, 197, 92, 0.15) 0%,
+      rgba(255, 255, 255, 0.04) 100%
+    ),
+    rgba(5, 14, 40, 0.85);
+  color: #f5c55c;
+  box-shadow:
+    0 12px 30px rgba(245, 197, 92, 0.15),
+    0 0 15px rgba(245, 197, 92, 0.1);
+}
+
+.hd-hero__category-link:hover .hd-hero__category-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.hd-ticket {
+  position: absolute;
+  color: white;
+  transform-origin: 50% 50%;
+  filter: drop-shadow(0 10px 10px rgb(0 0 0 / 0.55))
+    drop-shadow(0 3px 4px rgb(0 0 0 / 0.35));
+  transition:
+    transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 350ms ease,
+    z-index 0s linear;
+}
+
+.hd-ticket:hover {
+  transform: scale(1.08) translateY(-8px) rotate(0deg) !important;
+  z-index: 20;
+  filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.65))
+    drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
+}
+
+.hd-ticket:active {
+  transform: scale(0.96) translateY(-3px) rotate(0deg) !important;
+}
+
+.hd-ticket__inner-border {
+  transition: stroke 250ms ease;
+}
+
+.hd-ticket:hover .hd-ticket__inner-border {
+  stroke: rgba(255, 255, 255, 0.9) !important;
+}
+
+.hd-ticket__svg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hd-ticket__body {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hd-ticket__label {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 9%;
+  min-width: 62%;
+  max-width: 82%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.2) 0%, rgb(0 0 0 / 0.25) 100%),
+    var(--ticket-label);
+  border: 1.5px solid #ffffff;
+  color: white;
+  font-weight: 800;
+  font-size: clamp(0.42rem, 1.05vw, 0.72rem);
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-shadow: 0 1.5px 0.5px rgb(0 0 0 / 0.85);
+  box-shadow:
+    0 4px 6px rgb(0 0 0 / 0.5),
+    inset 0 1px 1px rgb(255 255 255 / 0.3);
+}
+
+.hd-ticket__copy {
+  position: absolute;
+  z-index: 4;
+  inset: 34% 6% 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 900;
+  line-height: 0.95;
+  text-align: center;
+}
+
+.hd-ticket__copy span {
+  font-size: clamp(0.95rem, 2.2vw, 1.45rem);
+}
+
+.hd-ticket__copy span:first-child {
+  color: #ffe600;
+  transition: color 250ms ease;
+}
+
+.hd-ticket:hover .hd-ticket__copy span:first-child {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.hd-ticket__badge {
+  position: absolute;
+  z-index: 5;
+  right: -6%;
+  top: -9%;
+  width: 29%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  color: white;
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgb(255 255 255 / 0.45) 0%,
+      transparent 60%
+    ),
+    linear-gradient(135deg, rgb(255 255 255 / 0.2) 0%, rgb(0 0 0 / 0.3) 100%),
+    var(--badge-color);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  box-shadow:
+    0 5px 8px rgb(0 0 0 / 0.55),
+    inset 0 1.5px 3px rgb(255 255 255 / 0.4);
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hd-ticket:hover .hd-ticket__badge {
+  transform: scale(1.15) rotate(12deg);
+}
+
+.hd-ticket__badge-svg {
+  width: 65%;
+  height: 65%;
+  filter: drop-shadow(0 1.5px 1px rgb(0 0 0 / 0.35));
+}
+
+.hd-ticket:focus-visible {
+  outline: 2px solid #f5c55c;
+  outline-offset: 0.3rem;
+  border-radius: 8px;
+}
+
+/* Home header helpers (ported from HoppingDeals) */
+.site-header__welcome {
+  font-weight: 500;
+}
+
+.site-header__login {
+  color: inherit;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .site-header__welcome {
+    display: none;
+  }
+
+  .hd-hero__intro {
+    top: clamp(6rem, 12vh, 7rem);
+  }
+
+  .hd-hero__intro h1 {
+    max-width: 14ch;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header__login {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hd-hero,
+  .hd-hero__poster {
+    min-height: max(35rem, calc(100svh - 6.65rem));
+  }
+
+  .hd-hero__logo {
+    display: none;
+  }
+
+  .hd-hero__intro {
+    top: 12rem;
+    left: 1rem;
+    right: 1rem;
+    max-width: 22rem;
+    text-align: left;
+  }
+
+  .hd-hero__intro h1 {
+    max-width: 13ch;
+    margin-left: 0;
+    font-size: clamp(2rem, 10vw, 2.8rem);
+    line-height: 0.98;
+  }
+
+  .hd-hero__intro p {
+    max-width: 18rem;
+    margin-left: 0;
+    margin-top: 0.7rem;
+    font-size: 0.95rem;
+  }
+
+  .hd-hero__tickets {
+    width: 100%;
+    left: 50%;
+  }
+
+  .hd-hero__more {
+    top: 79%;
+    bottom: auto;
+    width: 10.5rem;
+  }
+
+  .hd-hero__more--expanded {
+    top: 86%;
+  }
+
+  .hd-hero__category-links {
+    top: 76.5%;
+    width: calc(100% - 1.5rem);
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    overflow-x: auto;
+    padding: 0.1rem 0.1rem 0.45rem;
+    scrollbar-width: none;
+  }
+
+  .hd-hero__category-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hd-hero__category-item-wrapper {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .hd-hero__category-link {
+    min-height: 2.1rem;
+    padding-inline: 0.75rem;
+    font-size: 0.72rem;
+  }
+
+  .hd-ticket__label {
+    font-size: 0.42rem;
+  }
+
+  .hd-ticket__copy span {
+    font-size: 0.92rem;
+    -webkit-text-stroke: 1.2px #081033;
+  }
+}

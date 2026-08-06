@@ -510,7 +510,7 @@ const AdminPhotos = () => {
                       title: event.target.value,
                     }))
                   }
-                  placeholder="e.g. Complisk App Installation Guide"
+                  placeholder="e.g. Hopping Deals App Installation Guide"
                 />
               </div>
 

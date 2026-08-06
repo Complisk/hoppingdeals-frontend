@@ -4,18 +4,18 @@ import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Install Complisk App on Your Phone",
+  title: "Install Hopping Deals App on Your Phone",
   description:
-    "Get the Complisk app icon on your phone home screen with easy setup instructions.",
+    "Get the Hopping Deals app icon on your phone home screen with easy setup instructions.",
   alternates: {
     canonical: "/install-app",
   },
   openGraph: {
-    title: "Install Complisk App on Your Phone",
+    title: "Install Hopping Deals App on Your Phone",
     description:
-      "Get the Complisk app icon on your phone home screen with easy setup instructions.",
+      "Get the Hopping Deals app icon on your phone home screen with easy setup instructions.",
     url: `${SITE_URL}/install-app`,
-    siteName: "Complisk",
+    siteName: "Hopping Deals",
     type: "website",
   },
 };
@@ -27,7 +27,7 @@ export default function InstallAppPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "Install Complisk App",
+          name: "Install Hopping Deals App",
           url: `${SITE_URL}/install-app`,
         }}
       />

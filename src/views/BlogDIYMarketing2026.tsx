@@ -53,7 +53,7 @@ const BlogDIYMarketing2026: React.FC = () => {
         </p>
         <ul className="list-disc ml-6 mb-4">
           <li>
-            Brands like Airbnb, Amazon, and Complisk built their businesses by
+            Brands like Airbnb, Amazon, and Hopping Deals built their businesses by
             generating trust through promoting customer feedback.
           </li>
           <li>

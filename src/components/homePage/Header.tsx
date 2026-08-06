@@ -1,53 +1,89 @@
 "use client";
-﻿import React, { useEffect, useState, useRef } from "react";
+
+// Header — ported 1:1 from the HoppingDeals home header UI.
+//   Top row:    Logo (left) ── Business Portal button + hamburger menu (right)
+//   Bottom row: HeaderLocationSearch (left) ── Welcome/Login link (right)
+//
+//   overlay=true (homepage): absolute + transparent so the hero shows through.
+//   overlay=false (other pages): fixed dark navy header.
+// The hamburger opens a Radix DropdownMenu; the current route is highlighted in
+// red. Auth state controls whether Login/Register or Profile/Logout appear.
+
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
+import { useSelector, useDispatch } from "react-redux";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { motion } from "framer-motion";
 import {
+  Menu,
   Info,
   BookOpen,
-  Image,
+  Image as ImageIcon,
   Grid,
-  LogOut,
-  User,
-  X,
   Building2,
+  LogIn,
+  UserPlus,
+  User,
+  LayoutDashboard,
+  LogOut,
+  ChevronRight,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
 import { logout as userLogout } from "@/store/authSlice";
-import { BUSINESS_CATEGORIES } from "@/constants/business";
 import Logo from "../shared/Logo";
 import HeaderLocationSearch from "../shared/HeaderLocationSearch";
+import { cn } from "@/lib/utils";
 
-const Header: React.FC = () => {
+const PRIMARY = "#E31E24";
+
+// Top-level menu items that aren't the Categories submenu.
+const PUBLIC_ITEMS_BEFORE_CATEGORIES = [
+  { label: "About Us", href: "/about-us", Icon: Info },
+  { label: "Blog", href: "/blog", Icon: BookOpen },
+  { label: "Photo Gallery", href: "/photos", Icon: ImageIcon },
+];
+
+const PUBLIC_ITEMS_AFTER_CATEGORIES = [
+  {
+    label: "Hopping Deals Business Directory",
+    href: "/hopping-deals-business-directory",
+    Icon: Building2,
+  },
+];
+
+// Category list mirrors the Hopping Deals categories. Each entry links to
+// /category/<slug> — slugs match the BUSINESS_CATEGORIES used by the feed.
+const CATEGORIES: { label: string; slug: string }[] = [
+  { label: "Restaurants", slug: "restaurants" },
+  { label: "Beauty & Spas", slug: "beauty-&-spas" },
+  { label: "Home Services", slug: "home-services" },
+  { label: "Coffee & Tea", slug: "coffee-&-tea" },
+  { label: "Food", slug: "food" },
+  { label: "Auto Services", slug: "auto-services" },
+  { label: "Pets", slug: "pets" },
+  { label: "Professional Services", slug: "professional-services" },
+  { label: "Health & Medical", slug: "health-&-medical" },
+  { label: "Event Planning & Services", slug: "event-planning-&-services" },
+  { label: "Hotels & Casinos", slug: "hotels-&-casinos" },
+  { label: "Nightlife", slug: "nightlife" },
+  { label: "Active Life", slug: "active-life" },
+  { label: "Education", slug: "education" },
+  { label: "Arts & Entertainment", slug: "arts-&-entertainment" },
+  { label: "Travel & Activities", slug: "travel-&-activities" },
+];
+
+interface HeaderProps {
+  overlay?: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ overlay = false }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const dispatch = useDispatch();
-
   const user = useSelector((state: RootState) => state.auth.user);
   const business = useSelector((state: RootState) => state.auth.business);
-  const accountType = useSelector((state: RootState) => state.auth.accountType);
-  const displayName =
-    accountType === "business"
-      ? business?.name
-      : accountType === "user"
-        ? user?.fullName
-        : null;
-  const profileRoute =
-    accountType === "business"
-      ? "/business/profile"
-      : accountType === "user"
-        ? "/user/profile"
-        : null;
+  const isAuthed = Boolean(user || business);
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
-  const [isMobileCategoriesModalOpen, setIsMobileCategoriesModalOpen] =
-    useState(false);
-  function CloseMenu() {
-    setIsMenuOpen(false);
-  }
   const handleLogout = () => {
     dispatch(userLogout());
     router.push("/auth/login");
@@ -55,48 +91,97 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="py-3 px-4 z-50 sm:px-8 border-b border-gray-100  bg-white">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          {/* Logo */}
-          <Logo />
+      <header
+        className={[
+          overlay ? "absolute z-40 inset-x-0 top-0" : "fixed z-40 inset-x-0 bg-white top-0",
+          "text-white",
+          overlay
+            ? "border-b border-transparent bg-transparent shadow-none"
+            : "border-b border-[rgb(245_197_92/0.48)] bg-[rgb(3_8_25/0.97)] shadow-[0_12px_32px_rgb(0_0_0/0.28)]",
+        ].join(" ")}
+      >
+        <div
+          className="
+            w-[min(80rem,100%)] mx-auto
+            px-[clamp(0.75rem,3vw,2rem)]
+            sm:py-7
+ py-3            grid grid-cols-[auto_1fr]
+            grid-rows-[3.45rem_2.35rem]
+            items-center
+            gap-[clamp(0.8rem,2vw,1.75rem)]
+          "
+        >
+          <div className="col-start-1 row-start-1">
+            <Logo />
+          </div>
 
-          {/* Right Section */}
-          <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
-            {accountType === "business" && business ? (
-              <Link href="/business/dashboard">
-                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-black px-2 py-1 text-xs font-medium text-[#E31E24] hover:bg-red-100 sm:px-3 sm:text-sm md:text-base lg:text-lg">
-                  Business Dashboard
-                </button>
-              </Link>
+          <div
+            className="
+              col-start-1 col-end-[-1]
+              row-start-2
+               flex justify-between items-center
+              min-w-0
+            "
+          >
+            <HeaderLocationSearch light />
+            {user?.fullName || business?.name ? (
+              <span className="site-header__welcome">
+                Welcome, {user?.fullName || business?.name}
+              </span>
             ) : (
-              <Link href="/business/visitor">
-                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-black px-2 py-1 text-xs font-medium text-[#E31E24] hover:bg-red-100 sm:px-3 sm:text-sm md:text-base lg:text-lg">
-                  Business Portal
-                </button>
+              <Link href="/auth/login" className="site-header__login">
+                Login
               </Link>
             )}
+          </div>
 
-            {/* MENU */}
-            <DropdownMenu.Root open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+          <div className="col-start-2 row-start-1 flex items-center justify-end gap-[clamp(0.55rem,1.5vw,1rem)]">
+            <Link
+              href="/business/visitor"
+              className="
+                min-h-[2.55rem] inline-flex items-center justify-center
+                px-[0.95rem] py-[0.6rem]
+                border border-white
+                rounded-[6px]
+                bg-[#d9232e] text-white
+                text-[0.88rem] font-black leading-[1]
+                whitespace-nowrap
+                transition-transform transition-colors duration-200
+                hover:bg-[#b91621] hover:translate-y-[-1px]
+              "
+            >
+              Business Portal
+            </Link>
+
+            <DropdownMenu.Root>
               <DropdownMenu.Trigger asChild>
                 <button
-                  className="p-2 rounded-xl border-gray-200 hover:bg-gray-100 transition
-                                     md:p-2.5"
+                  type="button"
+                  aria-label="Open menu"
+                  className="
+                    w-[3.25rem] min-h-[3.35rem]
+                    grid place-items-center content-center
+                    gap-[0.05rem]
+                    border-0 bg-transparent
+                    cursor-pointer text-white
+                    filter drop-shadow-[0_2px_3px_rgb(0_0_0/0.6)]
+                    hover:text-[#f5c55c]
+                    transition-colors
+                  "
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-7 w-7 text-gray-400 md:h-8 md:w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                  <Menu
+                    aria-hidden="true"
+                    strokeWidth={2.4}
+                    className="h-[1.65rem] w-[1.65rem]"
+                  />
+                  <span
+                    className="
+                      font-[Georgia,'Times New Roman',Times,serif]
+                      text-[0.73rem] italic font-bold leading-[1]
+                    "
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16m-7 6h7"
-                    />
-                  </svg>
+                    Menu
+                  </span>
                 </button>
               </DropdownMenu.Trigger>
 
@@ -106,125 +191,134 @@ const Header: React.FC = () => {
                     initial={{ opacity: 0, y: -8, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.2 }}
-                    className="w-56 md:w-64 rounded-2xl bg-white/90 backdrop-blur-xl
-                                   shadow-xl border border-gray-200 z-50 p-2
-                                   sm:w-auto sm:min-w-[260px] sm:max-w-[90vw]"
+                    className="z-50 w-64 rounded-lg border border-gray-200 bg-white/95 p-2 shadow-xl backdrop-blur-xl"
                   >
-                    <Link href="/about-us" onClick={CloseMenu}>
-                      <MenuItem icon={<Info />} label="About Us" />
-                    </Link>
-                    <Link href="/blog" onClick={CloseMenu}>
-                      <MenuItem icon={<BookOpen />} label="Blog" />
-                    </Link>
-                    <Link href="/photos" onClick={CloseMenu}>
-                      <MenuItem icon={<Image />} label="Photo Gallery" />
-                    </Link>
-
-                    {/* Mobile Categories Modal Trigger */}
-                    <DropdownMenu.Item
-                      onSelect={(event) => {
-                        event.preventDefault();
-                        setIsMenuOpen(false);
-                        setIsMobileCategoriesModalOpen(true);
-                      }}
-                      className="sm:hidden flex items-center gap-3 px-4 py-3 rounded-xl
-                                     cursor-pointer text-gray-700 text-sm font-medium
-                                     hover:bg-red-50 hover:text-[#E31E24]
-                                     focus:outline-none transition"
-                    >
-                      <span className="text-[#E31E24]">
-                        <Grid size={18} />
-                      </span>
-                      Categories
-                    </DropdownMenu.Item>
-
-                    {/* Desktop Categories Submenu */}
-                    <div className="hidden sm:block">
-                      <DropdownMenu.Sub
-                        open={isCategoriesOpen}
-                        onOpenChange={setIsCategoriesOpen}
-                      >
-                        <DropdownMenu.SubTrigger
-                          className="flex items-center gap-3 px-4 py-3 rounded-xl w-full text-left
-                                         cursor-pointer text-gray-700 text-sm font-medium
-                                         hover:bg-red-50 hover:text-[#E31E24]
-                                         focus:outline-none transition md:text-base"
-                        >
-                          <span className="text-[#E31E24]">
-                            <Grid size={18} />
-                          </span>
-                          Categories
-                        </DropdownMenu.SubTrigger>
-
-                        <DropdownMenu.Portal>
-                          <DropdownMenu.SubContent
-                            sideOffset={5}
-                            alignOffset={-5}
-                            className="w-64 md:w-72 bg-white/90 backdrop-blur-xl
-                                         shadow-xl border border-gray-200 z-50 p-2 max-h-96 overflow-y-auto
-                                         sm:max-h-[70vh] sm:w-auto sm:min-w-[280px] sm:max-w-[90vw]"
-                          >
-                            {BUSINESS_CATEGORIES.map((category) => (
-                              <Link
-                                key={category}
-                                href={`/category/${category}`}
-                                className="flex items-center gap-3 px-4 py-3 rounded-xl
-                                             cursor-pointer text-gray-700 text-sm font-medium
-                                             hover:bg-red-50 hover:text-[#E31E24]
-                                             focus:outline-none transition w-full
-                                             md:text-base md:py-2"
-                              >
-                                {category
-                                  .replace(/-/g, " ")
-                                  .replace(/\b\w/g, (l) => l.toUpperCase())}
-                              </Link>
-                            ))}
-                          </DropdownMenu.SubContent>
-                        </DropdownMenu.Portal>
-                      </DropdownMenu.Sub>
-                    </div>
-                    <Link href="/complisk-business-directory" onClick={CloseMenu}>
+                    {PUBLIC_ITEMS_BEFORE_CATEGORIES.map((item) => (
                       <MenuItem
-                        icon={<Building2 />}
-                        label="Complisk Business Directory"
+                        key={item.href}
+                        href={item.href}
+                        Icon={item.Icon}
+                        label={item.label}
+                        active={
+                          pathname === item.href ||
+                          pathname?.startsWith(`${item.href}/`)
+                        }
                       />
-                    </Link>
+                    ))}
 
-                    {!user && !business && (
+                    <DropdownMenu.Sub>
+                      <DropdownMenu.SubTrigger
+                        className={cn(
+                          "flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer text-sm font-medium transition outline-none data-[state=open]:bg-red-50 data-[state=open]:text-[#E31E24]",
+                          pathname?.startsWith("/category/") ||
+                            pathname === "/categories"
+                            ? "bg-red-50 text-[#E31E24]"
+                            : "text-gray-700 hover:bg-red-50 hover:text-[#E31E24]",
+                        )}
+                      >
+                        <span className="text-[#E31E24]">
+                          <Grid className="h-5 w-5" />
+                        </span>
+                        <span className="flex-1">Categories</span>
+                        <ChevronRight className="h-4 w-4 text-gray-400" />
+                      </DropdownMenu.SubTrigger>
+
+                      <DropdownMenu.Portal>
+                        <DropdownMenu.SubContent
+                          sideOffset={8}
+                          alignOffset={-4}
+                          className="z-50 max-h-[60vh] w-64 overflow-y-auto rounded-lg border border-gray-200 bg-white/95 p-2 shadow-xl backdrop-blur-xl"
+                        >
+                          {CATEGORIES.map((cat) => {
+                            const href = `/category/${cat.slug}`;
+                            const active = pathname === href;
+                            return (
+                              <DropdownMenu.Item asChild key={cat.slug}>
+                                <Link
+                                  href={href}
+                                  className={cn(
+                                    "block px-4 py-2.5 rounded-lg text-sm font-medium transition outline-none cursor-pointer",
+                                    active
+                                      ? "bg-red-50 text-[#E31E24]"
+                                      : "text-gray-700 hover:bg-red-50 hover:text-[#E31E24]",
+                                  )}
+                                >
+                                  {cat.label}
+                                </Link>
+                              </DropdownMenu.Item>
+                            );
+                          })}
+                        </DropdownMenu.SubContent>
+                      </DropdownMenu.Portal>
+                    </DropdownMenu.Sub>
+
+                    {PUBLIC_ITEMS_AFTER_CATEGORIES.map((item) => (
+                      <MenuItem
+                        key={item.href}
+                        href={item.href}
+                        Icon={item.Icon}
+                        label={item.label}
+                        active={
+                          pathname === item.href ||
+                          pathname?.startsWith(`${item.href}/`)
+                        }
+                      />
+                    ))}
+
+                    {!isAuthed && (
                       <>
                         <DropdownMenu.Separator className="my-2 h-px bg-gray-200" />
-                        <Link href="/auth/login">
-                          <MenuItem icon={<Info />} label="Login" />
-                        </Link>
-                        <Link href="/auth/register">
-                          <MenuItem icon={<Info />} label="Register" />
-                        </Link>
+                        <MenuItem
+                          href="/auth/login"
+                          Icon={LogIn}
+                          label="Login"
+                          active={
+                            pathname === "/auth/login" || pathname === "/login"
+                          }
+                        />
+                        <MenuItem
+                          href="/auth/register"
+                          Icon={UserPlus}
+                          label="Register"
+                          active={pathname === "/auth/register"}
+                        />
                       </>
                     )}
 
-                    {(user || business) && (
+                    {isAuthed && (
                       <>
                         <DropdownMenu.Separator className="my-2 h-px bg-gray-200" />
-                        <div className="px-4 py-3 text-gray-700 text-sm font-medium">
-                          {displayName}
+                        <div className="px-4 py-2 text-gray-500 text-xs uppercase tracking-wide">
+                          {user?.fullName || business?.name}
                         </div>
-                        {profileRoute && (
-                          <Link href={profileRoute}>
-                            <MenuItem icon={<User />} label="My Profile" />
-                          </Link>
+
+                        {business && (
+                          <MenuItem
+                            href="/business/dashboard"
+                            Icon={LayoutDashboard}
+                            label="Business Dashboard"
+                            active={pathname?.startsWith("/business/dashboard")}
+                          />
                         )}
-                        <button
-                          onClick={handleLogout}
-                          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl
-                                         cursor-pointer text-gray-700 text-sm font-medium
-                                         hover:bg-red-50 hover:text-[#E31E24]
-                                         focus:outline-none transition"
+
+                        {user && (
+                          <MenuItem
+                            href="/user/profile"
+                            Icon={User}
+                            label="My Profile"
+                            active={pathname === "/user/profile"}
+                          />
+                        )}
+
+                        <DropdownMenu.Item
+                          onSelect={handleLogout}
+                          className="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer text-gray-700 text-sm font-medium hover:bg-red-50 hover:text-[#E31E24] focus:outline-none transition"
                         >
-                          <span className="text-[#E31E24]">
+                          <span style={{ color: PRIMARY }}>
                             <LogOut size={18} />
                           </span>
                           Logout
-                        </button>
+                        </DropdownMenu.Item>
                       </>
                     )}
                   </motion.div>
@@ -233,101 +327,42 @@ const Header: React.FC = () => {
             </DropdownMenu.Root>
           </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="max-w-7xl mx-auto mt-4 flex justify-between items-center text-sm gap-4">
-          <HeaderLocationSearch />
-
-          {displayName ? (
-            profileRoute ? (
-              <Link href={profileRoute}>
-                <span className="text-gray-700 hover:underline font-medium whitespace-nowrap">
-                  Welcome • {displayName}
-                </span>
-              </Link>
-            ) : (
-              <span className="text-gray-700 font-medium whitespace-nowrap">
-                Welcome • {displayName}
-              </span>
-            )
-          ) : (
-            <Link href="/auth/login">
-              <div
-                className="
-               cursor-pointer text-gray-700 text-sm font-medium hover:text-[#E31E24]"
-              >
-                Login
-              </div>
-            </Link>
-          )}
-        </div>
       </header>
 
-      <AnimatePresence>
-        {isMobileCategoriesModalOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 12 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[90] bg-white sm:hidden"
-          >
-            <div className="flex h-full flex-col">
-              <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
-                <h2 className="text-lg font-semibold text-gray-900">
-                  Categories
-                </h2>
-                <button
-                  type="button"
-                  onClick={() => setIsMobileCategoriesModalOpen(false)}
-                  className="rounded-lg p-2 text-gray-600 hover:bg-gray-100"
-                  aria-label="Close categories"
-                >
-                  <X size={20} />
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-y-auto p-3">
-                {BUSINESS_CATEGORIES.map((category) => (
-                  <Link
-                    key={category}
-                    href={`/category/${category}`}
-                    onClick={() => setIsMobileCategoriesModalOpen(false)}
-                    className="flex items-center rounded-xl px-4 py-3 text-base font-medium text-gray-700
-                               transition hover:bg-red-50 hover:text-[#E31E24]"
-                  >
-                    {category
-                      .replace(/-/g, " ")
-                      .replace(/\b\w/g, (l) => l.toUpperCase())}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className={overlay ? "h-0" : "h-[6.65rem]"} aria-hidden="true" />
     </>
   );
 };
 
-export default Header;
-
-/* ---------- Menu Item Component ---------- */
-const MenuItem = ({
-  icon,
+function MenuItem({
+  href,
+  Icon,
   label,
+  active = false,
 }: {
-  icon: React.ReactNode;
+  href: string;
+  Icon: React.ComponentType<{ className?: string }>;
   label: string;
-}) => (
-  <DropdownMenu.Item
-    className="flex items-center gap-3 px-4 py-3 rounded-xl
-               cursor-pointer text-gray-700 text-sm font-medium
-               hover:bg-red-50 hover:text-[#E31E24]
-               focus:outline-none transition
-               md:text-base md:py-3.5"
-  >
-    <span className="text-[#E31E24]">{icon}</span>
-    {label}
-  </DropdownMenu.Item>
-);
+  active?: boolean;
+}) {
+  return (
+    <DropdownMenu.Item asChild>
+      <Link
+        href={href}
+        className={cn(
+          "flex items-center gap-3 rounded-md px-4 py-3 text-sm font-medium transition outline-none",
+          active
+            ? "bg-red-50 text-[#E31E24]"
+            : "text-gray-700 hover:bg-red-50 hover:text-[#E31E24]",
+        )}
+      >
+        <span className="text-[#E31E24]">
+          <Icon className="h-5 w-5" />
+        </span>
+        {label}
+      </Link>
+    </DropdownMenu.Item>
+  );
+}
+
+export default Header;

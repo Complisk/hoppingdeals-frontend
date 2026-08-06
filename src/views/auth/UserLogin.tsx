@@ -105,7 +105,7 @@ const UserLogin = () => {
     <div className="min-h-screen flex bg-background">
       <Seo
         title="User sign in"
-        description="Sign in to your Complisk account to save favorite promotions and discover local deals."
+        description="Sign in to your Hopping Deals account to save favorite promotions and discover local deals."
         pathname="/auth/login"
         noindex
       />

@@ -389,7 +389,7 @@ const BusinessProfile = () => {
               <div className="grid gap-4">
                 <p className="text-sm md:text-base text-slate-700 font-medium">
                   Once we have enough users “tagged,” we will reach out to that
-                  business to join Complisk!
+                  business to join Hopping Deals!
                 </p>
               </div>
             </div>

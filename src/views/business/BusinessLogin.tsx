@@ -35,7 +35,7 @@ const BusinessLogin = () => {
     <div className="min-h-screen flex bg-background">
       <Seo
         title="Business sign in"
-        description="Sign in to your Complisk business account to manage promotions and campaign performance."
+        description="Sign in to your Hopping Deals business account to manage promotions and campaign performance."
         pathname="/business/login"
         noindex
       />

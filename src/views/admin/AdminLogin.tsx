@@ -87,7 +87,7 @@ const AdminLogin = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="admin@complisk.com"
+                  placeholder="admin@hoppingdeals.world"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"

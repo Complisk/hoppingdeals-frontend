@@ -26,11 +26,7 @@ const Logo = ({
 
   return (
     <Link href="/">
-      <img
-        src="/Capture-removebg-preview.png"
-        className=" w-24 "
-        alt="Complisk logo"
-      />
+      <img src="/logo.png" className=" w-24 " alt="Hopping Deals logo" />
     </Link>
   );
 };

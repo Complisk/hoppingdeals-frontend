@@ -47,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
     {
-      url: `${SITE_URL}/complisk-business-directory`,
+      url: `${SITE_URL}/hopping-deals-business-directory`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.6,

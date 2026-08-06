@@ -1,17 +1,17 @@
-export const SITE_NAME = "Complisk";
-export const SITE_URL = "https://complisk.com";
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/image.png`;
-export const DEFAULT_TITLE = "Complisk | Local business promotions and deals";
+export const SITE_NAME = "Hopping Deals";
+export const SITE_URL = "https://www.hoppingdeals.world";
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/logo.png`;
+export const DEFAULT_TITLE = "Hopping Deals | Coupons from local businesses near you";
 export const DEFAULT_DESCRIPTION =
-  "Discover local business promotions, limited-time offers, and targeted marketing campaigns across the United States with Complisk.";
+  "Find local coupons, business promotions, flash deals, and limited-time offers near you. Browse restaurants, beauty, services, shopping, and more on Hopping Deals.";
 export const DEFAULT_KEYWORDS = [
-  "local promotions",
+  "hopping deals",
+  "local coupons",
   "business promotions",
+  "flash deals",
+  "limited-time offers",
   "local deals",
-  "marketing promotions",
   "small business marketing",
-  "geo targeted promotions",
-  "Complisk",
 ];
 
 export type StructuredData =

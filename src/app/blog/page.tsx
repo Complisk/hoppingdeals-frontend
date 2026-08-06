@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description:
       "Practical DIY marketing strategies for local businesses, including referral marketing, reviews, loyalty offers, and promotional planning.",
     url: BLOG_URL,
-    siteName: "Complisk",
+    siteName: "Hopping Deals",
     type: "article",
     publishedTime: "2026-03-09",
     modifiedTime: "2026-03-09",
@@ -40,13 +40,13 @@ export default function BlogPage() {
           headline: "DIY Marketing Strategies (2026)",
           description:
             "A practical guide to referral marketing, customer reviews, special deals, and collaboration ideas for small businesses.",
-          author: { "@type": "Organization", name: "Complisk" },
+          author: { "@type": "Organization", name: "Hopping Deals" },
           publisher: {
             "@type": "Organization",
-            name: "Complisk",
+            name: "Hopping Deals",
             logo: {
               "@type": "ImageObject",
-              url: `${SITE_URL}/web-app-manifest-512x512.png`,
+              url: `${SITE_URL}/logo.png`,
             },
           },
           datePublished: "2026-03-09",

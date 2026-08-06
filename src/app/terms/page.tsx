@@ -5,15 +5,15 @@ import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Complisk terms of service and usage policies.",
+  description: "Hopping Deals terms of service and usage policies.",
   alternates: {
     canonical: "/terms",
   },
   openGraph: {
     title: "Terms of Service",
-    description: "Complisk terms of service and usage policies.",
+    description: "Hopping Deals terms of service and usage policies.",
     url: `${SITE_URL}/terms`,
-    siteName: "Complisk",
+    siteName: "Hopping Deals",
     type: "website",
   },
 };
@@ -27,7 +27,7 @@ export default function TermsPage() {
           "@type": "WebPage",
           name: "Terms of Service",
           url: `${SITE_URL}/terms`,
-          description: "Complisk terms of service and usage policies.",
+          description: "Hopping Deals terms of service and usage policies.",
         }}
       />
       <Terms />

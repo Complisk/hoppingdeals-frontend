@@ -4,10 +4,13 @@ import { MapPin } from "lucide-react";
 
 interface HeaderLocationSearchProps {
   className?: string;
+  /** Render white text — used inside the dark/overlay home header */
+  light?: boolean;
 }
 
 const HeaderLocationSearch: React.FC<HeaderLocationSearchProps> = ({
   className = "",
+  light = false,
 }) => {
   const [currentLocation, setCurrentLocation] =
     useState<string>("Set Location");
@@ -207,7 +210,9 @@ const HeaderLocationSearch: React.FC<HeaderLocationSearchProps> = ({
       {/* Location Display / Trigger */}
       <button
         onClick={() => setIsSearchOpen(!isSearchOpen)}
-        className="flex items-center gap-2 text-sm text-gray-700 hover:text-red-500 transition-colors"
+        className={`flex items-center gap-2 text-sm ${
+          light ? "text-white" : "text-gray-700"
+        } hover:text-red-500 transition-colors`}
       >
         <MapPin className="h-5 w-5 text-red-500 flex-shrink-0" />
         <span className="font-medium truncate max-w-[200px]">

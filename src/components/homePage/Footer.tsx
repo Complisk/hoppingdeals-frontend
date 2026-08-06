@@ -35,18 +35,18 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="/complisk-business-directory"
+                  href="/hopping-deals-business-directory"
                   className="hover:text-white transition"
                 >
-                  Complisk Business Directory
+                  Hopping Deals Business Directory
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Complisk Column */}
+          {/* Hopping Deals Column */}
           <div>
-            <h3 className="text-white text-2xl font-bold mb-8">Complisk</h3>
+            <h3 className="text-white text-2xl font-bold mb-8">Hopping Deals</h3>
             <ul className="space-y-4">
               <li>
                 <a href="/about-us" className="hover:text-white transition">
@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-sm">
           <a href="/terms" className="hover:text-white transition">
             <p>
-              © 2025 Complisk, Inc. - Terms - Sitemap - Privacy - Your Privacy
+              © 2025 Hopping Deals, Inc. - Terms - Sitemap - Privacy - Your Privacy
               Choice ?
             </p>
           </a>{" "}

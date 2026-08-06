@@ -18,23 +18,23 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Complisk | Local business promotions and deals",
-    template: "%s | Complisk",
+    default: "Hopping Deals | Local business promotions and deals",
+    template: "%s | Hopping Deals",
   },
   description: DEFAULT_DESCRIPTION,
   keywords: DEFAULT_KEYWORDS,
   openGraph: {
-    title: "Complisk | Local business promotions and deals",
+    title: "Hopping Deals | Local business promotions and deals",
     description: DEFAULT_DESCRIPTION,
     url: SITE_URL,
-    siteName: "Complisk",
+    siteName: "Hopping Deals",
     images: [{ url: DEFAULT_OG_IMAGE }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Complisk | Local business promotions and deals",
+    title: "Hopping Deals | Local business promotions and deals",
     description: DEFAULT_DESCRIPTION,
     images: [DEFAULT_OG_IMAGE],
   },

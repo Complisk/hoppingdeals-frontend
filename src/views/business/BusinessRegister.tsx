@@ -208,7 +208,7 @@ const BusinessRegister = () => {
     <div className="min-h-screen flex bg-background">
       <Seo
         title="Business registration"
-        description="Create a business account on Complisk to publish local promotions and manage campaigns."
+        description="Create a business account on Hopping Deals to publish local promotions and manage campaigns."
         pathname="/business/register"
         noindex
       />
@@ -589,7 +589,7 @@ const BusinessRegister = () => {
           </h2>
           <p className="text-lg opacity-80 max-w-md">
             Create promotions, reach local customers, and grow your business
-            with Complisk.
+            with Hopping Deals.
           </p>
 
           <div className="mt-12 grid grid-cols-3 gap-8 text-center">

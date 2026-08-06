@@ -64,7 +64,7 @@ const CategoryPage = () => {
     <>
       <Seo
         title={`${categoryTitle} promotions`}
-        description={`Browse active ${categoryTitle.toLowerCase()} promotions and local deals on Complisk.`}
+        description={`Browse active ${categoryTitle.toLowerCase()} promotions and local deals on Hopping Deals.`}
         pathname={`/category/${category ?? ""}`}
         structuredData={{
           "@context": "https://schema.org",

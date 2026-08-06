@@ -6,13 +6,11 @@ import CategoryCarousel from "@/components/public/CategoryCarousel";
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <Header overlay />
       <main className="flex-grow">
-        <div className="py-6 px-4 sm:px-8">
-          <Hero />
-        </div>
+        <Hero />
 
-        <Categories />
+        {/* <Categories /> */}
         <CategoryCarousel
           title="Featured Promotion"
           excludeCategories={[
