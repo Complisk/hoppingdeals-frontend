@@ -90,7 +90,7 @@ const CategoryPage = () => {
           },
         }}
       />
-      <Header />
+      <Header light />
       <div className=" p-3 sm:p-8 ">
         <div className="mb-6 flex items-center justify-between">
           <div>

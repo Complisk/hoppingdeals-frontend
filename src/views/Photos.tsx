@@ -62,7 +62,7 @@ const Photos = ({ initialPhotos }: PhotosProps = {}) => {
           },
         ]}
       />
-      <Header />
+      <Header light />
       <main className="flex-grow">
         <div className="w-full bg-gradient-to-br py-12 px-4 sm:px-8">
           <div className="max-w-6xl mx-auto">

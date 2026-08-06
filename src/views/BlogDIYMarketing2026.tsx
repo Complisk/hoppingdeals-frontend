@@ -4,7 +4,7 @@ import React from "react";
 const BlogDIYMarketing2026: React.FC = () => {
   return (
     <>
-      <Header />
+      <Header light />
       <div className="max-w-4xl mx-auto py-12 px-4">
         <h1 className="text-3xl font-bold mb-6">
           🚀 DIY Marketing Strategies (2026)

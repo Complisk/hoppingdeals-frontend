@@ -22,7 +22,9 @@ const BusinessPublicPage = () => {
     let mounted = true;
     (async () => {
       try {
-        const res = await fetch(`/api/business-directory/${id}`);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/business-directory/${id}`,
+        );
         const data = await res.json();
         if (!mounted) return;
         if (res.ok) {
@@ -45,7 +47,7 @@ const BusinessPublicPage = () => {
 
   return (
     <>
-      <Header />
+      <Header light />
 
       <div className="min-h-screen flex flex-col bg-white">
         <main className="flex-grow px-4 py-4 md:py-16 sm:px-8">
@@ -100,7 +102,11 @@ const BusinessPublicPage = () => {
                           .filter(Boolean)
                           .slice(0, 3)
                           .map((cat: string) => (
-                            <Badge key={cat} variant="secondary" className="text-xs">
+                            <Badge
+                              key={cat}
+                              variant="secondary"
+                              className="text-xs"
+                            >
                               {cat}
                             </Badge>
                           ))}

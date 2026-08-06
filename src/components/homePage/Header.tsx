@@ -5,7 +5,9 @@
 //   Bottom row: HeaderLocationSearch (left) ── Welcome/Login link (right)
 //
 //   overlay=true (homepage): absolute + transparent so the hero shows through.
-//   overlay=false (other pages): fixed dark navy header.
+//   light=true (content pages like About/Blog/Gallery/Category/Directory):
+//     static white header in normal flow with dark readable text.
+//   default (other pages): sticky dark navy header.
 // The hamburger opens a Radix DropdownMenu; the current route is highlighted in
 // red. Auth state controls whether Login/Register or Profile/Logout appear.
 
@@ -73,10 +75,16 @@ const CATEGORIES: { label: string; slug: string }[] = [
 ];
 
 interface HeaderProps {
+  /** Transparent over the homepage hero (absolute, white text) */
   overlay?: boolean;
+  /** Static white header with dark text for content pages */
+  light?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ overlay = false }) => {
+const Header: React.FC<HeaderProps> = ({ overlay = false, light = false }) => {
+  // Light (white) mode only makes sense when the header isn't over the hero.
+  const isLight = light && !overlay;
+
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useDispatch();
@@ -93,11 +101,21 @@ const Header: React.FC<HeaderProps> = ({ overlay = false }) => {
     <>
       <header
         className={[
-          overlay ? "absolute z-40 inset-x-0 top-0" : "fixed z-40 inset-x-0 bg-white top-0",
-          "text-white",
+          // Homepage overlay: absolute + transparent so the hero shows through.
+          // Light pages: relative (in normal flow) so the header scrolls with the page.
+          // Other pages: sticky so the dark header sits in normal flow (no overlap)
+          // and stays pinned to the top on scroll.
+          overlay
+            ? "absolute z-40 inset-x-0 top-0"
+            : isLight
+              ? "relative z-40"
+              : "sticky top-0 z-40",
+          isLight ? "text-slate-800" : "text-white",
           overlay
             ? "border-b border-transparent bg-transparent shadow-none"
-            : "border-b border-[rgb(245_197_92/0.48)] bg-[rgb(3_8_25/0.97)] shadow-[0_12px_32px_rgb(0_0_0/0.28)]",
+            : isLight
+              ? "border-b border-gray-200 bg-white shadow-none"
+              : "border-b border-[rgb(245_197_92/0.48)] bg-[rgb(3_8_25/0.97)] shadow-[0_12px_32px_rgb(0_0_0/0.28)]",
         ].join(" ")}
       >
         <div
@@ -123,7 +141,7 @@ const Header: React.FC<HeaderProps> = ({ overlay = false }) => {
               min-w-0
             "
           >
-            <HeaderLocationSearch light />
+            <HeaderLocationSearch light={!isLight} />
             {user?.fullName || business?.name ? (
               <span className="site-header__welcome">
                 Welcome, {user?.fullName || business?.name}
@@ -158,16 +176,15 @@ const Header: React.FC<HeaderProps> = ({ overlay = false }) => {
                 <button
                   type="button"
                   aria-label="Open menu"
-                  className="
-                    w-[3.25rem] min-h-[3.35rem]
-                    grid place-items-center content-center
-                    gap-[0.05rem]
-                    border-0 bg-transparent
-                    cursor-pointer text-white
-                    filter drop-shadow-[0_2px_3px_rgb(0_0_0/0.6)]
-                    hover:text-[#f5c55c]
-                    transition-colors
-                  "
+                  className={cn(
+                    "w-[3.25rem] min-h-[3.35rem]",
+                    "grid place-items-center content-center gap-[0.05rem]",
+                    "border-0 bg-transparent cursor-pointer",
+                    "transition-colors",
+                    isLight
+                      ? "text-slate-800 hover:text-[#E31E24]"
+                      : "text-white filter drop-shadow-[0_2px_3px_rgb(0_0_0/0.6)] hover:text-[#f5c55c]",
+                  )}
                 >
                   <Menu
                     aria-hidden="true"
@@ -328,8 +345,6 @@ const Header: React.FC<HeaderProps> = ({ overlay = false }) => {
           </div>
         </div>
       </header>
-
-      <div className={overlay ? "h-0" : "h-[6.65rem]"} aria-hidden="true" />
     </>
   );
 };

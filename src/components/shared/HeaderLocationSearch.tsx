@@ -232,7 +232,7 @@ const HeaderLocationSearch: React.FC<HeaderLocationSearchProps> = ({
               value={query}
               onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="Enter city name..."
-              className="w-full border border-gray-300 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full border border-gray-300 text-gray-900 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
               autoFocus
             />
           </div>

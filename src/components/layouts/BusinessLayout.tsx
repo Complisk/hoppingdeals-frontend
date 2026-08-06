@@ -25,6 +25,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Image from "next/image";
 
 const sidebarLinks = [
   { to: "/business/dashboard", icon: LayoutDashboard, label: "Dashboard" },
@@ -80,7 +81,13 @@ const BusinessLayout = ({ children }: { children: React.ReactNode }) => {
       >
         {/* Logo */}
         <div className="flex h-16 items-center border-b border-sidebar-border px-4">
-          <Logo />
+          <Image
+            width={24}
+            height={24}
+            src="/logo.png"
+            className=" w-16 md:w-16 "
+            alt="Hopping Deals logo"
+          />
         </div>
 
         {/* Create Promotion Button */}

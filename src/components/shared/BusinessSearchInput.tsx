@@ -174,6 +174,7 @@ const BusinessSearchInput: React.FC<BusinessSearchProps> = ({
       setPredictions([]);
     }
   };
+  console.log("test//////////////////////");
 
   return (
     <div

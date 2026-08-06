@@ -9,7 +9,7 @@ import { SITE_URL } from "@/lib/seo";
 const AboutUs = () => {
   return (
     <>
-      <Header />
+      <Header light />
 
       <div className="min-h-screen flex flex-col bg-background">
         <Seo

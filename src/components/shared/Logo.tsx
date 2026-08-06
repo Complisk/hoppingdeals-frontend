@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 
 interface LogoProps {
@@ -7,26 +8,16 @@ interface LogoProps {
   showText?: boolean;
 }
 
-const Logo = ({
-  variant = "default",
-  size = "md",
-  showText = true,
-}: LogoProps) => {
-  const sizeClasses = {
-    sm: "h-6 w-6",
-    md: "h-8 w-8",
-    lg: "h-10 w-10",
-  };
-
-  const textSizes = {
-    sm: "text-lg",
-    md: "text-xl",
-    lg: "text-2xl",
-  };
-
+const Logo = ({}: LogoProps) => {
   return (
     <Link href="/">
-      <img src="/logo.png" className=" w-24 " alt="Hopping Deals logo" />
+      <Image
+        width={24}
+        height={24}
+        src="/logo.png"
+        className=" w-16 md:w-24 "
+        alt="Hopping Deals logo"
+      />
     </Link>
   );
 };

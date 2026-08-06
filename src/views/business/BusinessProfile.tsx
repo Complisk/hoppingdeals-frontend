@@ -74,7 +74,6 @@ const BusinessProfile = () => {
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([]);
   const [isLoadingWishlist, setIsLoadingWishlist] = useState(true);
-
   const [taggedBusinesses, setTaggedBusinesses] = useState<TaggedBusiness[]>(
     [],
   );
@@ -92,7 +91,7 @@ const BusinessProfile = () => {
   useEffect(() => {
     const fetchSubscription = async () => {
       if (!business?.id) return;
-      
+
       setIsLoadingSubscription(true);
       try {
         // Try to fetch fresh data from API
@@ -102,7 +101,7 @@ const BusinessProfile = () => {
           () => {},
           "business",
         );
-        
+
         if (response) {
           setActiveSubscription(response);
         } else {
@@ -276,7 +275,7 @@ const BusinessProfile = () => {
 
   return (
     <>
-      <Header />
+      <Header light />
       <div className="p-4 md:p-8">
         <div className="flex md:flex-row flex-col max-w-7xl mx-auto justify-between gap-6">
           <div className="flex-1">
@@ -338,8 +337,8 @@ const BusinessProfile = () => {
                       </span>
                     </div>
                   ) : (
-                    <Link 
-                      href="/business/subscription" 
+                    <Link
+                      href="/business/subscription"
                       className="text-xs text-red-600 hover:text-red-700 hover:underline font-medium"
                     >
                       Subscribe now

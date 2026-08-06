@@ -30,7 +30,9 @@ const CompliskBusinessDirectory = () => {
     let mounted = true;
     (async () => {
       try {
-        const res = await fetch("/api/business-directory");
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/business-directory`,
+        );
         if (res.ok) {
           const data = await res.json();
           if (mounted) setBusinesses(data?.businesses || []);
@@ -48,7 +50,7 @@ const CompliskBusinessDirectory = () => {
 
   return (
     <>
-      <Header />
+      <Header light />
 
       <div className="min-h-screen flex flex-col bg-white">
         <main className="flex-grow px-4 py-4 md:py-28 sm:px-8">
@@ -58,10 +60,10 @@ const CompliskBusinessDirectory = () => {
             </h1>
 
             <p className="mt-5 text-base leading-8 text-slate-700 sm:text-lg max-w-3xl mx-auto text-center">
-              Support Local with Hopping Deals! Discover the incredible businesses
-              that power our platform. Whether they have already shared exclusive
-              offers with our users or are gearing up for future launches, these
-              merchants are committed to excellence.
+              Support Local with Hopping Deals! Discover the incredible
+              businesses that power our platform. Whether they have already
+              shared exclusive offers with our users or are gearing up for
+              future launches, these merchants are committed to excellence.
             </p>
 
             <div className="mt-12">
