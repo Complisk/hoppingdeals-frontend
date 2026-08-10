@@ -143,9 +143,15 @@ const Header: React.FC<HeaderProps> = ({ overlay = false, light = false }) => {
           >
             <HeaderLocationSearch light={!isLight} />
             {user?.fullName || business?.name ? (
-              <span className="site-header__welcome">
+              <Link
+                href={business ? "/business/profile" : "/user/profile"}
+                className="site-header__welcome transition-opacity hover:opacity-75 hover:underline"
+                title={
+                  business ? "Go to business profile" : "Go to my profile"
+                }
+              >
                 Welcome, {user?.fullName || business?.name}
-              </span>
+              </Link>
             ) : (
               <Link href="/auth/login" className="site-header__login">
                 Login
@@ -310,12 +316,20 @@ const Header: React.FC<HeaderProps> = ({ overlay = false, light = false }) => {
                         </div>
 
                         {business && (
-                          <MenuItem
-                            href="/business/dashboard"
-                            Icon={LayoutDashboard}
-                            label="Business Dashboard"
-                            active={pathname?.startsWith("/business/dashboard")}
-                          />
+                          <>
+                            <MenuItem
+                              href="/business/dashboard"
+                              Icon={LayoutDashboard}
+                              label="Business Dashboard"
+                              active={pathname?.startsWith("/business/dashboard")}
+                            />
+                            <MenuItem
+                              href="/business/profile"
+                              Icon={User}
+                              label="My Profile"
+                              active={pathname === "/business/profile"}
+                            />
+                          </>
                         )}
 
                         {user && (

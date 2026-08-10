@@ -171,6 +171,7 @@ const authSlice = createSlice({
       state.adminUser = null;
       state.accountType = null;
       state.error = null;
+      removeStorageItem("token");
       removeStorageItem("userToken");
       removeStorageItem("businessToken");
       removeStorageItem("adminToken");

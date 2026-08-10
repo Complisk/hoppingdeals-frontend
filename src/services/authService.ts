@@ -456,6 +456,8 @@ export const useAuthService = () => {
     localStorage.removeItem("accountType");
     localStorage.removeItem("adminToken");
     localStorage.removeItem("adminUser");
+    localStorage.removeItem("adminPermissions");
+    localStorage.removeItem("businessActiveSubscription");
     writeCachedBusinessSubscription(null);
     toast.success("Logged out successfully!");
   };
