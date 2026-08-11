@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { MapPin } from "lucide-react";
+import { MapPin, AlertCircle } from "lucide-react";
+import { useGoogleMapsScript } from "@/hooks/useGoogleMapsScript";
 
 interface HeaderLocationSearchProps {
   className?: string;
@@ -24,20 +25,20 @@ const HeaderLocationSearch: React.FC<HeaderLocationSearchProps> = ({
   const debounceRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Initialize Google Places services
-  useEffect(() => {
-    if (typeof window === "undefined" || typeof document === "undefined") {
-      return;
-    }
+  // Load Google Maps (Places) once — the actual search only works after it's ready.
+  const maps = useGoogleMapsScript();
+  const isMapsReady = maps.status === "ready";
 
-    if (!window.google) return;
+  // Initialize Google Places services once the Maps script has loaded.
+  useEffect(() => {
+    if (!isMapsReady || typeof document === "undefined") return;
 
     autoServiceRef.current =
       new window.google.maps.places.AutocompleteService();
     detailsServiceRef.current = new window.google.maps.places.PlacesService(
       document.createElement("div"),
     );
-  }, []);
+  }, [isMapsReady]);
 
   // Load current location from localStorage
   useEffect(() => {
@@ -237,11 +238,24 @@ const HeaderLocationSearch: React.FC<HeaderLocationSearchProps> = ({
             />
           </div>
 
-          {loading && (
+          {maps.status === "error" && (
+            <p className="text-xs text-red-600 py-2 flex items-start gap-1.5">
+              <AlertCircle className="h-3.5 w-3.5 mt-0.5 flex-shrink-0" />
+              <span>{maps.error}</span>
+            </p>
+          )}
+
+          {maps.status === "loading" && (
+            <p className="text-xs text-gray-500 py-2">
+              Loading Google Maps...
+            </p>
+          )}
+
+          {isMapsReady && loading && (
             <p className="text-xs text-gray-500 py-2">Searching...</p>
           )}
 
-          {predictions.length > 0 && (
+          {isMapsReady && predictions.length > 0 && (
             <ul className="max-h-60 overflow-y-auto border-t border-gray-100 mt-2">
               {predictions.map((pred) => (
                 <li
@@ -259,11 +273,14 @@ const HeaderLocationSearch: React.FC<HeaderLocationSearchProps> = ({
             </ul>
           )}
 
-          {!loading && query && predictions.length === 0 && (
-            <p className="text-xs text-gray-400 py-2 text-center">
-              No cities found
-            </p>
-          )}
+          {isMapsReady &&
+            !loading &&
+            query &&
+            predictions.length === 0 && (
+              <p className="text-xs text-gray-400 py-2 text-center">
+                No cities found
+              </p>
+            )}
         </div>
       )}
     </div>

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { useGoogleMapsScript } from "@/hooks/useGoogleMapsScript";
 
 interface PlaceSearchProps {
   searchType: "city" | "state";
@@ -38,8 +39,12 @@ const PlaceSearch: React.FC<PlaceSearchProps> = ({
     }
   }, [disabled]);
 
+  // Load Google Maps (Places) once — search only works after it's ready.
+  const maps = useGoogleMapsScript();
+  const isMapsReady = maps.status === "ready";
+
   useEffect(() => {
-    if (!window.google) return;
+    if (!isMapsReady) return;
 
     autoServiceRef.current =
       new window.google.maps.places.AutocompleteService();
@@ -47,7 +52,7 @@ const PlaceSearch: React.FC<PlaceSearchProps> = ({
     detailsServiceRef.current = new window.google.maps.places.PlacesService(
       document.createElement("div"),
     );
-  }, []);
+  }, [isMapsReady]);
 
   const handleSearchChange = (value: string) => {
     if (disabled) return;
@@ -153,9 +158,19 @@ const PlaceSearch: React.FC<PlaceSearchProps> = ({
         className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary disabled:cursor-not-allowed disabled:opacity-60"
       />
 
-      {loading && <p className="text-xs text-gray-500">Loading...</p>}
+      {maps.status === "error" && (
+        <p className="text-xs text-red-600">{maps.error}</p>
+      )}
 
-      {predictions.length > 0 && (
+      {maps.status === "loading" && (
+        <p className="text-xs text-gray-500">Loading Google Maps...</p>
+      )}
+
+      {isMapsReady && loading && (
+        <p className="text-xs text-gray-500">Loading...</p>
+      )}
+
+      {isMapsReady && predictions.length > 0 && (
         <ul className="absolute z-50 w-full border border-gray-300 rounded-lg max-h-52 overflow-y-auto bg-white shadow-md">
           {predictions.map((pred) => (
             <li

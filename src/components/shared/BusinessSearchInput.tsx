@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { useGoogleMapsScript } from "@/hooks/useGoogleMapsScript";
 
 interface BusinessSearchProps {
   disabled?: boolean;
@@ -37,8 +38,12 @@ const BusinessSearchInput: React.FC<BusinessSearchProps> = ({
   const debounceRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Load Google Maps (Places) once — search only works after it's ready.
+  const maps = useGoogleMapsScript();
+  const isMapsReady = maps.status === "ready";
+
   useEffect(() => {
-    if (!window.google) return;
+    if (!isMapsReady) return;
 
     autoServiceRef.current =
       new window.google.maps.places.AutocompleteService();
@@ -46,7 +51,7 @@ const BusinessSearchInput: React.FC<BusinessSearchProps> = ({
     detailsServiceRef.current = new window.google.maps.places.PlacesService(
       document.createElement("div"),
     );
-  }, []);
+  }, [isMapsReady]);
 
   const fetchPlaceDetails = async (placeId: string) => {
     const run = (request: any) =>
@@ -174,7 +179,6 @@ const BusinessSearchInput: React.FC<BusinessSearchProps> = ({
       setPredictions([]);
     }
   };
-  console.log("test//////////////////////");
 
   return (
     <div
@@ -192,9 +196,19 @@ const BusinessSearchInput: React.FC<BusinessSearchProps> = ({
         className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100 disabled:text-gray-500"
       />
 
-      {loading && <p className="text-xs text-gray-500">Searching...</p>}
+      {maps.status === "error" && (
+        <p className="text-xs text-red-600">{maps.error}</p>
+      )}
 
-      {!disabled && predictions.length > 0 && (
+      {maps.status === "loading" && (
+        <p className="text-xs text-gray-500">Loading Google Maps...</p>
+      )}
+
+      {isMapsReady && loading && (
+        <p className="text-xs text-gray-500">Searching...</p>
+      )}
+
+      {!disabled && isMapsReady && predictions.length > 0 && (
         <ul className="absolute z-50 w-full border border-gray-300 rounded-lg max-h-52 overflow-y-auto bg-white shadow-md">
           {predictions.map((pred) => (
             <li
