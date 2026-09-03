@@ -50,10 +50,10 @@ export const PromotionVisualCard = ({
     <div
       className={cn("relative w-full overflow-hidden bg-muted  ", className)}
     >
-      {/* Image Layer */}
+      {/* Image layer: the complete image is always visible over its blurred backdrop. */}
       {imageUrl && (
         <div
-          className="w-full h-full"
+          className="absolute inset-0"
           style={{
             filter:
               bgBrightness === 50
@@ -65,25 +65,37 @@ export const PromotionVisualCard = ({
                     : "brightness(100%)",
           }}
         >
-          {cloudinaryPublicId ? (
-            <OptimizeImage
-              publicId={cloudinaryPublicId}
-              className="w-full h-full "
-            />
-          ) : (
-            <img
-              src={imageUrl}
-              alt="Promotion"
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover"
-              style={{
-                objectPosition: `${imageTransform?.focalX ?? 50}% ${imageTransform?.focalY ?? 50}%`,
-                transform: `scale(${imageTransform?.zoom ?? 1})`,
-                transformOrigin: "center center",
-              }}
-            />
-          )}
+          <div className="absolute inset-0 scale-110 opacity-70 blur-2xl" aria-hidden="true">
+            {cloudinaryPublicId ? (
+              <OptimizeImage publicId={cloudinaryPublicId} className="h-full w-full object-cover" crop="fill" />
+            ) : (
+              <img src={imageUrl} alt="" className="h-full w-full object-cover" />
+            )}
+          </div>
+          <div className="absolute inset-0 bg-black/10" aria-hidden="true" />
+          <div className="relative z-10 h-full w-full">
+            {cloudinaryPublicId ? (
+              <OptimizeImage
+                publicId={cloudinaryPublicId}
+                alt="Promotion"
+                className="h-full w-full object-contain"
+                style={{ objectPosition: `${imageTransform?.focalX ?? 50}% ${imageTransform?.focalY ?? 50}%` }}
+              />
+            ) : (
+              <img
+                src={imageUrl}
+                alt="Promotion"
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-contain"
+                style={{
+                  objectPosition: `${imageTransform?.focalX ?? 50}% ${imageTransform?.focalY ?? 50}%`,
+                  transform: `scale(${imageTransform?.zoom ?? 1})`,
+                  transformOrigin: "center center",
+                }}
+              />
+            )}
+          </div>
         </div>
       )}
       {textItems.length > 0 && (

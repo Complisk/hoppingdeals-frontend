@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback, memo } from "react";
 import { Check, Upload } from "lucide-react";
 import { useTemplateService } from "@/services/templateService";
+import { uploadPromotionImage } from "@/utils/promotionImageUpload";
 import { uploadImageToCloudinary } from "@/utils/cloudinaryUtils";
 import { cn } from "@/lib/utils";
 import OptimizeImage from "../shared/OptimizeImage";
@@ -157,7 +158,8 @@ interface TemplateSelectorProps {
   selectedTemplate: string | null;
   customImage: string | null;
   onTemplateSelect: (template: TemplateSelection) => void;
-  onImageUpload: (imageData: string) => void;
+  onImageUpload: (imageData: any) => void;
+  usePromotionUpload?: boolean;
 }
 
 export const TemplateSelector = memo(
@@ -166,6 +168,7 @@ export const TemplateSelector = memo(
     customImage,
     onTemplateSelect,
     onImageUpload,
+    usePromotionUpload = false,
   }: TemplateSelectorProps) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const { getTemplates } = useTemplateService();
@@ -201,14 +204,19 @@ export const TemplateSelector = memo(
         if (!file) return;
         setUploadingImage(true);
         try {
-          const imageUrl = await uploadImageToCloudinary(file);
-          if (imageUrl) onImageUpload(imageUrl?.url);
+          const image = usePromotionUpload
+            ? await uploadPromotionImage(file)
+            : await uploadImageToCloudinary(file);
+          onImageUpload(usePromotionUpload ? image : image.url);
+        } catch (error: any) {
+          console.error("Promotion image upload failed", error);
+          window.alert(error?.message || "Image upload failed. Please try again.");
         } finally {
           setUploadingImage(false);
           if (fileInputRef.current) fileInputRef.current.value = "";
         }
       },
-      [onImageUpload],
+      [onImageUpload, usePromotionUpload],
     );
 
     // stable callback for selecting template
@@ -245,7 +253,7 @@ export const TemplateSelector = memo(
         <input
           type="file"
           ref={fileInputRef}
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp"
           onChange={handleUpload}
           className="hidden"
         />
@@ -283,6 +291,9 @@ export const TemplateSelector = memo(
               )}
             </div>
           </div>
+          <p className="ml-3 text-xs text-muted-foreground">
+            JPEG, PNG, or WebP · max 10 MB · minimum 900 px on the shortest side
+          </p>
           <UploadTemplateTooltip />
         </div>
 

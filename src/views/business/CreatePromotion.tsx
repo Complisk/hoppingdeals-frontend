@@ -17,6 +17,7 @@ import { AlertTriangle } from "lucide-react";
 import { toast } from "react-toastify";
 import Spinner from "@/components/shared/Spinner";
 import { normalizeWebsiteUrl } from "@/utils/websiteUrl";
+import type { PromotionImageAsset } from "@/utils/promotionImageUpload";
 
 interface LocationItem {
   id?: string | number;
@@ -235,6 +236,7 @@ const CreatePromotion = ({ isVisitor = false }) => {
     null,
   );
   const [customImage, setCustomImage] = useState<string | null>(null);
+  const [imageAsset, setImageAsset] = useState<PromotionImageAsset | null>(null);
   const [templateColors, setTemplateColors] = useState<string[] | null>(null);
   const [promotionText, setPromotionText] = useState<any[]>([
     {
@@ -319,6 +321,7 @@ const CreatePromotion = ({ isVisitor = false }) => {
   const handleTemplateSelect = (template: TemplateSelection) => {
     setSelectedTemplate(template.id);
     setCustomImage(template.imageUrl);
+    setImageAsset(null);
     const resolvedTemplateId =
       template.templateId === undefined ? template.id : template.templateId;
     setSelectedTemplateId(resolvedTemplateId);
@@ -326,8 +329,9 @@ const CreatePromotion = ({ isVisitor = false }) => {
     setSelectedBusinessTemplateId(null);
   };
 
-  const handleImageUpload = (imageData: string) => {
-    setCustomImage(imageData);
+  const handleImageUpload = (image: PromotionImageAsset) => {
+    setCustomImage(image.url);
+    setImageAsset(image);
     setSelectedTemplate(null);
     setSelectedTemplateId(null);
     setTemplateColors(null);
@@ -468,6 +472,7 @@ const CreatePromotion = ({ isVisitor = false }) => {
       scheduleTimezone: browserTimezone,
       metadata: {
         promotionDescription,
+        ...(imageAsset ? { image: imageAsset } : {}),
         ...(normalizedWebsiteUrl ? { websiteUrl: normalizedWebsiteUrl } : {}),
         ...(templateColors?.length ? { templateColors } : {}),
       },
@@ -594,6 +599,7 @@ const CreatePromotion = ({ isVisitor = false }) => {
           customImage={customImage}
           onTemplateSelect={handleTemplateSelect}
           onImageUpload={handleImageUpload}
+          usePromotionUpload
         />
       </section>
 
@@ -613,6 +619,7 @@ const CreatePromotion = ({ isVisitor = false }) => {
           promotionDescription={promotionDescription}
           websiteUrl={websiteUrl}
           onImageUpload={handleImageUpload}
+          usePromotionUpload
           onPromotionDescriptionChange={(e) => setPromotionDescription(e)}
           onWebsiteUrlChange={setWebsiteUrl}
           onBackgroundColorChange={setBackgroundColor}

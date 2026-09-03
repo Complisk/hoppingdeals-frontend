@@ -29,6 +29,7 @@ import { toast } from "react-toastify";
 import Spinner from "@/components/shared/Spinner";
 import { normalizeWebsiteUrl } from "@/utils/websiteUrl";
 import { parseDateOnlyToLocal } from "@/utils/dateOnly";
+import type { PromotionImageAsset } from "@/utils/promotionImageUpload";
 
 interface TextItem {
   id: string;
@@ -96,6 +97,7 @@ const EditPromotion = ({ isVisitor = false }: EditPromotionProps) => {
     null,
   );
   const [customImage, setCustomImage] = useState<string | null>(null);
+  const [imageAsset, setImageAsset] = useState<PromotionImageAsset | null>(null);
   const [templateColors, setTemplateColors] = useState<string[] | null>(null);
   const [uploadedTemplates, setUploadedTemplates] = useState<any[]>([]);
   const [loadingTemplates, setLoadingTemplates] = useState(false);
@@ -194,6 +196,7 @@ const EditPromotion = ({ isVisitor = false }: EditPromotionProps) => {
         }
         setPromotion(response);
         setCustomImage(response.imageUrl);
+        setImageAsset(response.metadata?.image || null);
         setSelectedTemplateId(response.templateId || null);
         setSelectedTemplate(response.templateId || null);
         setTextItems(response.text || []);
@@ -261,14 +264,16 @@ const EditPromotion = ({ isVisitor = false }: EditPromotionProps) => {
   const handleTemplateSelect = (template: TemplateSelection) => {
     setSelectedTemplate(template.id);
     setCustomImage(template.imageUrl);
+    setImageAsset(null);
     const resolvedTemplateId =
       template.templateId === undefined ? template.id : template.templateId;
     setSelectedTemplateId(resolvedTemplateId);
     setTemplateColors(template.colors ?? null);
   };
 
-  const handleImageUpload = async (imageData: string) => {
-    setCustomImage(imageData);
+  const handleImageUpload = async (image: PromotionImageAsset) => {
+    setCustomImage(image.url);
+    setImageAsset(image);
     setSelectedTemplate(null);
     setSelectedTemplateId(null);
     setTemplateColors(null);
@@ -334,6 +339,11 @@ const EditPromotion = ({ isVisitor = false }: EditPromotionProps) => {
         nextMetadata.templateColors = templateColors;
       } else {
         delete nextMetadata.templateColors;
+      }
+      if (imageAsset) {
+        nextMetadata.image = imageAsset;
+      } else if (!selectedTemplateId) {
+        delete nextMetadata.image;
       }
       updateData.metadata = nextMetadata;
 
@@ -548,6 +558,7 @@ const EditPromotion = ({ isVisitor = false }: EditPromotionProps) => {
           customImage={customImage}
           onTemplateSelect={handleTemplateSelect}
           onImageUpload={handleImageUpload}
+          usePromotionUpload
         />
       </section>
 
@@ -572,6 +583,7 @@ const EditPromotion = ({ isVisitor = false }: EditPromotionProps) => {
             }
           }}
           onImageUpload={handleImageUpload}
+          usePromotionUpload
           onBackgroundColorChange={(color) =>
             setBackgroundColor(String(color))
           }

@@ -42,7 +42,7 @@ const PromotionCard = memo(
               backgroundColor={promotion.backgroundColor}
               text={promotion.text}
               showOverlay={false}
-              className="aspect-[4/4] md:aspect-[4/3]"
+              className="aspect-[4/3]"
             />
           </div>
           <div className="flex items-center gap-1 mt-1 text-xs font-medium">

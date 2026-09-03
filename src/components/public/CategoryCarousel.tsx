@@ -51,7 +51,7 @@ ArrowButton.displayName = "ArrowButton";
 const PromotionSkeletonCard = memo(() => (
   <div className="p-1">
     <div className="space-y-2">
-      <Skeleton className="aspect-[4/4] rounded-lg md:aspect-[4/3]" />
+      <Skeleton className="aspect-[4/3] rounded-lg" />
       <Skeleton className="h-4 w-3/4" />
       <Skeleton className="h-4 w-5/6" />
       <Skeleton className="h-4 w-2/3" />
@@ -429,7 +429,7 @@ const CategoryCarousel = memo(
 
                         return (
                           <div key={item.id} className="invisible p-1">
-                            <div className="aspect-[4/4] md:aspect-[4/3]" />
+                            <div className="aspect-[4/3]" />
                           </div>
                         );
                       })}

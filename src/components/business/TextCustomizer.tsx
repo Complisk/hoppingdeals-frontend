@@ -17,6 +17,10 @@ import { useEffect, useState } from "react";
 import { Textarea } from "../ui/textarea";
 import Cropper from "react-easy-crop";
 import type { Area } from "react-easy-crop";
+import {
+  uploadPromotionImage,
+  type PromotionImageAsset,
+} from "@/utils/promotionImageUpload";
 import { uploadImageToCloudinary } from "@/utils/cloudinaryUtils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Spinner from "@/components/shared/Spinner";
@@ -38,7 +42,8 @@ interface TextCustomizerProps {
   backgroundColor: string | number | null;
   onTextChange: (text: string | TextItem[]) => void;
   onBackgroundColorChange: (color: string | number) => void;
-  onImageUpload?: (imageUrl: string) => void;
+  onImageUpload?: (imageData: any) => void;
+  usePromotionUpload?: boolean;
   promotionDescription?: string;
   onPromotionDescriptionChange?: (val: string) => void;
   websiteUrl?: string;
@@ -52,6 +57,7 @@ export const TextCustomizer = ({
   onTextChange,
   onBackgroundColorChange,
   onImageUpload,
+  usePromotionUpload = false,
   promotionDescription,
   onPromotionDescriptionChange,
   websiteUrl,
@@ -74,6 +80,8 @@ export const TextCustomizer = ({
   const [rotation, setRotation] = useState(0);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
   const [isApplyingCrop, setIsApplyingCrop] = useState(false);
+  const [sourceAspect, setSourceAspect] = useState(4 / 3);
+  const [cropMode, setCropMode] = useState<"original" | "4:3">("original");
 
   useEffect(() => {
     if (Array.isArray(promotionText)) {
@@ -167,8 +175,14 @@ export const TextCustomizer = ({
   const activeImage = previewImage;
   const cropSourceImage = originalCropSource || previewImage;
 
-  const handleStartCrop = () => {
+  const handleStartCrop = async () => {
     if (!cropSourceImage) return;
+    try {
+      const source = await createImage(cropSourceImage);
+      setSourceAspect(source.naturalWidth / source.naturalHeight);
+    } catch {
+      setSourceAspect(4 / 3);
+    }
     setCrop({ x: 0, y: 0 });
     setZoom(1);
     setRotation(0);
@@ -277,10 +291,15 @@ export const TextCustomizer = ({
         croppedAreaPixels,
         rotation,
       );
-      const uploadedUrl = await uploadImageToCloudinary(croppedFile);
-      setPreviewImage(uploadedUrl?.url);
-      setLastCroppedUrl(uploadedUrl?.url);
-      onImageUpload?.(uploadedUrl?.url);
+      const image = usePromotionUpload
+        ? await uploadPromotionImage(croppedFile)
+        : await uploadImageToCloudinary(croppedFile);
+      const imageUrl = usePromotionUpload
+        ? (image as PromotionImageAsset).url
+        : image.url;
+      setPreviewImage(imageUrl);
+      setLastCroppedUrl(imageUrl);
+      onImageUpload?.(usePromotionUpload ? image : imageUrl);
       setIsCropOpen(false);
     } catch (error) {
       console.error("Crop/apply failed:", error);
@@ -339,12 +358,23 @@ export const TextCustomizer = ({
             crop={crop}
             zoom={zoom}
             rotation={rotation}
-            aspect={4 / 3}
+            aspect={cropMode === "4:3" ? 4 / 3 : sourceAspect}
             onCropChange={setCrop}
             onZoomChange={setZoom}
             onRotationChange={setRotation}
             onCropComplete={(_, areaPixels) => setCroppedAreaPixels(areaPixels)}
           />
+        </div>
+        <div className="flex items-center gap-2">
+          <Label className="text-xs">Crop ratio</Label>
+          <select
+            value={cropMode}
+            onChange={(event) => setCropMode(event.target.value as "original" | "4:3")}
+            className="rounded-md border border-input bg-background px-2 py-1 text-xs"
+          >
+            <option value="original">Keep original ratio</option>
+            <option value="4:3">4:3 card crop</option>
+          </select>
         </div>
         <div className="space-y-1">
           <Label className="text-xs">Zoom</Label>

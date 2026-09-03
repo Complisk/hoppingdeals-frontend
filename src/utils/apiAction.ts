@@ -25,12 +25,14 @@ const fetchData = async (
     Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 
   try {
+    const isFormData =
+      typeof FormData !== "undefined" && options?.data instanceof FormData;
     const config = {
       url: baseUrl + url,
       ...options,
       withCredentials: true,
       headers: {
-        "Content-Type": "application/json",
+        ...(isFormData ? {} : { "Content-Type": "application/json" }),
         "x-timezone": browserTimezone,
         ...options?.headers,
       },

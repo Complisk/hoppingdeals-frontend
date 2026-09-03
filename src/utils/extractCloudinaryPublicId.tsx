@@ -15,10 +15,12 @@ export function extractCloudinaryPublicId(url: string): string | null {
     const versionIndex = parts.findIndex((p) => p.startsWith("v"));
 
     if (versionIndex > -1 && parts.length > versionIndex + 1) {
-      // remove file extension
-      const filename = parts[versionIndex + 1];
-      const publicId = filename.split(".")[0];
-      return publicId;
+      // A public ID may include one or more folders. Keep every path segment
+      // after the delivery version and remove only its final extension.
+      return parts
+        .slice(versionIndex + 1)
+        .join("/")
+        .replace(/\.[^/.]+$/, "");
     }
     return null;
   } catch (err) {

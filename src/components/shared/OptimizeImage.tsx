@@ -13,12 +13,14 @@ export const getCloudinaryUrl = (
   publicId: string,
   width?: number,
   height?: number,
+  crop: "fill" | "limit" = "limit",
 ): string => {
   if (!CLOUD_NAME) return publicId;
   const transformations = [
     "f_auto", // auto format (webp/avif)
     "q_auto", // auto quality
-    width && height ? "c_fill" : "c_limit", // crop only if both exist
+    "dpr_auto",
+    width && height ? `c_${crop}` : "c_limit",
     width ? `w_${width}` : null,
     height ? `h_${height}` : null,
   ]
@@ -34,12 +36,13 @@ export const getCloudinaryUrl = (
 export const getCloudinarySrcSet = (
   publicId: string,
   height?: number,
+  crop: "fill" | "limit" = "limit",
 ): string => {
   if (!CLOUD_NAME) return "";
   const sizes = [320, 480, 768, 1024, 1280];
 
   return sizes
-    .map((size) => `${getCloudinaryUrl(publicId, size, height)} ${size}w`)
+    .map((size) => `${getCloudinaryUrl(publicId, size, height, crop)} ${size}w`)
     .join(", ");
 };
 
@@ -50,6 +53,7 @@ interface Props {
   width?: number;
   height?: number;
   style?: React.CSSProperties;
+  crop?: "fill" | "limit";
 }
 
 const OptimizeImage: React.FC<Props> = ({
@@ -59,9 +63,10 @@ const OptimizeImage: React.FC<Props> = ({
   width,
   height,
   style,
+  crop = "limit",
 }) => {
-  const src = getCloudinaryUrl(publicId, width, height);
-  const srcSet = getCloudinarySrcSet(publicId, height);
+  const src = getCloudinaryUrl(publicId, width, height, crop);
+  const srcSet = getCloudinarySrcSet(publicId, height, crop);
 
   return (
     <img
