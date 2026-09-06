@@ -10,6 +10,7 @@ import {
   Plus,
   Trash2,
   Crop,
+  Image as ImageIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PromotionVisualCard } from "../shared/PromotionVisualCard";
@@ -48,6 +49,7 @@ interface TextCustomizerProps {
   onPromotionDescriptionChange?: (val: string) => void;
   websiteUrl?: string;
   onWebsiteUrlChange?: (val: string) => void;
+  theme?: "light" | "dark";
 }
 
 export const TextCustomizer = ({
@@ -62,7 +64,9 @@ export const TextCustomizer = ({
   onPromotionDescriptionChange,
   websiteUrl,
   onWebsiteUrlChange,
+  theme = "light",
 }: TextCustomizerProps) => {
+  const dark = theme === "dark";
   const isMobile = useIsMobile();
   const canEditWebsiteUrl = typeof onWebsiteUrlChange === "function";
   const [textItems, setTextItems] = useState<TextItem[]>(
@@ -323,16 +327,25 @@ export const TextCustomizer = ({
         isMobile &&
           stickyOnMobile &&
           !isCropOpen &&
-          "sticky top-20 z-20 rounded-xl border border-border bg-background/95 p-3 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/80",
+          cn(
+            "sticky top-20 z-20 rounded-xl border p-3 shadow-lg backdrop-blur",
+            dark
+              ? "border-white/10 bg-[#0A1120]/95 supports-[backdrop-filter]:bg-[#0A1120]/80"
+              : "border-border bg-background/95 shadow-sm supports-[backdrop-filter]:bg-background/80",
+          ),
       )}
     >
       <div className="flex items-center justify-between gap-3">
-        <Label>Live Preview</Label>
+        <Label className={dark ? "text-white" : undefined}>Live Preview</Label>
         <Button
           type="button"
           size="sm"
           variant="outline"
-          className="gap-1 shrink-0"
+          className={cn(
+            "gap-1 shrink-0",
+            dark &&
+              "border-white/15 bg-transparent text-white hover:bg-white/10 hover:text-white",
+          )}
           onClick={handleStartCrop}
           disabled={!activeImage}
         >
@@ -344,14 +357,40 @@ export const TextCustomizer = ({
         imageUrl={activeImage}
         backgroundColor={backgroundColor}
         text={textItems}
-        className="w-full aspect-[4/3] rounded-lg"
-      />
+        className={cn(
+          "w-full aspect-[4/3] rounded-lg overflow-hidden",
+          dark
+            ? "border border-white/10 bg-[#0A1120] shadow-[0_0_44px_rgb(0_0_0/0.45)]"
+            : "bg-muted",
+        )}
+      >
+        {!activeImage && (
+          <div className="absolute inset-0 z-40 flex flex-col items-center justify-center gap-3 p-6 text-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] shadow-inner">
+              <ImageIcon className="h-6 w-6 text-slate-500" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-slate-300">
+                Your promotion preview appears here
+              </p>
+              <p className="mt-1 text-xs text-slate-500">
+                Select a template or upload an image to get started
+              </p>
+            </div>
+          </div>
+        )}
+      </PromotionVisualCard>
     </div>
   );
 
   const renderCropPanel = () =>
     isCropOpen && cropSourceImage ? (
-      <div className="rounded-lg border border-border p-3 space-y-3">
+      <div
+        className={cn(
+          "rounded-lg border p-3 space-y-3",
+          dark ? "border-white/10 bg-[#0A1120]/60" : "border-border",
+        )}
+      >
         <div className="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-black">
           <Cropper
             image={cropSourceImage}
@@ -366,11 +405,18 @@ export const TextCustomizer = ({
           />
         </div>
         <div className="flex items-center gap-2">
-          <Label className="text-xs">Crop ratio</Label>
+          <Label className={cn("text-xs", dark && "text-white")}>
+            Crop ratio
+          </Label>
           <select
             value={cropMode}
             onChange={(event) => setCropMode(event.target.value as "original" | "4:3")}
-            className="rounded-md border border-input bg-background px-2 py-1 text-xs"
+            className={cn(
+              "rounded-md border px-2 py-1 text-xs",
+              dark
+                ? "border-white/15 bg-[#0A1120] text-white"
+                : "border-input bg-background",
+            )}
           >
             <option value="original">Keep original ratio</option>
             <option value="4:3">4:3 card crop</option>
@@ -406,6 +452,11 @@ export const TextCustomizer = ({
             variant="outline"
             onClick={handleCancelCrop}
             disabled={isApplyingCrop}
+            className={
+              dark
+                ? "border-white/15 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                : undefined
+            }
           >
             Cancel
           </Button>
@@ -413,6 +464,7 @@ export const TextCustomizer = ({
             type="button"
             onClick={handleApplyCrop}
             disabled={!croppedAreaPixels || isApplyingCrop}
+            className={dark ? "bg-[#E31E24] hover:bg-[#b91621] text-white" : undefined}
           >
             {isApplyingCrop && (
               <Spinner className="h-4 w-4 mr-2 animate-spin" />
@@ -426,23 +478,37 @@ export const TextCustomizer = ({
   const renderDescriptionPanel = () => (
     <div className="space-y-4">
       <div>
-        <Label>Promotion Description Text</Label>
+        <Label className={dark ? "text-white" : undefined}>
+          Promotion Description Text
+        </Label>
         <Textarea
           maxLength={650}
           rows={7}
           value={promotionDescription || ""}
           onChange={(e) => onPromotionDescriptionChange?.(e.target.value)}
           placeholder="Short description for the promotion"
-          className="w-full p-2 border border-border rounded-lg resize-y text-sm whitespace-pre-wrap"
+          className={cn(
+            "w-full p-2 rounded-lg resize-y text-sm whitespace-pre-wrap",
+            dark
+              ? "border border-white/10 bg-[#0A1120] text-white placeholder:text-slate-500 focus-visible:ring-[#E31E24]"
+              : "border border-border",
+          )}
         />
-        <div className="w-full text-end mt-2 text-xs text-muted-foreground pointer-events-none">
+        <div
+          className={cn(
+            "w-full text-end mt-2 text-xs pointer-events-none",
+            dark ? "text-slate-400" : "text-muted-foreground",
+          )}
+        >
           {(promotionDescription || "").length}/650
         </div>
       </div>
 
       {canEditWebsiteUrl && (
         <div>
-          <Label>Company Website </Label>
+          <Label className={dark ? "text-white" : undefined}>
+            Company Website{" "}
+          </Label>
           <Input
             type="text"
             value={websiteUrl || ""}
@@ -453,7 +519,11 @@ export const TextCustomizer = ({
             }}
             onBlur={handleWebsiteBlur}
             placeholder="https://your-business-website.com"
-            className="w-full"
+            className={cn(
+              "w-full",
+              dark &&
+                "border-white/10 bg-[#0A1120] text-white placeholder:text-slate-500 focus-visible:ring-[#E31E24]",
+            )}
           />
         </div>
       )}
@@ -464,21 +534,37 @@ export const TextCustomizer = ({
     <>
       <div className="space-y-2">
         <div className="flex justify-between items-center">
-          <Label>Text Elements ({textItems.length})</Label>
+          <Label className={dark ? "text-white" : undefined}>
+            Text Elements ({textItems.length})
+          </Label>
           <Button
             size="sm"
             variant="outline"
             onClick={handleAddText}
-            className="gap-1"
+            className={cn(
+              "gap-1",
+              dark &&
+                "border-white/15 bg-transparent text-white hover:bg-white/10 hover:text-white",
+            )}
           >
             <Plus className="h-4 w-4" />
             Add Text
           </Button>
         </div>
 
-        <div className="border border-border rounded-lg p-3 space-y-2 max-h-48 overflow-y-auto">
+        <div
+          className={cn(
+            "rounded-lg p-3 space-y-2 max-h-48 overflow-y-auto",
+            dark ? "border border-white/10 bg-[#0A1120]/50" : "border border-border",
+          )}
+        >
           {textItems.length === 0 ? (
-            <p className="text-sm text-muted-foreground text-center py-4">
+            <p
+              className={cn(
+                "text-sm text-center py-4",
+                dark ? "text-slate-400" : "text-muted-foreground",
+              )}
+            >
               No text elements yet. Click "Add Text" to create one.
             </p>
           ) : (
@@ -488,17 +574,26 @@ export const TextCustomizer = ({
                 className={cn(
                   "p-2 rounded-lg border-2 cursor-pointer transition-all",
                   selectedTextIndex === index
-                    ? "border-primary bg-primary/5"
-                    : "border-border hover:border-primary/50",
+                    ? dark
+                      ? "border-[#E31E24] bg-[#E31E24]/10"
+                      : "border-primary bg-primary/5"
+                    : dark
+                      ? "border-white/10 hover:border-[#E31E24]/50"
+                      : "border-border hover:border-primary/50",
                 )}
                 onClick={() => setSelectedTextIndex(index)}
               >
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">
+                    <p className="text-sm font-medium truncate text-white">
                       {item.content || "Empty text"}
                     </p>
-                    <p className="text-xs text-muted-foreground">
+                    <p
+                      className={cn(
+                        "text-xs",
+                        dark ? "text-slate-400" : "text-muted-foreground",
+                      )}
+                    >
                       Position: ({item.x}, {item.y}) • Size: {item.fontSize}px
                     </p>
                   </div>
@@ -509,7 +604,10 @@ export const TextCustomizer = ({
                       e.stopPropagation();
                       handleDeleteText(index);
                     }}
-                    className="text-destructive hover:bg-destructive/10"
+                    className={cn(
+                      "text-destructive hover:bg-destructive/10",
+                      dark && "text-[#FF6B6F]",
+                    )}
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -523,7 +621,9 @@ export const TextCustomizer = ({
       {currentText && (
         <>
           <div className="space-y-2">
-            <Label>Text Content</Label>
+            <Label className={dark ? "text-white" : undefined}>
+              Text Content
+            </Label>
             <Textarea
               value={currentText.content}
               onChange={(e) =>
@@ -532,19 +632,30 @@ export const TextCustomizer = ({
                 })
               }
               placeholder="Enter text"
-              className="w-full p-2 border border-border rounded-lg resize-none text-lg"
+              className={cn(
+                "w-full p-2 rounded-lg resize-none text-lg",
+                dark
+                  ? "border border-white/10 bg-[#0A1120] text-white placeholder:text-slate-500 focus-visible:ring-[#E31E24]"
+                  : "border border-border",
+              )}
               rows={3}
             />
           </div>
 
           <div className="space-y-2">
-            <Label>Position (Use Arrows)</Label>
+            <Label className={dark ? "text-white" : undefined}>
+              Position (Use Arrows)
+            </Label>
             <div className="flex items-center justify-center gap-2">
               <div className="grid grid-cols-3 gap-1">
                 <div />
                 <Button
                   variant="outline"
                   size="sm"
+                  className={cn(
+                    dark &&
+                      "border-white/15 bg-transparent text-white hover:bg-white/10 hover:text-white",
+                  )}
                   onClick={() => handleMoveText("up")}
                 >
                   <ArrowUp className="h-4 w-4" />
@@ -553,16 +664,31 @@ export const TextCustomizer = ({
                 <Button
                   variant="outline"
                   size="sm"
+                  className={cn(
+                    dark &&
+                      "border-white/15 bg-transparent text-white hover:bg-white/10 hover:text-white",
+                  )}
                   onClick={() => handleMoveText("left")}
                 >
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
-                <div className="w-9 h-9 rounded border border-border flex items-center justify-center text-xs text-muted-foreground">
+                <div
+                  className={cn(
+                    "w-9 h-9 rounded border flex items-center justify-center text-xs",
+                    dark
+                      ? "border-white/15 text-slate-300"
+                      : "border-border text-muted-foreground",
+                  )}
+                >
                   {currentText.x},{currentText.y}
                 </div>
                 <Button
                   variant="outline"
                   size="sm"
+                  className={cn(
+                    dark &&
+                      "border-white/15 bg-transparent text-white hover:bg-white/10 hover:text-white",
+                  )}
                   onClick={() => handleMoveText("right")}
                 >
                   <ArrowRight className="h-4 w-4" />
@@ -571,6 +697,10 @@ export const TextCustomizer = ({
                 <Button
                   variant="outline"
                   size="sm"
+                  className={cn(
+                    dark &&
+                      "border-white/15 bg-transparent text-white hover:bg-white/10 hover:text-white",
+                  )}
                   onClick={() => handleMoveText("down")}
                 >
                   <ArrowDown className="h-4 w-4" />
@@ -581,7 +711,9 @@ export const TextCustomizer = ({
           </div>
 
           <div className="space-y-2">
-            <Label>Font Size: {currentText.fontSize}px</Label>
+            <Label className={dark ? "text-white" : undefined}>
+              Font Size: {currentText.fontSize}px
+            </Label>
             <input
               type="range"
               min="16"
@@ -592,12 +724,14 @@ export const TextCustomizer = ({
                   fontSize: e.target.value,
                 })
               }
-              className="w-full accent-primary"
+              className="w-full accent-[#E31E24]"
             />
           </div>
 
           <div className="space-y-2">
-            <Label>Text Color</Label>
+            <Label className={dark ? "text-white" : undefined}>
+              Text Color
+            </Label>
             <div className="flex gap-2">
               <input
                 type="color"
@@ -607,7 +741,7 @@ export const TextCustomizer = ({
                     color: e.target.value,
                   })
                 }
-                className="w-12 h-10 rounded-lg border border-border cursor-pointer p-0.5"
+                className="w-12 h-10 rounded-lg border cursor-pointer p-0.5"
               />
               <Input
                 value={currentText.color}
@@ -616,7 +750,11 @@ export const TextCustomizer = ({
                     color: e.target.value,
                   })
                 }
-                className="flex-1"
+                className={cn(
+                  "flex-1",
+                  dark &&
+                    "border-white/10 bg-[#0A1120] text-white placeholder:text-slate-500 focus-visible:ring-[#E31E24]",
+                )}
               />
             </div>
           </div>
@@ -624,11 +762,18 @@ export const TextCustomizer = ({
       )}
 
       <div className="space-y-2">
-        <Label>Image Opacity</Label>
+        <Label className={dark ? "text-white" : undefined}>
+          Image Opacity
+        </Label>
         <select
           value={backgroundColor ?? 0}
           onChange={(e) => onBackgroundColorChange(Number(e.target.value))}
-          className="w-full border border-border rounded-lg p-2 bg-background"
+          className={cn(
+            "w-full rounded-lg p-2",
+            dark
+              ? "border border-white/15 bg-[#0A1120] text-white"
+              : "border border-border bg-background",
+          )}
         >
           <option value={0}>0%</option>
           <option value={50}>50%</option>
@@ -641,10 +786,20 @@ export const TextCustomizer = ({
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2 mb-4">
-        <span className="text-sm font-medium text-muted-foreground bg-secondary px-3 py-1 rounded-full">
+        <span
+          className={cn(
+            "text-sm font-medium px-3 py-1 rounded-full",
+            dark ? "bg-white/10 text-slate-300" : "bg-secondary text-muted-foreground",
+          )}
+        >
           Step 2
         </span>
-        <h3 className="text-lg font-semibold text-foreground">
+        <h3
+          className={cn(
+            "text-lg font-semibold",
+            dark ? "text-white" : "text-foreground",
+          )}
+        >
           Customize Text
         </h3>
       </div>

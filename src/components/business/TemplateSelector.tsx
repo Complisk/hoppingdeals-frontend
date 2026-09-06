@@ -94,6 +94,7 @@ interface TemplateItemProps {
   colors?: string[];
   isSelected: boolean;
   onSelectId: (id: string) => void;
+  dark?: boolean;
 }
 
 const TemplateItem = memo(
@@ -103,6 +104,7 @@ const TemplateItem = memo(
     colors,
     isSelected,
     onSelectId,
+    dark = false,
   }: TemplateItemProps) => {
     const handleClick = useCallback(() => {
       onSelectId(id);
@@ -112,10 +114,17 @@ const TemplateItem = memo(
       <button
         onClick={handleClick}
         className={cn(
-          "relative aspect-[4/3] overflow-hidden border border-border",
+          "relative aspect-[4/3] overflow-hidden rounded-lg border transition-all",
+          dark
+            ? "border-white/10 hover:border-white/30"
+            : "border-border hover:border-primary/50",
           isSelected
-            ? "ring-4 ring-primary ring-offset-2"
-            : "hover:ring-2 hover:ring-primary/50",
+            ? dark
+              ? "ring-2 ring-[#E31E24] ring-offset-2 ring-offset-[#0B1220]"
+              : "ring-4 ring-primary ring-offset-2"
+            : dark
+              ? "hover:ring-2 hover:ring-[#E31E24]/50"
+              : "hover:ring-2 hover:ring-primary/50",
         )}
       >
         {cloudinaryPublicId ? (
@@ -129,14 +138,14 @@ const TemplateItem = memo(
           />
         )}
         {isSelected && (
-          <div className="absolute top-1 right-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
-            <Check className="h-4 w-4 text-primary-foreground" />
+          <div className="absolute top-1 right-1 w-6 h-6 rounded-full bg-[#E31E24] flex items-center justify-center shadow-[0_2px_10px_rgb(227_30_36/0.6)]">
+            <Check className="h-4 w-4 text-white" />
           </div>
         )}
       </button>
     );
   },
-  (prev, next) => prev.isSelected === next.isSelected,
+  (prev, next) => prev.isSelected === next.isSelected && prev.dark === next.dark,
 );
 
 // ---- TEMPLATE SELECTOR ----
@@ -160,6 +169,7 @@ interface TemplateSelectorProps {
   onTemplateSelect: (template: TemplateSelection) => void;
   onImageUpload: (imageData: any) => void;
   usePromotionUpload?: boolean;
+  theme?: "light" | "dark";
 }
 
 export const TemplateSelector = memo(
@@ -169,7 +179,9 @@ export const TemplateSelector = memo(
     onTemplateSelect,
     onImageUpload,
     usePromotionUpload = false,
+    theme = "light",
   }: TemplateSelectorProps) => {
+    const dark = theme === "dark";
     const fileInputRef = useRef<HTMLInputElement>(null);
     const { getTemplates } = useTemplateService();
 
@@ -257,20 +269,31 @@ export const TemplateSelector = memo(
           onChange={handleUpload}
           className="hidden"
         />
-        <div className=" flex items-center ">
+        <div className="flex items-center">
           <div
             className={cn(
-              "p-4 border-2  border-dashed cursor-pointer text-primary transition-all",
-              customImage
-                ? "border-primary "
-                : "border-primary  hover:border-primary/50",
+              "p-4 border-2 border-dashed cursor-pointer transition-all",
+              dark
+                ? cn(
+                    "border-white/20 bg-white/[0.03] text-white hover:border-[#E31E24]/60",
+                    customImage && "border-[#E31E24]/60",
+                  )
+                : cn(
+                    "border-primary text-primary hover:border-primary/50",
+                    customImage && "border-primary",
+                  ),
               uploadingImage && "opacity-50 cursor-not-allowed",
             )}
             onClick={() => fileInputRef.current?.click()}
           >
             <div className="flex items-center gap-4">
               {uploadingImage ? (
-                <Spinner className="h-6 w-6 text-primary animate-spin" />
+                <Spinner
+                  className={cn(
+                    "h-6 w-6 animate-spin",
+                    dark ? "text-[#FF6B6F]" : "text-primary",
+                  )}
+                />
               ) : customImage ? (
                 <>
                   <img
@@ -278,20 +301,29 @@ export const TemplateSelector = memo(
                     loading="lazy"
                     decoding="async"
                     alt="Custom"
-                    className="w-16 h-16 object-cover"
+                    className="w-16 h-16 rounded-lg object-cover"
                   />
-                  <Upload className="h-6 w-6 " />
-                  <span className="">Upload your custom template image</span>
+                  <Upload className="h-6 w-6" />
+                  <span className="font-medium">
+                    Upload your custom template image
+                  </span>
                 </>
               ) : (
                 <>
-                  <Upload className="h-6 w-6 " />
-                  <span className="">Upload your custom template image</span>
+                  <Upload className="h-6 w-6" />
+                  <span className="font-medium">
+                    Upload your custom template image
+                  </span>
                 </>
               )}
             </div>
           </div>
-          <p className="ml-3 text-xs text-muted-foreground">
+          <p
+            className={cn(
+              "ml-3 text-xs",
+              dark ? "text-slate-400" : "text-muted-foreground",
+            )}
+          >
             JPEG, PNG, or WebP · max 10 MB · minimum 900 px on the shortest side
           </p>
           <UploadTemplateTooltip />
@@ -299,7 +331,7 @@ export const TemplateSelector = memo(
 
         {/* TEMPLATES GRID */}
         {loadingTemplates ? (
-          <TemplateBoxSkeleton />
+          <TemplateBoxSkeleton dark={dark} />
         ) : (
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
             {PRESET_COLOR_TEMPLATES.map((template) => (
@@ -309,6 +341,7 @@ export const TemplateSelector = memo(
                 colors={template.colors}
                 isSelected={selectedTemplate === template.id}
                 onSelectId={handleSelectId}
+                dark={dark}
               />
             ))}
             {uploadedTemplates.map((template) => (
@@ -318,6 +351,7 @@ export const TemplateSelector = memo(
                 cloudinaryPublicId={template.cloudinaryPublicId}
                 isSelected={selectedTemplate === template.id}
                 onSelectId={handleSelectId}
+                dark={dark}
               />
             ))}
           </div>
@@ -328,10 +362,22 @@ export const TemplateSelector = memo(
 );
 
 // ---- MEMOIZED SKELETON ----
-const TemplateBoxSkeletonComponent = ({ count = 12 }) => (
+const TemplateBoxSkeletonComponent = ({
+  count = 12,
+  dark = false,
+}: {
+  count?: number;
+  dark?: boolean;
+}) => (
   <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
     {[...Array(count)].map((_, i) => (
-      <div key={i} className="aspect-[4/3] bg-muted rounded-xl animate-pulse" />
+      <div
+        key={i}
+        className={cn(
+          "aspect-[4/3] rounded-xl animate-pulse",
+          dark ? "bg-white/[0.06]" : "bg-muted",
+        )}
+      />
     ))}
   </div>
 );
