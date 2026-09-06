@@ -992,3 +992,149 @@
     animation: none;
   }
 }
+
+/* ── Business Visitor dark theme (scoped to .bv-dark) ──────────────────────────
+ * The Business Visitor page is a premium dark space-inspired surface that
+ * mirrors the home page atmosphere (#02040a navy, #E31E24 red, gold + purple
+ * accents). Everything here is scoped so no other page is affected.
+ */
+
+/* Subtle star field used behind the hero + page background */
+.bv-stars {
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgb(255 255 255 / 0.55), transparent 100%),
+    radial-gradient(1px 1px at 28% 12%, rgb(255 255 255 / 0.3), transparent 100%),
+    radial-gradient(1.5px 1.5px at 41% 30%, rgb(255 255 255 / 0.4), transparent 100%),
+    radial-gradient(1px 1px at 55% 8%, rgb(255 255 255 / 0.45), transparent 100%),
+    radial-gradient(1px 1px at 66% 24%, rgb(255 255 255 / 0.28), transparent 100%),
+    radial-gradient(1.5px 1.5px at 78% 14%, rgb(255 255 255 / 0.5), transparent 100%),
+    radial-gradient(1px 1px at 88% 32%, rgb(255 255 255 / 0.35), transparent 100%),
+    radial-gradient(1px 1px at 7% 44%, rgb(255 255 255 / 0.3), transparent 100%),
+    radial-gradient(1.5px 1.5px at 34% 52%, rgb(255 255 255 / 0.35), transparent 100%),
+    radial-gradient(1px 1px at 62% 46%, rgb(255 255 255 / 0.3), transparent 100%),
+    radial-gradient(1px 1px at 82% 55%, rgb(255 255 255 / 0.38), transparent 100%),
+    radial-gradient(1px 1px at 47% 70%, rgb(255 255 255 / 0.25), transparent 100%),
+    radial-gradient(1.5px 1.5px at 18% 64%, rgb(255 255 255 / 0.32), transparent 100%),
+    radial-gradient(1px 1px at 72% 76%, rgb(255 255 255 / 0.28), transparent 100%),
+    radial-gradient(1px 1px at 92% 66%, rgb(255 255 255 / 0.3), transparent 100%);
+}
+
+/* Dark premium surface for cards inside the Business Visitor page */
+.bv-dark .bv-card {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.045) 0%, rgb(255 255 255 / 0.015) 100%),
+    rgb(10 16 32 / 0.82);
+  border: 1px solid rgb(255 255 255 / 0.09);
+  box-shadow:
+    0 24px 48px -12px rgb(0 0 0 / 0.55),
+    inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+
+.bv-dark .bv-card-hover {
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.bv-dark .bv-card-hover:hover {
+  border-color: rgb(227 30 36 / 0.45);
+  box-shadow:
+    0 28px 56px -12px rgb(0 0 0 / 0.6),
+    0 0 32px rgb(227 30 36 / 0.08),
+    inset 0 1px 0 rgb(255 255 255 / 0.08);
+}
+
+/* Red brand glow for primary actions */
+.bv-glow {
+  box-shadow: 0 10px 34px -8px rgb(227 30 36 / 0.55);
+}
+
+.bv-glow-soft {
+  box-shadow: 0 0 44px rgb(227 30 36 / 0.16);
+}
+
+.bv-glow-purple {
+  box-shadow: 0 0 44px rgb(124 58 237 / 0.18);
+}
+
+/* Dark react-datepicker inside the Business Visitor page */
+.bv-dark .react-datepicker {
+  background: rgb(10 16 32 / 0.98);
+  border-color: rgb(255 255 255 / 0.12);
+  box-shadow: 0 24px 60px rgb(0 0 0 / 0.6);
+}
+
+.bv-dark .react-datepicker__header {
+  background: rgb(255 255 255 / 0.04);
+  border-color: rgb(255 255 255 / 0.1);
+}
+
+.bv-dark .react-datepicker__current-month {
+  color: #fff;
+}
+
+.bv-dark .react-datepicker__day-name {
+  color: rgb(148 163 184);
+}
+
+.bv-dark .react-datepicker__day {
+  color: rgb(226 232 240);
+}
+
+.bv-dark .react-datepicker__day:hover:not(.react-datepicker__day--disabled) {
+  background: rgb(227 30 36 / 0.2);
+  color: #fff;
+}
+
+.bv-dark .react-datepicker__day--selected,
+.bv-dark .react-datepicker__day--range-start,
+.bv-dark .react-datepicker__day--range-end {
+  background: #e31e24;
+  color: #fff;
+}
+
+.bv-dark .react-datepicker__day--in-range,
+.bv-dark .react-datepicker__day--in-selecting-range {
+  background: rgb(227 30 36 / 0.14);
+  color: #fff;
+}
+
+.bv-dark .react-datepicker__day--today {
+  border-color: rgb(227 30 36 / 0.6);
+  background: rgb(227 30 36 / 0.08);
+}
+
+.bv-dark .react-datepicker__day--disabled {
+  color: rgb(148 163 184 / 0.35);
+}
+
+.bv-dark .react-datepicker__navigation-icon::before {
+  border-color: rgb(203 213 225);
+}
+
+.bv-dark .react-datepicker__navigation:hover *::before {
+  border-color: #e31e24;
+}
+
+/* Darker native time input icon inside dark surfaces */
+.bv-dark input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.75) sepia(1) saturate(3) hue-rotate(-20deg);
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.bv-dark input[type="color"] {
+  background: rgb(10 16 32);
+  border-color: rgb(255 255 255 / 0.12);
+}
+
+/* Dark scrollbars inside Business Visitor page surfaces */
+.bv-dark ::-webkit-scrollbar-track {
+  background: rgb(255 255 255 / 0.03);
+}
+
+.bv-dark ::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.16);
+}
+
+.bv-dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(227 30 36 / 0.5);
+}

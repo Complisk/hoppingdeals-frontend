@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { AlertTriangle } from "lucide-react";
 import { toast } from "react-toastify";
 import Spinner from "@/components/shared/Spinner";
+import { cn } from "@/lib/utils";
 import { normalizeWebsiteUrl } from "@/utils/websiteUrl";
 import type { PromotionImageAsset } from "@/utils/promotionImageUpload";
 
@@ -65,7 +66,14 @@ const combineDateAndTime = (date: Date, time: string) => {
   return Number.isNaN(combined.getTime()) ? null : combined;
 };
 
-const CreatePromotion = ({ isVisitor = false }) => {
+const CreatePromotion = ({
+  isVisitor = false,
+  theme = "light",
+}: {
+  isVisitor?: boolean;
+  theme?: "light" | "dark";
+}) => {
+  const dark = theme === "dark";
   const dispatch = useAppDispatch();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -528,10 +536,19 @@ const CreatePromotion = ({ isVisitor = false }) => {
     <div className="w-full space-y-8 sm:space-y-12">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
+          <h1
+            className={cn(
+              "text-2xl font-bold sm:text-3xl",
+              dark ? "text-white" : "text-foreground",
+            )}
+          >
             Create Promotion
           </h1>
-          <p className="text-muted-foreground">
+          <p
+            className={cn(
+              dark ? "text-slate-400" : "text-muted-foreground",
+            )}
+          >
             Design, customize, and launch your promotion
           </p>
         </div>
@@ -587,26 +604,46 @@ const CreatePromotion = ({ isVisitor = false }) => {
       </div>
 
       {loadingBusinessTemplate && (
-        <div className="rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
+        <div
+          className={cn(
+            "rounded-lg border px-3 py-2 text-sm",
+            dark
+              ? "border-white/10 bg-white/[0.04] text-slate-400"
+              : "border-border bg-muted/30 text-muted-foreground",
+          )}
+        >
           Loading your promotion template...
         </div>
       )}
 
       {/* Step 1: Template */}
-      <section className="bg-card rounded-2xl border border-border p-4 sm:p-6">
+      <section
+        className={cn(
+          "rounded-2xl p-4 sm:p-6",
+          dark
+            ? "bv-card border-white/10 bg-[#0B1220]/70"
+            : "bg-card border border-border",
+        )}
+      >
         <TemplateSelector
           selectedTemplate={selectedTemplate}
           customImage={customImage}
           onTemplateSelect={handleTemplateSelect}
           onImageUpload={handleImageUpload}
           usePromotionUpload
+          theme={theme}
         />
       </section>
 
       {/* Step 2: Text Customizer */}
       <section
         ref={customizationSectionRef}
-        className="bg-card rounded-2xl border border-border p-4 sm:p-6"
+        className={cn(
+          "rounded-2xl p-4 sm:p-6",
+          dark
+            ? "bv-card border-white/10 bg-[#0B1220]/70"
+            : "bg-card border border-border",
+        )}
       >
         <TextCustomizer
           selectedTemplate={selectedTemplate}
@@ -623,11 +660,19 @@ const CreatePromotion = ({ isVisitor = false }) => {
           onPromotionDescriptionChange={(e) => setPromotionDescription(e)}
           onWebsiteUrlChange={setWebsiteUrl}
           onBackgroundColorChange={setBackgroundColor}
+          theme={theme}
         />
       </section>
 
       {/* Step 3: Location */}
-      <section className="bg-card rounded-2xl border border-border p-4 sm:p-6">
+      <section
+        className={cn(
+          "rounded-2xl p-4 sm:p-6",
+          dark
+            ? "bv-card border-white/10 bg-[#0B1220]/70"
+            : "bg-card border border-border",
+        )}
+      >
         <LocationTargeter
           maxCities={maxAllowedCities}
           maxStates={maxAllowedStates === null ? undefined : maxAllowedStates}
@@ -638,21 +683,44 @@ const CreatePromotion = ({ isVisitor = false }) => {
           onRemoveCity={handleRemoveCity}
           onAddState={handleAddState}
           onRemoveState={handleRemoveState}
+          theme={theme}
         />
       </section>
 
       {/* Step 4: Schedule & Pricing */}
       {scheduleConflict && (
-        <section className="rounded-lg border border-red-300 bg-red-50 px-4 py-4">
+        <section
+          className={cn(
+            "rounded-lg border px-4 py-4",
+            dark
+              ? "border-[#E31E24]/40 bg-[#E31E24]/10"
+              : "border-red-300 bg-red-50",
+          )}
+        >
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div className="flex items-start gap-2">
-              <AlertTriangle className="mt-0.5 h-4 w-4 text-red-600" />
+              <AlertTriangle
+                className={cn(
+                  "mt-0.5 h-4 w-4",
+                  dark ? "text-[#FF6B6F]" : "text-red-600",
+                )}
+              />
               <div className="space-y-1">
-                <p className="text-sm text-red-700">
+                <p
+                  className={cn(
+                    "text-sm",
+                    dark ? "text-red-200" : "text-red-700",
+                  )}
+                >
                   {scheduleConflict.message}
                 </p>
                 {conflictPromotionSchedule && (
-                  <p className="text-xs text-red-700">
+                  <p
+                    className={cn(
+                      "text-xs",
+                      dark ? "text-red-300" : "text-red-700",
+                    )}
+                  >
                     Existing schedule: Start {conflictPromotionSchedule.runDate}{" "}
                     {conflictPromotionSchedule.runTime} and End{" "}
                     {conflictPromotionSchedule.stopDate}{" "}
@@ -666,7 +734,11 @@ const CreatePromotion = ({ isVisitor = false }) => {
                 type="button"
                 variant="outline"
                 size="sm"
-                className="border-red-300 bg-white text-red-700 hover:bg-red-100"
+                className={
+                  dark
+                    ? "border-[#E31E24]/50 bg-transparent text-red-200 hover:bg-[#E31E24]/10 hover:text-white"
+                    : "border-red-300 bg-white text-red-700 hover:bg-red-100"
+                }
                 onClick={() =>
                   router.push(
                     `/business/edit-promotion/${scheduleConflict.conflictPromotionId}`,
@@ -679,7 +751,14 @@ const CreatePromotion = ({ isVisitor = false }) => {
           </div>
         </section>
       )}
-      <section className="bg-card rounded-2xl border border-border p-4 sm:p-6">
+      <section
+        className={cn(
+          "rounded-2xl p-4 sm:p-6",
+          dark
+            ? "bv-card border-white/10 bg-[#0B1220]/70"
+            : "bg-card border border-border",
+        )}
+      >
         <ScheduleAndPricing
           selectedTemplate={selectedTemplate}
           customImage={customImage}
@@ -705,6 +784,7 @@ const CreatePromotion = ({ isVisitor = false }) => {
           onRunPromotion={handleRunPromotion}
           selectedEndDate={activeSubscription?.endDate}
           isLoading={loading}
+          theme={theme}
         />
       </section>
     </div>

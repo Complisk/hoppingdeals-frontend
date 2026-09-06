@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { Clock } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -37,6 +38,7 @@ interface ScheduleAndPricingProps {
   onEndDateChange: (date: Date) => void;
   onEndTimeChange: (time: string) => void;
   onRunPromotion: () => void;
+  theme?: "light" | "dark";
 }
 
 export const ScheduleAndPricing = ({
@@ -58,7 +60,9 @@ export const ScheduleAndPricing = ({
   onEndDateChange,
   onEndTimeChange,
   onRunPromotion,
+  theme = "light",
 }: ScheduleAndPricingProps) => {
+  const dark = theme === "dark";
   const includedStates = Math.max(0, Number(freeStatesIncluded || 0));
   const perStatePrice = Math.max(0, Number(stateUnitPrice || 0));
   const extraStates = Math.max(0, selectedStatesCount - includedStates);
@@ -87,11 +91,21 @@ export const ScheduleAndPricing = ({
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2 mb-4">
-        <span className="text-sm font-medium text-muted-foreground bg-secondary px-3 py-1 rounded-full">
+        <span
+          className={cn(
+            "text-sm font-medium px-3 py-1 rounded-full",
+            dark ? "bg-white/10 text-slate-300" : "bg-secondary text-muted-foreground",
+          )}
+        >
           Step 4
         </span>
-        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          <Clock className="h-5 w-5 text-primary" />
+        <h3
+          className={cn(
+            "text-lg font-semibold flex items-center gap-2",
+            dark ? "text-white" : "text-foreground",
+          )}
+        >
+          <Clock className={cn("h-5 w-5", dark ? "text-[#FF6B6F]" : "text-primary")} />
           Schedule & Review Pricing
           <TooltipProvider delayDuration={0} skipDelayDuration={0}>
             <Tooltip
@@ -120,18 +134,40 @@ export const ScheduleAndPricing = ({
         </h3>
       </div>
 
-      <div className="rounded-lg border border-border bg-muted/30 px-4 py-3">
+      <div
+        className={cn(
+          "rounded-lg border px-4 py-3",
+          dark
+            ? "border-white/10 bg-white/[0.03]"
+            : "border-border bg-muted/30",
+        )}
+      >
         <label className="flex items-center justify-between gap-3">
-          <span className="text-sm font-medium">Enable Auto Schedule</span>
+          <span
+            className={cn(
+              "text-sm font-medium",
+              dark ? "text-white" : undefined,
+            )}
+          >
+            Enable Auto Schedule
+          </span>
           <input
             type="checkbox"
             checked={scheduleEnabled}
             onChange={(e) => onScheduleEnabledChange(e.target.checked)}
-            className="h-4 w-4"
+            className={cn(
+              "h-4 w-4",
+              dark ? "accent-[#E31E24]" : undefined,
+            )}
             disabled={scheduleToggleDisabled}
           />
         </label>
-        <p className="mt-2 text-xs text-muted-foreground">
+        <p
+          className={cn(
+            "mt-2 text-xs",
+            dark ? "text-slate-400" : "text-muted-foreground",
+          )}
+        >
           {scheduleToggleHelpText ||
             "When enabled, promotion starts and expires automatically at the selected date/time."}
         </p>
@@ -139,10 +175,19 @@ export const ScheduleAndPricing = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Start Date/Time */}
-        <div className="bg-card rounded-2xl p-6 border border-border space-y-4">
+        <div
+          className={cn(
+            "rounded-2xl p-6 space-y-4",
+            dark
+              ? "border border-white/10 bg-[#0A1120]/60"
+              : "bg-card border border-border",
+          )}
+        >
           {/* <h4 className="font-medium text-foreground">Start Promotion Date</h4> */}
           <div className="space-y-2">
-            <Label>Start Promotion Date </Label>
+            <Label className={dark ? "text-white" : undefined}>
+              Start Promotion Date{" "}
+            </Label>
             <div className="relative">
               <DatePicker
                 selected={startDate}
@@ -152,29 +197,53 @@ export const ScheduleAndPricing = ({
                 endDate={endDate}
                 maxDate={maxDate}
                 minDate={new Date()}
-                className="w-full rounded-lg border border-border p-2 bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                className={cn(
+                  "w-full rounded-lg p-2 focus:ring-2 focus:border-transparent transition-all",
+                  dark
+                    ? "border border-white/10 bg-[#0A1120] text-white placeholder:text-slate-500 focus:ring-[#E31E24]"
+                    : "border border-border bg-background text-foreground focus:ring-primary",
+                )}
                 placeholderText="Select start date"
                 dateFormat="MMM dd, yyyy"
-                calendarClassName="!bg-card !border-border !text-foreground"
+                calendarClassName={cn(
+                  "!bg-card !border-border !text-foreground",
+                  dark && "!bg-[#0A1120] !border-white/10 !text-white",
+                )}
                 wrapperClassName="w-full"
               />
             </div>
           </div>
           <div className="space-y-2">
-            <Label>Start Promotion Time </Label>
+            <Label className={dark ? "text-white" : undefined}>
+              Start Promotion Time{" "}
+            </Label>
             <Input
               type="time"
               value={startTime}
               onChange={(e) => onStartTimeChange(e.target.value)}
-              className="transition-all focus:ring-2 focus:ring-primary"
+              className={cn(
+                "transition-all focus:ring-2",
+                dark
+                  ? "border-white/10 bg-[#0A1120] text-white focus:ring-[#E31E24]"
+                  : "focus:ring-primary",
+              )}
             />
           </div>
         </div>
 
         {/* End Date/Time */}
-        <div className="bg-card rounded-2xl p-6 border border-border space-y-4">
+        <div
+          className={cn(
+            "rounded-2xl p-6 space-y-4",
+            dark
+              ? "border border-white/10 bg-[#0A1120]/60"
+              : "bg-card border border-border",
+          )}
+        >
           <div className="space-y-2">
-            <Label>End Promotion Date </Label>
+            <Label className={dark ? "text-white" : undefined}>
+              End Promotion Date{" "}
+            </Label>
             <div className="relative">
               <DatePicker
                 selected={endDate}
@@ -184,29 +253,62 @@ export const ScheduleAndPricing = ({
                 endDate={endDate}
                 maxDate={maxDate}
                 minDate={startDate || new Date()}
-                className="w-full rounded-lg border border-border p-2 bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                className={cn(
+                  "w-full rounded-lg p-2 focus:ring-2 focus:border-transparent transition-all",
+                  dark
+                    ? "border border-white/10 bg-[#0A1120] text-white placeholder:text-slate-500 focus:ring-[#E31E24]"
+                    : "border border-border bg-background text-foreground focus:ring-primary",
+                )}
                 placeholderText="Select end date"
                 dateFormat="MMM dd, yyyy"
-                calendarClassName="!bg-card !border-border !text-foreground"
+                calendarClassName={cn(
+                  "!bg-card !border-border !text-foreground",
+                  dark && "!bg-[#0A1120] !border-white/10 !text-white",
+                )}
                 wrapperClassName="w-full"
                 highlightDates={startDate ? [startDate] : []}
               />
             </div>
           </div>
           <div className="space-y-2">
-            <Label>End Promotion Time </Label>
+            <Label className={dark ? "text-white" : undefined}>
+              End Promotion Time{" "}
+            </Label>
             <Input
               type="time"
               value={endTime}
               onChange={(e) => onEndTimeChange(e.target.value)}
-              className="transition-all focus:ring-2 focus:ring-primary"
+              className={cn(
+                "transition-all focus:ring-2",
+                dark
+                  ? "border-white/10 bg-[#0A1120] text-white focus:ring-[#E31E24]"
+                  : "focus:ring-primary",
+              )}
             />
           </div>
         </div>
 
         {/* Pricing Summary */}
-        <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-6 border border-primary/20 space-y-4">
-          <h4 className="font-semibold text-foreground flex items-center gap-2">
+        <div
+          className={cn(
+            "rounded-2xl p-6 space-y-4",
+            dark
+              ? "relative overflow-hidden border border-[#E31E24]/30 bg-gradient-to-br from-[#E31E24]/15 via-[#0A1120]/70 to-[#7C3AED]/10 shadow-[0_0_50px_rgb(227_30_36/0.1)]"
+              : "bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20",
+          )}
+        >
+          {dark && (
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -top-16 left-1/2 h-32 w-64 -translate-x-1/2 rounded-full bg-[#E31E24]/20 blur-3xl"
+            />
+          )}
+          <h4
+            className={cn(
+              "font-semibold flex items-center gap-2 relative",
+              dark ? "text-white" : "text-foreground",
+            )}
+          >
             Pricing Breakdown
             <TooltipProvider delayDuration={0} skipDelayDuration={0}>
               <Tooltip
@@ -238,36 +340,81 @@ export const ScheduleAndPricing = ({
             </TooltipProvider>
           </h4>
 
-          <div className="space-y-3 text-sm">
+          <div className="space-y-3 text-sm relative">
             <div className="flex justify-between items-center text-xs">
-              <span className="text-muted-foreground">Free city included</span>
+              <span
+                className={cn(
+                  dark ? "text-slate-400" : "text-muted-foreground",
+                )}
+              >
+                Free city included
+              </span>
             </div>
 
             {stateCost > 0 && (
               <div className="flex justify-between items-center text-xs">
-                <span className="text-muted-foreground">
+                <span
+                  className={cn(
+                    dark ? "text-slate-400" : "text-muted-foreground",
+                  )}
+                >
                   {extraStates} Additional State{extraStates !== 1 ? "s" : ""} @
                   ${perStatePrice}/each
                 </span>
-                <span className="text-foreground font-medium">
+                <span
+                  className={cn(
+                    "font-medium",
+                    dark ? "text-white" : "text-foreground",
+                  )}
+                >
                   ${stateCost}
                 </span>
               </div>
             )}
             {stateCost === 0 && (
               <div className="flex justify-between items-center text-xs">
-                <span className="text-muted-foreground">
+                <span
+                  className={cn(
+                    dark ? "text-slate-400" : "text-muted-foreground",
+                  )}
+                >
                   Additional state charges
                 </span>
-                <span className="text-foreground font-medium">$0</span>
+                <span
+                  className={cn(
+                    "font-medium",
+                    dark ? "text-white" : "text-foreground",
+                  )}
+                >
+                  $0
+                </span>
               </div>
             )}
 
-            <div className="border-t border-border pt-3 mt-3" />
+            <div
+              className={cn(
+                "border-t pt-3 mt-3",
+                dark ? "border-white/10" : "border-border",
+              )}
+            />
 
             <div className="flex justify-between items-center">
-              <span className="text-foreground font-semibold">Total:</span>
-              <span className="text-lg font-bold text-primary">
+              <span
+                className={cn(
+                  "font-semibold",
+                  dark ? "text-white" : "text-foreground",
+                )}
+              >
+                Total:
+              </span>
+              <span
+                className={cn(
+                  "font-bold",
+                  dark
+                    ? "text-3xl font-black text-[#FF6B6F] drop-shadow-[0_0_14px_rgb(227_30_36/0.45)]"
+                    : "text-lg text-primary",
+                )}
+              >
                 ${totalCost}
               </span>
             </div>
@@ -277,7 +424,11 @@ export const ScheduleAndPricing = ({
           <Button
             onClick={onRunPromotion}
             disabled={isLoading}
-            className="w-full mt-6"
+            className={cn(
+              "w-full mt-6",
+              dark &&
+                "bv-glow bg-[#E31E24] py-6 text-base font-black uppercase tracking-wider text-white hover:bg-[#b91621] transition-all duration-200 active:scale-95",
+            )}
           >
             {isLoading ? "Creating..." : "RUN IT"}
           </Button>

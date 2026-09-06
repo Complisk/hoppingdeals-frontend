@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useState } from "react";
 import { MapPin, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import PlaceSearch from "@/components/shared/PlaceSearch";
 import HelpTooltipTrigger from "@/components/shared/HelpTooltipTrigger";
 import {
@@ -46,6 +47,7 @@ interface LocationTargeterProps {
   onRemoveCity: (id: string) => void;
   onAddState: (location: LocationItem) => void;
   onRemoveState: (id: string) => void;
+  theme?: "light" | "dark";
 }
 
 export const LocationTargeter = ({
@@ -58,7 +60,9 @@ export const LocationTargeter = ({
   onRemoveCity,
   onAddState,
   onRemoveState,
+  theme = "light",
 }: LocationTargeterProps) => {
+  const dark = theme === "dark";
   const [isLocationTooltipOpen, setIsLocationTooltipOpen] = useState(false);
   const cityLimit = Math.max(0, Number(maxCities || 0));
   const stateLimit =
@@ -101,11 +105,21 @@ export const LocationTargeter = ({
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2 mb-4">
-        <span className="text-sm font-medium text-muted-foreground bg-secondary px-3 py-1 rounded-full">
+        <span
+          className={cn(
+            "text-sm font-medium px-3 py-1 rounded-full",
+            dark ? "bg-white/10 text-slate-300" : "bg-secondary text-muted-foreground",
+          )}
+        >
           Step 3
         </span>
-        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          <MapPin className="h-5 w-5 text-primary" />
+        <h3
+          className={cn(
+            "text-lg font-semibold flex items-center gap-2",
+            dark ? "text-white" : "text-foreground",
+          )}
+        >
+          <MapPin className={cn("h-5 w-5", dark ? "text-[#FF6B6F]" : "text-primary")} />
           Target Locations
           <TooltipProvider delayDuration={0} skipDelayDuration={0}>
             <Tooltip
@@ -135,17 +149,43 @@ export const LocationTargeter = ({
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-card rounded-2xl p-6 border border-border space-y-4">
+        <div
+          className={cn(
+            "rounded-2xl p-6 space-y-4",
+            dark
+              ? "border border-white/10 bg-[#0A1120]/60"
+              : "bg-card border border-border",
+          )}
+        >
           <div className="mb-4">
-            <h4 className="font-semibold text-foreground">Search Locations</h4>
-            <p className="text-xs text-muted-foreground mt-1">
+            <h4
+              className={cn(
+                "font-semibold",
+                dark ? "text-white" : "text-foreground",
+              )}
+            >
+              Search Locations
+            </h4>
+            <p
+              className={cn(
+                "text-xs mt-1",
+                dark ? "text-slate-400" : "text-muted-foreground",
+              )}
+            >
               Max {cityLimit} {cityLimit === 1 ? "city" : "cities"} and{" "}
               {isStateLimited ? `${stateLimit} state` : "multiple states"}
             </p>
           </div>
 
           {!hasActiveSubscription && (
-            <div className="rounded-lg border border-yellow-300 bg-yellow-50 px-3 py-2 text-xs text-yellow-900">
+            <div
+              className={cn(
+                "rounded-lg border px-3 py-2 text-xs",
+                dark
+                  ? "border-[#F5C55C]/30 bg-[#F5C55C]/10 text-[#F5C55C]"
+                  : "border-yellow-300 bg-yellow-50 text-yellow-900",
+              )}
+            >
               You do not have an active subscription. Please subscribe before
               creating or activating promotions.
             </div>
@@ -162,11 +202,17 @@ export const LocationTargeter = ({
                     onSelectPlace={(place) =>
                       handleSelectLocation(place, "city")
                     }
+                    theme={theme}
                   />
                 </div>
               ))
             ) : (
-              <p className="text-xs text-muted-foreground">
+              <p
+                className={cn(
+                  "text-xs",
+                  dark ? "text-slate-400" : "text-muted-foreground",
+                )}
+              >
                 No city targeting is included in your subscription plan.
               </p>
             )}
@@ -183,9 +229,15 @@ export const LocationTargeter = ({
                     : false
                 }
                 onSelectPlace={(place) => handleSelectLocation(place, "state")}
+                theme={theme}
               />
               {isStateLimited && selectedStates.length >= Number(stateLimit) ? (
-                <p className="mt-1 text-xs text-muted-foreground">
+                <p
+                  className={cn(
+                    "mt-1 text-xs",
+                    dark ? "text-slate-400" : "text-muted-foreground",
+                  )}
+                >
                   State limit reached.
                 </p>
               ) : null}
@@ -193,12 +245,36 @@ export const LocationTargeter = ({
           </div>
         </div>
 
-        <div className="bg-card rounded-2xl p-6 border border-border space-y-4">
-          <h4 className="font-semibold text-foreground">Selected Locations</h4>
+        <div
+          className={cn(
+            "rounded-2xl p-6 space-y-4",
+            dark
+              ? "border border-white/10 bg-[#0A1120]/60"
+              : "bg-card border border-border",
+          )}
+        >
+          <h4
+            className={cn(
+              "font-semibold",
+              dark ? "text-white" : "text-foreground",
+            )}
+          >
+            Selected Locations
+          </h4>
 
           {selectedCities.length === 0 && selectedStates.length === 0 ? (
-            <div className="text-center py-8 text-muted-foreground">
-              <MapPin className="h-8 w-8 mx-auto mb-2 opacity-50" />
+            <div
+              className={cn(
+                "text-center py-8",
+                dark ? "text-slate-500" : "text-muted-foreground",
+              )}
+            >
+              <MapPin
+                className={cn(
+                  "h-8 w-8 mx-auto mb-2",
+                  dark ? "text-slate-600" : "opacity-50",
+                )}
+              />
               <p>No locations selected</p>
               <p className="text-sm">Search and select cities or states</p>
             </div>
@@ -207,19 +283,32 @@ export const LocationTargeter = ({
               {selectedCities.map((city) => (
                 <div
                   key={city.id}
-                  className="flex items-center justify-between px-4 py-2 bg-blue-100 rounded-lg"
+                  className={cn(
+                    "flex items-center justify-between px-4 py-2 rounded-lg border transition-colors",
+                    dark
+                      ? "border-[#E31E24]/25 bg-[#E31E24]/10"
+                      : "bg-blue-100",
+                  )}
                 >
                   <div>
-                    <span className="text-foreground font-medium">
-                      {city.name}
-                    </span>
-                    <span className="text-xs text-muted-foreground ml-2">
+                    <span className="font-medium text-white">{city.name}</span>
+                    <span
+                      className={cn(
+                        "text-xs ml-2",
+                        dark ? "text-slate-400" : "text-muted-foreground",
+                      )}
+                    >
                       {city.state_name} | City
                     </span>
                   </div>
                   <button
                     onClick={() => onRemoveCity(String(city.id || ""))}
-                    className="text-xs text-muted-foreground hover:text-destructive"
+                    className={cn(
+                      "text-xs",
+                      dark
+                        ? "text-slate-400 hover:text-[#FF6B6F]"
+                        : "text-muted-foreground hover:text-destructive",
+                    )}
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -229,19 +318,32 @@ export const LocationTargeter = ({
               {selectedStates.map((state) => (
                 <div
                   key={state.id}
-                  className="flex items-center justify-between px-4 py-2 bg-green-100 rounded-lg"
+                  className={cn(
+                    "flex items-center justify-between px-4 py-2 rounded-lg border transition-colors",
+                    dark
+                      ? "border-[#7C3AED]/25 bg-[#7C3AED]/10"
+                      : "bg-green-100",
+                  )}
                 >
                   <div>
-                    <span className="text-foreground font-medium">
-                      {state.name}
-                    </span>
-                    <span className="text-xs text-muted-foreground ml-2">
+                    <span className="font-medium text-white">{state.name}</span>
+                    <span
+                      className={cn(
+                        "text-xs ml-2",
+                        dark ? "text-slate-400" : "text-muted-foreground",
+                      )}
+                    >
                       State
                     </span>
                   </div>
                   <button
                     onClick={() => onRemoveState(String(state.id || ""))}
-                    className="text-xs text-muted-foreground hover:text-destructive"
+                    className={cn(
+                      "text-xs",
+                      dark
+                        ? "text-slate-400 hover:text-[#FF6B6F]"
+                        : "text-muted-foreground hover:text-destructive",
+                    )}
                   >
                     <X className="h-4 w-4" />
                   </button>

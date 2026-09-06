@@ -5,17 +5,7 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Check,
-  Palette,
-  MapPin,
-  Clock,
-  Zap,
   Building2,
-  Users,
-  Briefcase,
-  Star,
-  BarChart3,
-  QrCode,
-  Upload,
   Pencil,
   LayoutGrid,
   Calendar,
@@ -26,34 +16,14 @@ import {
   TooltipContent,
   TooltipProvider,
 } from "@/components/ui/tooltip";
-import Logo from "@/components/shared/Logo";
 import Footer from "@/components/homePage/Footer";
-import { promotionTemplates } from "@/data/mockData";
-import { useRef } from "react";
-import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/store/index";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ArrowLeft,
-  ArrowUp,
-  ArrowDown,
-  ShoppingCart,
-} from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import { locations } from "@/data/mockData";
-import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
-import Select from "react-select";
-import USATimezoneMap from "@/components/business/USATimezoneMap";
 import BusinessHeader from "@/components/shared/BusinessHeader";
 import HelpTooltipTrigger from "@/components/shared/HelpTooltipTrigger";
 import CreatePromotion from "./CreatePromotion";
 import Seo from "@/components/seo/Seo";
 import { SITE_URL } from "@/lib/seo";
+
 const pricingPlans = [
   {
     id: "starter",
@@ -112,25 +82,38 @@ const featureHighlights = [
     title: "Design Promotions",
     description:
       "Create eye-catching campaigns in minutes using simple, ready-made templates.",
+    tile: "border-[#E31E24]/30 bg-[#E31E24]/15 text-[#FF6B6F]",
   },
   {
     icon: LayoutGrid,
     title: "Track Results",
     description:
       "Monitor QR code scans and see realtime analytics on your dashboard.",
+    tile: "border-[#7C3AED]/30 bg-[#7C3AED]/15 text-[#A78BFA]",
   },
   {
     icon: Calendar,
     title: "Schedule Campaigns",
     description:
       "Plan ahead by creating campaigns that launch on your chosen start date.",
+    tile: "border-[#2563EB]/30 bg-[#2563EB]/15 text-[#60A5FA]",
   },
 ];
 
+const STAR_PATH =
+  "M 0,-3.5 L 0.97,-1.02 L 3.56,-1.02 L 1.48,0.5 L 2.27,3.08 L 0,1.55 L -2.27,3.08 L -1.48,0.5 L -3.56,-1.02 L -0.97,-1.02 Z";
+
+const Sparkle = ({ className = "" }: { className?: string }) => (
+  <svg
+    viewBox="-4 -4 8 8"
+    className={cn("text-[#F5C55C]", className)}
+    aria-hidden="true"
+  >
+    <path d={STAR_PATH} fill="currentColor" />
+  </svg>
+);
+
 const BusinessVisitor = () => {
-  const isBusinessLoggedIn = useSelector(
-    (state: RootState) => state.auth.businessToken !== null,
-  );
   const [isStatewideTooltipOpen, setIsStatewideTooltipOpen] = useState(false);
 
   const handleStatewideTooltipClick = (
@@ -141,7 +124,46 @@ const BusinessVisitor = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="bv-dark relative isolate min-h-screen overflow-x-clip bg-[#02040a] text-white">
+      {/* ── Space-inspired background layers ── */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[#030819]" />
+
+        {/* Hero backdrop — custom space-city artwork echoing the home poster.
+            Extends to the very top of the page so the overlay header sits on it. */}
+        <div className="absolute inset-x-0 top-0 h-[46rem] overflow-hidden [mask-image:linear-gradient(to_bottom,black_55%,transparent_96%)]">
+          <picture>
+            {/* <source
+              media="(max-width: 640px)"
+              srcSet="/mobile-bg-hero.png"
+            /> */}
+            <img
+              src="/new-assets/business-hero-space.svg"
+              alt=""
+              decoding="async"
+              className="h-full w-full object-cover object-bottom opacity-70"
+            />
+          </picture>
+        </div>
+
+        {/* Mid-page nebula band behind pricing + features */}
+        <div className="absolute inset-x-0 top-[40%] h-[38%] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)]">
+          <img
+            src="/new-assets/business-mid-nebula.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover opacity-80"
+          />
+        </div>
+
+        {/* Ambient color washes for the lower page */}
+        <div className="bv-stars absolute inset-0 opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(900px_circle_at_85%_-10%,rgb(124_58_237/0.14),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(700px_circle_at_5%_8%,rgb(227_30_36/0.09),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(900px_circle_at_50%_115%,rgb(37_99_235/0.07),transparent_60%)]" />
+      </div>
+
       <Seo
         title="Promotion marketing for local businesses"
         description="Launch geo-targeted local promotions, schedule campaigns, and track results with Hopping Deals's business marketing platform."
@@ -160,76 +182,137 @@ const BusinessVisitor = () => {
             "A promotion marketing platform for businesses that want to publish local offers and measure campaign performance.",
         }}
       />
-      <BusinessHeader />
+      <BusinessHeader overlay />
 
-      <main className="container mx-auto px-4 py-16">
+      <main className="relative z-10 container mx-auto px-4 pb-16 pt-32 sm:pt-36">
         {/* Hero Header */}
-        <section className="text-center mb-16">
+        <section className="relative mb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-sm sm:text-xs">
+              <Sparkle className="h-3 w-3 animate-pulse-soft" />
+              Local Promotion Platform
+              <Sparkle className="h-3 w-3 animate-pulse-soft" />
+            </div>
+
+            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white md:text-6xl">
               Grow Your Business with
               <br />
-              <span className="text-primary">Local Promotions</span>
+              <span className="bg-gradient-to-r from-[#FF4D52] via-[#E31E24] to-[#B3141A] bg-clip-text text-transparent [text-shadow:0_0_40px_rgb(227_30_36/0.35)]">
+                Local Promotions
+              </span>
             </h1>
-            <p className="text-lg md:text-xl text-black font-bold  max-w-2xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-2xl text-lg font-bold leading-relaxed text-slate-300 md:text-xl">
               Create stunning 30-day promotions (one-time charge, no recurring
               fees), target local customers, and track real results - no design
               skills needed. Unlike other platforms, we do not require bidding
               for ad space or charge high fees during peak times.
             </p>
+
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button
+                asChild
+                className="bv-glow h-14 rounded-xl bg-[#E31E24] px-10 text-lg font-black text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#b91621] active:scale-95"
+              >
+                <Link href="/business/register">
+                  Get Started
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  document
+                    .getElementById("create-promotion")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="h-14 rounded-xl border-white/20 bg-white/[0.03] px-10 text-lg font-bold text-white backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#E31E24]/60 hover:bg-white/[0.06] hover:text-white active:scale-95"
+              >
+                Try It Now
+              </Button>
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-slate-400">
+              <span className="inline-flex items-center gap-2">
+                <Check className="h-4 w-4 text-[#F5C55C]" />
+                One-time flat fee
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <Check className="h-4 w-4 text-[#F5C55C]" />
+                No bidding for ad space
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <Check className="h-4 w-4 text-[#F5C55C]" />
+                No recurring subscriptions
+              </span>
+            </div>
           </motion.div>
         </section>
+
         {/* Pricing Cards */}
-        <div className="flex flex-col md:flex-row items-end justify-center gap-6 lg:gap-8 max-w-7xl mx-auto mb-16 px-4">
-          {pricingPlans.map((plan, index) => (
+        <div
+          id="pricing"
+          className="mx-auto mb-16 flex max-w-7xl flex-col items-center justify-end gap-8 px-4 pt-10 md:flex-row md:items-end md:gap-6 lg:gap-8"
+        >
+          {pricingPlans.map((plan) => (
             <div
               key={plan.id}
               className={cn(
-                "relative flex flex-col  w-full max-w-sm rounded-xl overflow-hidden border-2 bg-[#000000] text-white shadow-2xl transition-all duration-300",
-                plan?.name === "Professional" && "pt-6",
-                plan.borderColor,
+                "relative flex w-full max-w-sm flex-col overflow-hidden rounded-2xl border bg-gradient-to-b from-[#0C1322] to-[#070C18] text-white shadow-[0_24px_60px_-15px_rgb(0_0_0/0.65)] transition-all duration-300",
                 plan.highlight
-                  ? "scale-105 z-10 md:-translate-y-2 border-[#7C3AED]"
-                  : "scale-100 opacity-95 hover:opacity-100",
+                  ? "z-10 border-[#E31E24]/60 pt-6 shadow-[0_0_70px_rgb(227_30_36/0.2),0_28px_70px_-15px_rgb(0_0_0/0.7)] md:-translate-y-3 md:scale-[1.04]"
+                  : "border-white/10 hover:border-white/25",
               )}
             >
-              {/* Header Banner - Two lines */}
+              {/* Recommended badge for Professional */}
+              {plan.highlight && (
+                <div className="absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#E31E24] px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-white shadow-[0_8px_24px_rgb(227_30_36/0.55)]">
+                  Recommended
+                </div>
+              )}
+
+              {/* Header Banner */}
               <div
                 className={cn(
-                  "py-6 text-center  font-bold uppercase",
-                  plan.color,
+                  "relative py-6 text-center font-bold uppercase",
+                  plan.highlight
+                    ? "bg-gradient-to-r from-[#B3141A] via-[#E31E24] to-[#B3141A]"
+                    : "bg-[#E31E24]/85",
                 )}
               >
-                <div className="text-2xl text-white leading-tight">
+                <div className="text-2xl leading-tight text-white">
                   {plan.name}
                 </div>
-                <div className="text-1xl leading-tight">{plan.campaign}</div>
+                <div className="text-base leading-tight text-white/75">
+                  {plan.campaign}
+                </div>
               </div>
 
-              <div className="p-8 flex-grow flex flex-col items-center">
+              <div className="flex flex-grow flex-col items-center p-8">
                 {/* Price Display */}
-                <div className="text-center mb-8">
-                  <div className="text-6xl font-black mb-1">${plan.price}</div>
-                  <div className="text-gray-400 font-medium lowercase">
+                <div className="mb-8 text-center">
+                  <div className="mb-1 text-6xl font-black text-white">
+                    ${plan.price}
+                  </div>
+                  <div className="font-medium lowercase text-slate-400">
                     /campaign
                   </div>
-                  <div className="mt-4 text-[10px] text-[#FACC15] font-bold uppercase tracking-[0.2em]">
+                  <div className="mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#F5C55C]">
                     Flat Fee. No Subscriptions
                   </div>
                 </div>
 
-                <div className="w-full h-px bg-white/10 mb-8" />
+                <div className="mb-8 h-px w-full bg-white/10" />
 
                 {/* Features List */}
-                <ul className="space-y-6 mb-10 w-full px-2">
+                <ul className="mb-10 w-full space-y-6 px-2">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-4">
-                      <Check className="h-5 w-5 mt-0.5 shrink-0 text-[#FACC15]" />
-                      <span className="text-sm font-medium leading-relaxed text-gray-300">
+                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#F5C55C]" />
+                      <span className="text-sm font-medium leading-relaxed text-slate-300">
                         {feature}
                       </span>
                     </li>
@@ -237,14 +320,16 @@ const BusinessVisitor = () => {
                 </ul>
 
                 {/* Footer Price and Action */}
-                <div className="w-full mt-auto space-y-6">
-                  <div className="text-center text-3xl font-black">
+                <div className="mt-auto w-full space-y-6">
+                  <div className="text-center text-3xl font-black text-white">
                     ${plan.price}
                   </div>
                   <Button
                     className={cn(
-                      "w-full py-7 text-xl font-black rounded-lg transition-all transform active:scale-95 ",
-                      plan.buttonColor,
+                      "w-full rounded-lg py-7 text-xl font-black transition-all active:scale-95",
+                      plan.highlight
+                        ? "bv-glow bg-[#E31E24] hover:bg-[#b91621]"
+                        : "bg-[#E31E24]/90 hover:bg-[#b91621]",
                     )}
                     asChild
                   >
@@ -255,20 +340,22 @@ const BusinessVisitor = () => {
 
               {/* Top Accent Glow for Professional Card */}
               {plan.highlight && (
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 via-purple-400 to-orange-400 blur-sm opacity-80" />
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#E31E24] via-[#A78BFA] to-[#E31E24] opacity-90 blur-[1px]" />
               )}
             </div>
           ))}
         </div>
-        <div className="text-center mb-24">
+
+        {/* Statewide Upgrade Banner */}
+        <div className="mb-24 text-center">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="mx-auto flex max-w-xl  items-center justify-center gap-2 px-2 text-center font-black text-primary tracking-wide leading-snug text-sm sm:text-xl md:text-2xl"
+            className="mx-auto flex max-w-xl items-center justify-center gap-2 px-2 text-center font-black tracking-wide leading-snug text-sm text-white sm:text-xl md:text-2xl"
           >
-            <span className=" text-nowrap">Statewide Upgrade Available:</span>
+            <span className="text-nowrap">Statewide Upgrade Available:</span>
 
-            <span className="inline-flex whitespace-nowrap rounded-lg border border-[#FACC15]/30 bg-black px-1 py-1 text-[10px] text-white sm:px-4 sm:text-base md:text-lg">
+            <span className="inline-flex whitespace-nowrap rounded-lg border border-[#F5C55C]/35 bg-[#F5C55C]/10 px-3 py-1 text-[10px] font-black text-[#F5C55C] sm:px-4 sm:text-base md:text-lg">
               $500 per state
             </span>
 
@@ -286,7 +373,7 @@ const BusinessVisitor = () => {
                 <TooltipContent
                   side="top"
                   sideOffset={10}
-                  className="w-[calc(100vw-2rem)] max-w-sm text-left text-xs sm:text-base font-normal leading-relaxed bg-black/90 text-white border-white/20 backdrop-blur-[1px] animate-none data-[state=closed]:animate-none"
+                  className="w-[calc(100vw-2rem)] max-w-sm bg-black/90 text-left text-xs font-normal leading-relaxed text-white border-white/20 backdrop-blur-[1px] animate-none data-[state=closed]:animate-none sm:text-base"
                   onEscapeKeyDown={() => setIsStatewideTooltipOpen(false)}
                 >
                   This is an additional charge on top of the 30 days Plan.
@@ -298,24 +385,31 @@ const BusinessVisitor = () => {
             </TooltipProvider>
           </motion.div>
         </div>
-        {/* Bottom Feature Tiers - Horizontal Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto px-4">
+
+        {/* Feature Highlights */}
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 md:grid-cols-3 lg:gap-8">
           {featureHighlights.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex items-start gap-5 group"
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className="bv-card bv-card-hover group flex flex-col items-start gap-5 rounded-2xl p-7"
             >
-              <div className="p-3 rounded-2xl border border-primary/20 text-primary group-hover:scale-110 transition-transform shadow-lg shrink-0">
-                <feature.icon className="h-8 w-8" />
+              <div
+                className={cn(
+                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border shadow-lg transition-transform duration-300 group-hover:scale-110",
+                  feature.tile,
+                )}
+              >
+                <feature.icon className="h-7 w-7" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-xl text-primary font-bold">
+                <h3 className="text-xl font-bold text-white">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-black leading-relaxed">
+                <p className="text-sm leading-relaxed text-slate-400">
                   {feature.description}
                 </p>
               </div>
@@ -323,30 +417,40 @@ const BusinessVisitor = () => {
           ))}
         </div>
       </main>
+
+      {/* Ready to run CTA */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="bg-gradient-to-r mx-5 from-primary/5 to-primary/10 border border-primary/20 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+        className="relative mx-5 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[#0C1322] to-[#070C18] p-6 shadow-[0_24px_60px_-15px_rgb(0_0_0/0.6)] sm:p-10"
       >
-        <div className="text-center space-y-6">
-          <div className="flex justify-center mb-4">
-            <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
-              <Building2 className="h-8 w-8 text-primary" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-32 left-1/2 h-56 w-[34rem] -translate-x-1/2 rounded-full bg-[#E31E24]/15 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-32 right-0 h-56 w-96 rounded-full bg-[#7C3AED]/10 blur-3xl"
+        />
+        <div className="relative space-y-6 text-center">
+          <div className="mb-4 flex justify-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[#E31E24]/30 bg-[#E31E24]/15 shadow-glow">
+              <Building2 className="h-8 w-8 text-[#FF6B6F]" />
             </div>
           </div>
           <div className="space-y-3">
-            <h2 className="text-2xl font-bold text-foreground">
+            <h2 className="text-2xl font-bold text-white sm:text-3xl">
               ready to run a promotion yet?
             </h2>
-            <p className="text-muted-foreground leading-relaxed max-w-md mx-auto">
+            <p className="mx-auto max-w-md leading-relaxed text-slate-400">
               Sign up for free and claim your business page! We encourage you to
               hone your skills by creating some stunning banner templates. Once
               you're ready, subscribe to a Plan and Run it!
             </p>
           </div>
           <Link href="/business/register">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105">
+            <Button className="bv-glow rounded-lg bg-[#E31E24] px-8 py-3 font-bold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#b91621] active:scale-95">
               Claim your Business Page
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -354,8 +458,11 @@ const BusinessVisitor = () => {
         </div>
       </motion.div>
 
-      <div className="px-4 mt-20">
-        <CreatePromotion isVisitor={true} />
+      <div
+        id="create-promotion"
+        className="relative z-10 mt-20 scroll-mt-24 px-4"
+      >
+        <CreatePromotion isVisitor={true} theme="dark" />
       </div>
 
       <Footer />

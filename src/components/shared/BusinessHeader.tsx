@@ -10,7 +10,12 @@ import { logout } from "../../store/authSlice";
 import type { RootState } from "../../store/index";
 import Logo from "./Logo";
 
-const BusinessHeader: React.FC = () => {
+interface BusinessHeaderProps {
+  /** Transparent absolute header over the page hero (like the home page overlay header) */
+  overlay?: boolean;
+}
+
+const BusinessHeader: React.FC<BusinessHeaderProps> = ({ overlay = false }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [showHeader, setShowHeader] = useState(true);
@@ -45,7 +50,17 @@ const BusinessHeader: React.FC = () => {
 
   return (
     <>
-      <header className=" z-50 border-b border-gray-100 bg-white px-3 py-3 sm:px-6 sm:py-4">
+      <header
+        className={[
+          overlay
+            ? "absolute inset-x-0 top-0 z-40"
+            : "z-50",
+          overlay
+            ? "border-b border-transparent bg-transparent shadow-none"
+            : "border-b border-white/10 bg-[rgb(3_8_25/0.97)] shadow-[0_12px_32px_rgb(0_0_0/0.28)]",
+          "px-3 py-3 sm:px-6 sm:py-4",
+        ].join(" ")}
+      >
         <div className="mx-auto grid max-w-7xl grid-cols-[auto,minmax(0,1fr),auto] items-center gap-2 sm:gap-4">
           <div className="shrink-0">
             <Logo />
@@ -58,7 +73,7 @@ const BusinessHeader: React.FC = () => {
                 className="block hover:underline"
                 title={business.name}
               >
-                <h1 className="truncate text-sm font-bold text-gray-800 sm:text-xl lg:text-2xl">
+                <h1 className="truncate text-sm font-bold text-white sm:text-xl lg:text-2xl">
                   {business.name}
                 </h1>
               </Link>
@@ -68,14 +83,14 @@ const BusinessHeader: React.FC = () => {
           <div className="flex items-center justify-end gap-2 sm:gap-4">
             {!isBusinessLoggedIn && (
               <Link href={"/business/login"}>
-                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-black px-2 py-1 text-xs font-medium text-[#E31E24] transition hover:bg-red-100 sm:px-3 sm:text-sm md:text-base">
+                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#d9232e] px-2 py-1 text-xs font-black text-white shadow-md transition hover:bg-[#b91621] hover:translate-y-[-1px] sm:px-3 sm:text-sm md:text-base">
                   Login
                 </button>
               </Link>
             )}
             {isBusinessLoggedIn && (
               <Link href={"/business/dashboard"}>
-                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-black px-2 py-1 text-xs font-medium text-[#E31E24] transition hover:bg-red-100 sm:px-3 sm:text-sm md:text-base">
+                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#d9232e] px-2 py-1 text-xs font-black text-white shadow-md transition hover:bg-[#b91621] hover:translate-y-[-1px] sm:px-3 sm:text-sm md:text-base">
                   Business Dashboard
                 </button>
               </Link>
@@ -83,10 +98,10 @@ const BusinessHeader: React.FC = () => {
 
             <DropdownMenu.Root>
               <DropdownMenu.Trigger asChild>
-                <button className="rounded-xl border border-gray-200 p-2 transition hover:bg-gray-100 sm:p-2.5">
+                <button className="rounded-xl border border-white/15 p-2 text-slate-300 transition hover:border-white/30 hover:bg-white/10 hover:text-white sm:p-2.5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-gray-500 sm:h-6 sm:w-6"
+                    className="h-5 w-5 sm:h-6 sm:w-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -107,8 +122,8 @@ const BusinessHeader: React.FC = () => {
                     initial={{ opacity: 0, y: -8, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.2 }}
-                    className="w-56 rounded-2xl bg-white/90 backdrop-blur-xl
-                               shadow-xl border border-gray-200  z-50 p-2"
+                    className="w-56 rounded-2xl bg-[rgb(8_13_28/0.96)] backdrop-blur-xl
+                               shadow-xl border border-white/10 z-50 p-2"
                   >
                     <MenuItem icon={<Info />} label="About Us" to="/about-us" />
                     <MenuItem
@@ -172,8 +187,8 @@ const MenuItem = ({
   const content = (
     <div
       className="flex items-center gap-3 px-4 py-3 rounded-xl
-               cursor-pointer text-gray-700 text-sm font-medium
-               hover:bg-red-50 hover:text-[#E31E24]
+               cursor-pointer text-slate-200 text-sm font-medium
+               hover:bg-white/5 hover:text-[#E31E24]
                focus:outline-none transition"
     >
       <span className="text-[#E31E24]">{icon}</span>
@@ -202,8 +217,8 @@ const MenuItem = ({
   return (
     <DropdownMenu.Item
       className="flex items-center gap-3 px-4 py-3 rounded-xl
-               cursor-pointer text-gray-700 text-sm font-medium
-               hover:bg-red-50 hover:text-[#E31E24]
+               cursor-pointer text-slate-200 text-sm font-medium
+               hover:bg-white/5 hover:text-[#E31E24]
                focus:outline-none transition"
     >
       <span className="text-[#E31E24]">{icon}</span>

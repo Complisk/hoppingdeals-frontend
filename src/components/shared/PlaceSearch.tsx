@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 import { useGoogleMapsScript } from "@/hooks/useGoogleMapsScript";
 
 interface PlaceSearchProps {
@@ -17,13 +18,16 @@ interface PlaceSearchProps {
     lat?: number;
     lng?: number;
   }) => void;
+  theme?: "light" | "dark";
 }
 
 const PlaceSearch: React.FC<PlaceSearchProps> = ({
   searchType,
   disabled = false,
   onSelectPlace,
+  theme = "light",
 }) => {
+  const dark = theme === "dark";
   const [query, setQuery] = useState("");
   const [predictions, setPredictions] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
@@ -155,7 +159,12 @@ const PlaceSearch: React.FC<PlaceSearchProps> = ({
         placeholder={
           searchType === "city" ? "Search city..." : "Search state..."
         }
-        className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary disabled:cursor-not-allowed disabled:opacity-60"
+        className={cn(
+          "w-full rounded-lg p-2 focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:opacity-60",
+          dark
+            ? "border border-white/10 bg-[#0A1120] text-white placeholder:text-slate-500 focus:ring-[#E31E24] focus:border-[#E31E24]/50"
+            : "border border-gray-300 focus:ring-primary",
+        )}
       />
 
       {maps.status === "error" && (
@@ -163,24 +172,55 @@ const PlaceSearch: React.FC<PlaceSearchProps> = ({
       )}
 
       {maps.status === "loading" && (
-        <p className="text-xs text-gray-500">Loading Google Maps...</p>
+        <p
+          className={cn(
+            "text-xs",
+            dark ? "text-slate-400" : "text-gray-500",
+          )}
+        >
+          Loading Google Maps...
+        </p>
       )}
 
       {isMapsReady && loading && (
-        <p className="text-xs text-gray-500">Loading...</p>
+        <p
+          className={cn(
+            "text-xs",
+            dark ? "text-slate-400" : "text-gray-500",
+          )}
+        >
+          Loading...
+        </p>
       )}
 
       {isMapsReady && predictions.length > 0 && (
-        <ul className="absolute z-50 w-full border border-gray-300 rounded-lg max-h-52 overflow-y-auto bg-white shadow-md">
+        <ul
+          className={cn(
+            "absolute z-50 w-full rounded-lg max-h-52 overflow-y-auto shadow-md",
+            dark
+              ? "border border-white/10 bg-[#0B1220] text-white"
+              : "border border-gray-300 bg-white",
+          )}
+        >
           {predictions.map((pred) => (
             <li
               key={pred.place_id}
               tabIndex={0}
               onClick={() => handleSelect(pred)}
-              className="px-3 py-2 cursor-pointer hover:bg-gray-100 flex justify-between"
+              className={cn(
+                "px-3 py-2 cursor-pointer flex justify-between",
+                dark
+                  ? "hover:bg-[#E31E24]/10 text-white"
+                  : "hover:bg-gray-100",
+              )}
             >
               <span>{pred.description}</span>
-              <span className="text-xs text-gray-500">
+              <span
+                className={cn(
+                  "text-xs",
+                  dark ? "text-slate-400" : "text-gray-500",
+                )}
+              >
                 {pred.types.includes("locality") ? "(City)" : "(State)"}
               </span>
             </li>
