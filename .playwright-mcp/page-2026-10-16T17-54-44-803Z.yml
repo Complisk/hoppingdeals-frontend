@@ -1,0 +1,12 @@
+- generic [active] [ref=f11e1]:
+  - region "Notifications Alt+T"
+  - main [ref=f11e2]:
+    - generic [ref=f11e3]:
+      - img "Hopping Deals" [ref=f11e4]
+      - paragraph [ref=f11e5]: "404"
+      - heading "This page hopped off the map" [level=1] [ref=f11e6]
+      - paragraph [ref=f11e7]: The link may be old or mistyped. Head back and pick up the deals from the home page.
+      - link "Back to home" [ref=f11e8] [cursor=pointer]:
+        - /url: /
+  - button "Open Next.js Dev Tools" [ref=f11e14] [cursor=pointer]
+  - alert [ref=f11e18]

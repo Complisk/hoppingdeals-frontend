@@ -1,0 +1,77 @@
+- generic [active] [ref=f7e1]:
+  - region "Notifications Alt+T"
+  - banner [ref=f7e2]:
+    - generic [ref=f7e3]:
+      - link [ref=f7e5] [cursor=pointer]:
+        - /url: /
+        - img "Hopping Deals logo" [ref=f7e6]
+      - generic [ref=f7e7]:
+        - button "Set Location" [ref=f7e9] [cursor=pointer]
+        - link "Log in" [ref=f7e15] [cursor=pointer]:
+          - /url: /auth/login
+      - generic [ref=f7e16]:
+        - link "Business Portal" [ref=f7e17] [cursor=pointer]:
+          - /url: /business/visitor
+        - button "Open menu" [ref=f7e23] [cursor=pointer]:
+          - generic [ref=f7e25]: Menu
+  - generic [ref=f7e26]:
+    - generic [ref=f7e28]:
+      - navigation "Breadcrumb" [ref=f7e29]:
+        - list [ref=f7e30]:
+          - listitem [ref=f7e31]:
+            - link "Home" [ref=f7e32] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f7e35]:
+            - generic [ref=f7e36]: Business directory
+      - heading "Business directory" [level=1] [ref=f7e37]
+      - paragraph [ref=f7e38]: Support local. Meet the businesses on Hopping Deals, whether they’re running offers now or getting ready to launch.
+    - main [ref=f7e39]:
+      - paragraph [ref=f7e45]: Loading businesses...
+    - contentinfo [ref=f7e46]:
+      - generic [ref=f7e47]:
+        - generic [ref=f7e48]:
+          - generic [ref=f7e49]:
+            - link [ref=f7e50] [cursor=pointer]:
+              - /url: /
+              - img "Hopping Deals" [ref=f7e51]
+            - paragraph [ref=f7e52]: Coupons and promotions from local businesses, updated by the owners themselves.
+          - generic [ref=f7e53]:
+            - heading "Support" [level=3] [ref=f7e54]
+            - paragraph [ref=f7e55]: Shopper or business owner? Send us a message and we’ll reply by email.
+            - button "Message support" [ref=f7e56] [cursor=pointer]
+          - generic [ref=f7e57]:
+            - heading "For businesses" [level=3] [ref=f7e58]
+            - list [ref=f7e59]:
+              - listitem [ref=f7e60]:
+                - link "List your business" [ref=f7e61] [cursor=pointer]:
+                  - /url: /business/visitor
+              - listitem [ref=f7e62]:
+                - link "Promotion strategy" [ref=f7e63] [cursor=pointer]:
+                  - /url: /blog
+              - listitem [ref=f7e64]:
+                - link "Business directory" [ref=f7e65] [cursor=pointer]:
+                  - /url: /hopping-deals-business-directory
+          - generic [ref=f7e66]:
+            - heading "Hopping Deals" [level=3] [ref=f7e67]
+            - list [ref=f7e68]:
+              - listitem [ref=f7e69]:
+                - link "About us" [ref=f7e70] [cursor=pointer]:
+                  - /url: /about-us
+              - listitem [ref=f7e71]:
+                - button "Media & news" [ref=f7e72] [cursor=pointer]
+              - listitem [ref=f7e73]:
+                - button "Careers" [ref=f7e74] [cursor=pointer]
+              - listitem [ref=f7e75]:
+                - button "Investors" [ref=f7e76] [cursor=pointer]
+              - listitem [ref=f7e77]:
+                - button "Non-profit organizations" [ref=f7e78] [cursor=pointer]
+        - generic [ref=f7e79]:
+          - paragraph [ref=f7e80]: © 2026 Hopping Deals, Inc.
+          - navigation "Legal" [ref=f7e81]:
+            - link "Terms & privacy" [ref=f7e82] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f7e83] [cursor=pointer]:
+              - /url: /sitemap.xml
+            - generic [ref=f7e84]: English (US), USD
+  - button "Open Next.js Dev Tools" [ref=f7e93] [cursor=pointer]
+  - alert [ref=f7e97]

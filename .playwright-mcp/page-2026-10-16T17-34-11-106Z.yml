@@ -1,0 +1,72 @@
+- generic [active] [ref=f20e1]:
+  - region "Notifications Alt+T"
+  - generic [ref=f20e6] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f20e7]
+    - generic [ref=f20e11]:
+      - button "Open issues overlay" [ref=f20e12]:
+        - generic [ref=f20e13]:
+          - generic [aria-hidden] [ref=f20e14]: "0"
+          - generic [ref=f20e15]: "1"
+        - generic [ref=f20e16]: Issue
+      - button "Collapse issues badge" [ref=f20e17]
+  - alert [ref=f20e20]
+  - generic [ref=f20e21]:
+    - complementary [ref=f20e22]:
+      - link [ref=f20e24] [cursor=pointer]:
+        - /url: /
+        - img "Hopping Deals" [ref=f20e25]
+        - generic [ref=f20e26]: Missioncontrol
+      - generic [ref=f20e28]:
+        - navigation "Admin" [ref=f20e29]:
+          - link "Dashboard" [ref=f20e30] [cursor=pointer]:
+            - /url: /admin/dashboard
+          - link "Users" [ref=f20e37] [cursor=pointer]:
+            - /url: /admin/users
+          - link "Businesses" [ref=f20e44] [cursor=pointer]:
+            - /url: /admin/businesses
+          - link "Promotions" [ref=f20e50] [cursor=pointer]:
+            - /url: /admin/promotions
+          - link "Templates" [ref=f20e56] [cursor=pointer]:
+            - /url: /admin/templates
+          - link "Photos" [ref=f20e62] [cursor=pointer]:
+            - /url: /admin/photos
+          - link "Roles & Permissions" [ref=f20e69] [cursor=pointer]:
+            - /url: /admin/roles
+          - link "Support Messages" [ref=f20e74] [cursor=pointer]:
+            - /url: /admin/support-messages
+          - link "Business Tagging" [ref=f20e79] [cursor=pointer]:
+            - /url: /admin/business-tagging
+        - button "Log out" [ref=f20e84] [cursor=pointer]
+    - generic [ref=f20e89]:
+      - banner [ref=f20e90]:
+        - generic [ref=f20e91]:
+          - button "Collapse sidebar" [ref=f20e92] [cursor=pointer]
+          - paragraph [ref=f20e96]: Promotions
+        - generic [ref=f20e97]:
+          - generic [ref=f20e98]:
+            - generic [ref=f20e99]: PA
+            - generic [ref=f20e100]:
+              - paragraph [ref=f20e101]: Preview Admin
+              - paragraph [ref=f20e102]: Super admin
+          - button "Log out" [ref=f20e103] [cursor=pointer]
+      - main [ref=f20e107]:
+        - generic [ref=f20e109]:
+          - generic [ref=f20e110]:
+            - generic [ref=f20e111]:
+              - heading "Promotion Management" [level=1] [ref=f20e112]
+              - paragraph [ref=f20e113]: View and manage all promotions
+            - generic [ref=f20e114]: 0 Total
+          - generic [ref=f20e115]:
+            - textbox "Search by business name..." [ref=f20e121]
+            - button "Search" [ref=f20e122] [cursor=pointer]
+          - generic [ref=f20e123]:
+            - generic [ref=f20e124]:
+              - button "All Promotions" [ref=f20e125] [cursor=pointer]
+              - button "Active" [ref=f20e126] [cursor=pointer]
+              - button "Pending" [ref=f20e127] [cursor=pointer]
+              - button "Inactive" [ref=f20e128] [cursor=pointer]
+              - button "Expired" [ref=f20e129] [cursor=pointer]
+            - link [ref=f20e130] [cursor=pointer]:
+              - /url: /admin/create-promotion
+              - button "Create Promotion" [ref=f20e131]
+          - paragraph [ref=f20e134]: No promotions found

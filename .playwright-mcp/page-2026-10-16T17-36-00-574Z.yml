@@ -1,0 +1,77 @@
+- generic [active] [ref=f24e1]:
+  - region "Notifications Alt+T":
+    - alert [ref=f24e3]:
+      - text: Invalid token
+      - button "close" [ref=f24e7] [cursor=pointer]
+      - progressbar "notification timer" [ref=f24e12]
+  - generic [ref=f24e17] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f24e18]
+    - generic [ref=f24e22]:
+      - button "Open issues overlay" [ref=f24e23]:
+        - generic [ref=f24e24]:
+          - generic [aria-hidden] [ref=f24e25]: "0"
+          - generic [ref=f24e26]: "1"
+        - generic [ref=f24e27]: Issue
+      - button "Collapse issues badge" [ref=f24e28]
+  - alert [ref=f24e31]
+  - generic [ref=f24e32]:
+    - complementary [ref=f24e33]:
+      - generic [ref=f24e34]:
+        - link [ref=f24e35] [cursor=pointer]:
+          - /url: /
+          - img "Hopping Deals" [ref=f24e36]
+          - generic [ref=f24e37]: Businessportal
+        - button "Close menu" [ref=f24e38] [cursor=pointer]
+      - link "Create promotion" [ref=f24e43] [cursor=pointer]:
+        - /url: /business/create-promotion
+      - navigation "Business" [ref=f24e44]:
+        - link "Dashboard" [ref=f24e45] [cursor=pointer]:
+          - /url: /business/dashboard
+        - link "My promotions" [ref=f24e51] [cursor=pointer]:
+          - /url: /business/promotions
+        - link "Saved templates" [ref=f24e55] [cursor=pointer]:
+          - /url: /business/promotion-templates
+        - link "Subscription" [ref=f24e60] [cursor=pointer]:
+          - /url: /business/subscription
+      - generic [ref=f24e63]:
+        - link "View public page" [ref=f24e64] [cursor=pointer]:
+          - /url: /business/preview-business
+        - button "Log out" [ref=f24e69] [cursor=pointer]
+    - generic [ref=f24e73]:
+      - banner [ref=f24e74]:
+        - generic [ref=f24e75]:
+          - button "Toggle menu" [ref=f24e76] [cursor=pointer]
+          - paragraph [ref=f24e78]: Dashboard
+        - button "M" [ref=f24e79] [cursor=pointer]
+      - main [ref=f24e84]:
+        - generic [ref=f24e86]:
+          - generic [ref=f24e87]:
+            - generic [ref=f24e88]:
+              - heading "Welcome back, Moonlight Bakery" [level=1] [ref=f24e89]
+              - paragraph [ref=f24e90]: How often your promotions run, and the momentum they build.
+            - generic [ref=f24e91]:
+              - link "New template" [ref=f24e92] [cursor=pointer]:
+                - /url: /business/promotion-templates/create
+              - link "Create promotion" [ref=f24e93] [cursor=pointer]:
+                - /url: /business/create-promotion
+          - generic [ref=f24e95]:
+            - generic [ref=f24e96]:
+              - paragraph [ref=f24e97]: No active subscription
+              - paragraph [ref=f24e100]: Your free business page lets you design banner templates now. Subscribe when you’re ready to run a live promotion.
+            - generic [ref=f24e101]:
+              - link "Create template" [ref=f24e102] [cursor=pointer]:
+                - /url: /business/promotion-templates/create
+              - link "Subscribe" [ref=f24e103] [cursor=pointer]:
+                - /url: /business/subscription
+          - heading "Promotion intensity and momentum" [level=2] [ref=f24e109]
+          - generic [ref=f24e115]:
+            - generic [ref=f24e116]:
+              - heading "Saved templates" [level=2] [ref=f24e117]
+              - link "Create Template" [ref=f24e119] [cursor=pointer]:
+                - /url: /business/promotion-templates/create
+            - generic [ref=f24e120]:
+              - heading "No saved templates yet" [level=3] [ref=f24e121]
+              - paragraph [ref=f24e122]: Create templates now and reuse them when you launch promotions.
+              - link "Create Template" [ref=f24e123] [cursor=pointer]:
+                - /url: /business/promotion-templates/create
+          - heading "Recent promotions" [level=2] [ref=f24e125]

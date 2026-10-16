@@ -1,0 +1,44 @@
+- generic [active] [ref=f15e1]:
+  - region "Notifications Alt+T"
+  - generic [ref=f15e6] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f15e7]
+    - generic [ref=f15e11]:
+      - button "Open issues overlay" [ref=f15e12]:
+        - generic [ref=f15e13]:
+          - generic [aria-hidden] [ref=f15e14]: "-1"
+          - generic [ref=f15e15]: "0"
+      - button "Collapse issues badge" [ref=f15e16]
+  - alert [ref=f15e19]
+  - generic [ref=f15e20]:
+    - complementary [ref=f15e21]:
+      - link [ref=f15e23] [cursor=pointer]:
+        - /url: /
+        - img "Hopping Deals" [ref=f15e24]
+        - generic [ref=f15e25]: Businessportal
+      - link "Create promotion" [ref=f15e27] [cursor=pointer]:
+        - /url: /business/create-promotion
+      - navigation "Business" [ref=f15e28]:
+        - link "Dashboard" [ref=f15e29] [cursor=pointer]:
+          - /url: /business/dashboard
+        - link "My promotions" [ref=f15e35] [cursor=pointer]:
+          - /url: /business/promotions
+        - link "Saved templates" [ref=f15e39] [cursor=pointer]:
+          - /url: /business/promotion-templates
+        - link "Subscription" [ref=f15e44] [cursor=pointer]:
+          - /url: /business/subscription
+      - generic [ref=f15e47]:
+        - link "View public page" [ref=f15e48] [cursor=pointer]:
+          - /url: /business/preview-business
+        - button "Log out" [ref=f15e53] [cursor=pointer]
+    - generic [ref=f15e57]:
+      - banner [ref=f15e58]:
+        - paragraph [ref=f15e60]: Subscription
+        - button "M Moonlight Bakery owner@moonlight.example" [ref=f15e61] [cursor=pointer]:
+          - generic [ref=f15e62]: M
+          - generic [ref=f15e64]:
+            - paragraph [ref=f15e65]: Moonlight Bakery
+            - paragraph [ref=f15e66]: owner@moonlight.example
+      - main [ref=f15e69]:
+        - generic [ref=f15e71]:
+          - heading "Business Subscription Plans" [level=1] [ref=f15e72]
+          - paragraph [ref=f15e73]: Choose a subscription plan that suits your business needs.

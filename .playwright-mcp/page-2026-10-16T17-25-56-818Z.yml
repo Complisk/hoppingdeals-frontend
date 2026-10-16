@@ -1,0 +1,297 @@
+- generic [active] [ref=f13e1]:
+  - region "Notifications Alt+T"
+  - generic [ref=f13e2]:
+    - banner [ref=f13e3]:
+      - generic [ref=f13e4]:
+        - link [ref=f13e6] [cursor=pointer]:
+          - /url: /
+          - img "Hopping Deals logo" [ref=f13e7]
+        - generic [ref=f13e8]:
+          - link "Log in" [ref=f13e9] [cursor=pointer]:
+            - /url: /business/login
+          - button "Open menu" [ref=f13e10] [cursor=pointer]
+    - generic [ref=f13e14]:
+      - heading "Grow your business with local promotions" [level=1] [ref=f13e15]
+      - paragraph [ref=f13e16]: Create a 30-day promotion for a one-time fee, target the cities your customers live in, and track real results. No design skills, no bidding for ad space, no peak-time surcharges.
+      - generic [ref=f13e17]:
+        - link "Claim your free business page" [ref=f13e18] [cursor=pointer]:
+          - /url: /business/register
+        - button "Try the builder" [ref=f13e19] [cursor=pointer]
+      - list [ref=f13e20]:
+        - listitem [ref=f13e21]: One-time flat fee
+        - listitem [ref=f13e24]: No bidding for ad space
+        - listitem [ref=f13e27]: No recurring subscriptions
+    - main [ref=f13e30]:
+      - region [ref=f13e31]:
+        - heading "Campaign plans" [level=2] [ref=f13e32]
+        - generic [ref=f13e33]:
+          - generic [ref=f13e35]:
+            - generic [ref=f13e36]:
+              - paragraph [ref=f13e37]: Starter
+              - paragraph [ref=f13e38]: 30-day campaign
+            - generic [ref=f13e40]:
+              - generic [ref=f13e41]:
+                - paragraph [ref=f13e42]: $100
+                - paragraph [ref=f13e43]: Flat fee per campaign. No subscription.
+              - list [ref=f13e44]:
+                - listitem [ref=f13e45]:
+                  - generic [ref=f13e48]: 1 active promotion (30-day campaign — modify anytime during the run)
+                - listitem [ref=f13e49]:
+                  - generic [ref=f13e52]: Target 1 city
+                - listitem [ref=f13e53]:
+                  - generic [ref=f13e56]: Track QR Code Scans
+                - listitem [ref=f13e57]:
+                  - generic [ref=f13e60]: Realtime Analytics Dashboard
+                - listitem [ref=f13e61]:
+                  - generic [ref=f13e64]: Schedule Start Date in Advance
+              - link "Start with Starter" [ref=f13e65] [cursor=pointer]:
+                - /url: /business/register
+          - generic [ref=f13e67]:
+            - generic [ref=f13e68]:
+              - generic [ref=f13e69]: Most popular
+              - paragraph [ref=f13e70]: Professional
+              - paragraph [ref=f13e71]: 30-day campaign
+            - generic [ref=f13e73]:
+              - generic [ref=f13e74]:
+                - paragraph [ref=f13e75]: $250
+                - paragraph [ref=f13e76]: Flat fee per campaign. No subscription.
+              - list [ref=f13e77]:
+                - listitem [ref=f13e78]:
+                  - generic [ref=f13e81]: 1 active promotion (30-day campaign — modify anytime during the run)
+                - listitem [ref=f13e82]:
+                  - generic [ref=f13e85]: Target 3 cities
+                - listitem [ref=f13e86]:
+                  - generic [ref=f13e89]: Track QR Code Scans
+                - listitem [ref=f13e90]:
+                  - generic [ref=f13e93]: Realtime Analytics Dashboard
+                - listitem [ref=f13e94]:
+                  - generic [ref=f13e97]: Schedule Start Date in Advance
+              - link "Start with Professional" [ref=f13e98] [cursor=pointer]:
+                - /url: /business/register
+          - generic [ref=f13e100]:
+            - generic [ref=f13e101]:
+              - paragraph [ref=f13e102]: Enterprise
+              - paragraph [ref=f13e103]: 30-day campaign
+            - generic [ref=f13e105]:
+              - generic [ref=f13e106]:
+                - paragraph [ref=f13e107]: $500
+                - paragraph [ref=f13e108]: Flat fee per campaign. No subscription.
+              - list [ref=f13e109]:
+                - listitem [ref=f13e110]:
+                  - generic [ref=f13e113]: 1 active promotion (30-day campaign — modify anytime during the run)
+                - listitem [ref=f13e114]:
+                  - generic [ref=f13e117]: Target 8 cities
+                - listitem [ref=f13e118]:
+                  - generic [ref=f13e121]: Track QR Code Scans
+                - listitem [ref=f13e122]:
+                  - generic [ref=f13e125]: Realtime Analytics Dashboard
+                - listitem [ref=f13e126]:
+                  - generic [ref=f13e129]: Schedule Start Date in Advance
+              - link "Start with Enterprise" [ref=f13e130] [cursor=pointer]:
+                - /url: /business/register
+        - generic [ref=f13e131]:
+          - generic [ref=f13e132]: Statewide upgrade
+          - generic [ref=f13e133]: $500 per state
+          - button "Statewide upgrade details" [ref=f13e134] [cursor=pointer]
+      - generic [ref=f13e138]:
+        - generic [ref=f13e144]:
+          - heading "Design promotions" [level=3] [ref=f13e145]
+          - paragraph [ref=f13e146]: Create eye-catching campaigns in minutes using simple, ready-made templates.
+        - generic [ref=f13e154]:
+          - heading "Track results" [level=3] [ref=f13e155]
+          - paragraph [ref=f13e156]: Monitor QR code scans and see realtime analytics on your dashboard.
+        - generic [ref=f13e161]:
+          - heading "Schedule campaigns" [level=3] [ref=f13e162]
+          - paragraph [ref=f13e163]: Plan ahead by creating campaigns that launch on your chosen start date.
+      - generic [ref=f13e165]:
+        - heading "Not ready to run a promotion yet?" [level=2] [ref=f13e171]
+        - paragraph [ref=f13e172]: Claim your business page for free and practice by designing banner templates. When you’re ready, pick a plan and run it.
+        - link "Claim your business page" [ref=f13e173] [cursor=pointer]:
+          - /url: /business/register
+    - generic [ref=f13e175]:
+      - generic [ref=f13e177]:
+        - heading "Create Promotion" [level=1] [ref=f13e178]
+        - paragraph [ref=f13e179]: Design, customize, and launch your promotion
+      - generic [ref=f13e181]:
+        - generic [ref=f13e182]:
+          - generic [ref=f13e183] [cursor=pointer]: Upload your custom template image
+          - paragraph [ref=f13e189]: JPEG, PNG, or WebP · max 10 MB · minimum 900 px on the shortest side
+          - button "Template upload help" [ref=f13e190] [cursor=pointer]
+        - generic [ref=f13e194]:
+          - button [ref=f13e195] [cursor=pointer]
+          - button [ref=f13e197] [cursor=pointer]
+      - generic [ref=f13e200]:
+        - generic [ref=f13e201]:
+          - generic [ref=f13e202]: Step 2
+          - heading "Customize Text" [level=3] [ref=f13e203]
+        - generic [ref=f13e204]:
+          - generic [ref=f13e206]:
+            - generic [ref=f13e207]:
+              - generic [ref=f13e208]:
+                - generic [ref=f13e209]: Live Preview
+                - button "Crop Image" [disabled]
+              - generic [ref=f13e217]:
+                - paragraph [ref=f13e218]: Your promotion preview appears here
+                - paragraph [ref=f13e219]: Select a template or upload an image to get started
+            - generic [ref=f13e220]:
+              - generic [ref=f13e221]:
+                - text: Promotion Description Text
+                - textbox "Short description for the promotion" [ref=f13e222]
+                - generic: 0/650
+              - generic [ref=f13e223]:
+                - generic [ref=f13e224]: Company Website
+                - textbox "https://your-business-website.com" [ref=f13e226]
+          - generic [ref=f13e227]:
+            - generic [ref=f13e228]:
+              - generic [ref=f13e229]:
+                - generic [ref=f13e230]: Text Elements (1)
+                - button "Add Text" [ref=f13e231] [cursor=pointer]
+              - generic [ref=f13e234] [cursor=pointer]:
+                - generic [ref=f13e235]:
+                  - paragraph [ref=f13e236]: Empty text
+                  - paragraph [ref=f13e237]: "Position: (50, 50) • Size: 24px"
+                - button [ref=f13e238]
+            - generic [ref=f13e239]:
+              - text: Text Content
+              - textbox "Enter text" [ref=f13e240]
+            - generic [ref=f13e241]:
+              - text: Position (Use Arrows)
+              - generic [ref=f13e243]:
+                - button [ref=f13e245] [cursor=pointer]
+                - button [ref=f13e247] [cursor=pointer]
+                - generic [ref=f13e248]: 50,50
+                - button [ref=f13e249] [cursor=pointer]
+                - button [ref=f13e251] [cursor=pointer]
+            - generic [ref=f13e253]:
+              - generic [ref=f13e254]: "Font Size: 24px"
+              - slider [ref=f13e255]: "24"
+            - generic [ref=f13e256]:
+              - text: Text Color
+              - generic [ref=f13e257]:
+                - textbox [ref=f13e258] [cursor=pointer]: "#ffffff"
+                - textbox [ref=f13e260]: "#ffffff"
+            - generic [ref=f13e261]:
+              - text: Image Opacity
+              - combobox [ref=f13e262]:
+                - option "0%" [selected]
+                - option "50%"
+                - option "70%"
+      - generic [ref=f13e264]:
+        - generic [ref=f13e265]:
+          - generic [ref=f13e266]: Step 3
+          - heading [level=3] [ref=f13e267]:
+            - text: Target Locations
+            - button "Target locations help" [ref=f13e271] [cursor=pointer]
+        - generic [ref=f13e275]:
+          - generic [ref=f13e276]:
+            - generic [ref=f13e277]:
+              - heading "Search Locations" [level=4] [ref=f13e278]
+              - paragraph [ref=f13e279]: Max 2 cities and multiple states
+            - generic [ref=f13e280]:
+              - generic [ref=f13e281]:
+                - text: City 1
+                - generic [ref=f13e282]:
+                  - textbox "Search city..." [ref=f13e283]
+                  - paragraph [ref=f13e284]: Loading Google Maps...
+              - generic [ref=f13e285]:
+                - text: City 2
+                - generic [ref=f13e286]:
+                  - textbox "Search city..." [ref=f13e287]
+                  - paragraph [ref=f13e288]: Loading Google Maps...
+              - generic [ref=f13e289]:
+                - text: State
+                - generic [ref=f13e290]:
+                  - textbox "Search state..." [ref=f13e291]
+                  - paragraph [ref=f13e292]: Loading Google Maps...
+          - generic [ref=f13e293]:
+            - heading "Selected Locations" [level=4] [ref=f13e294]
+            - generic [ref=f13e295]:
+              - paragraph [ref=f13e299]: No locations selected
+              - paragraph [ref=f13e300]: Search and select cities or states
+      - generic [ref=f13e302]:
+        - generic [ref=f13e303]:
+          - generic [ref=f13e304]: Step 4
+          - heading [level=3] [ref=f13e305]:
+            - text: Schedule & Review Pricing
+            - button "Schedule and pricing help" [ref=f13e309] [cursor=pointer]
+        - generic [ref=f13e313]:
+          - generic [ref=f13e314]:
+            - generic [ref=f13e315]: Enable Auto Schedule
+            - checkbox "Enable Auto Schedule" [ref=f13e316]
+          - paragraph [ref=f13e317]: When enabled, promotion starts and expires automatically at the selected date/time.
+        - generic [ref=f13e318]:
+          - generic [ref=f13e319]:
+            - generic [ref=f13e320]:
+              - generic [ref=f13e321]: Start Promotion Date
+              - textbox "Select start date" [ref=f13e325]
+            - generic [ref=f13e326]:
+              - generic [ref=f13e327]: Start Promotion Time
+              - textbox [ref=f13e329]
+          - generic [ref=f13e330]:
+            - generic [ref=f13e331]:
+              - generic [ref=f13e332]: End Promotion Date
+              - textbox "Select end date" [ref=f13e336]
+            - generic [ref=f13e337]:
+              - generic [ref=f13e338]: End Promotion Time
+              - textbox [ref=f13e340]
+          - generic [ref=f13e341]:
+            - heading [level=4] [ref=f13e342]:
+              - text: Pricing Breakdown
+              - button "Pricing breakdown help" [ref=f13e343] [cursor=pointer]
+            - generic [ref=f13e347]:
+              - generic [ref=f13e348]: Free city included
+              - generic [ref=f13e350]:
+                - generic [ref=f13e351]: Additional state charges
+                - generic [ref=f13e352]: $0
+              - generic [ref=f13e354]:
+                - generic [ref=f13e355]: "Total:"
+                - generic [ref=f13e356]: $0
+            - button "RUN IT" [ref=f13e357] [cursor=pointer]
+    - contentinfo [ref=f13e358]:
+      - generic [ref=f13e359]:
+        - generic [ref=f13e360]:
+          - generic [ref=f13e361]:
+            - link [ref=f13e362] [cursor=pointer]:
+              - /url: /
+              - img "Hopping Deals" [ref=f13e363]
+            - paragraph [ref=f13e364]: Coupons and promotions from local businesses, updated by the owners themselves.
+          - generic [ref=f13e365]:
+            - heading "Support" [level=3] [ref=f13e366]
+            - paragraph [ref=f13e367]: Shopper or business owner? Send us a message and we’ll reply by email.
+            - button "Message support" [ref=f13e368] [cursor=pointer]
+          - generic [ref=f13e369]:
+            - heading "For businesses" [level=3] [ref=f13e370]
+            - list [ref=f13e371]:
+              - listitem [ref=f13e372]:
+                - link "List your business" [ref=f13e373] [cursor=pointer]:
+                  - /url: /business/visitor
+              - listitem [ref=f13e374]:
+                - link "Promotion strategy" [ref=f13e375] [cursor=pointer]:
+                  - /url: /blog
+              - listitem [ref=f13e376]:
+                - link "Business directory" [ref=f13e377] [cursor=pointer]:
+                  - /url: /hopping-deals-business-directory
+          - generic [ref=f13e378]:
+            - heading "Hopping Deals" [level=3] [ref=f13e379]
+            - list [ref=f13e380]:
+              - listitem [ref=f13e381]:
+                - link "About us" [ref=f13e382] [cursor=pointer]:
+                  - /url: /about-us
+              - listitem [ref=f13e383]:
+                - button "Media & news" [ref=f13e384] [cursor=pointer]
+              - listitem [ref=f13e385]:
+                - button "Careers" [ref=f13e386] [cursor=pointer]
+              - listitem [ref=f13e387]:
+                - button "Investors" [ref=f13e388] [cursor=pointer]
+              - listitem [ref=f13e389]:
+                - button "Non-profit organizations" [ref=f13e390] [cursor=pointer]
+        - generic [ref=f13e391]:
+          - paragraph [ref=f13e392]: © 2026 Hopping Deals, Inc.
+          - navigation "Legal" [ref=f13e393]:
+            - link "Terms & privacy" [ref=f13e394] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f13e395] [cursor=pointer]:
+              - /url: /sitemap.xml
+            - generic [ref=f13e396]: English (US), USD
+  - button "Open Next.js Dev Tools" [ref=f13e405] [cursor=pointer]
+  - alert [ref=f13e409]

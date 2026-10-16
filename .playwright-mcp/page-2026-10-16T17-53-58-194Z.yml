@@ -1,0 +1,12 @@
+- generic [active] [ref=f9e1]:
+  - region "Notifications Alt+T"
+  - generic [ref=f9e6] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f9e7]
+    - generic [ref=f9e11]:
+      - button "Open issues overlay" [ref=f9e12]:
+        - generic [ref=f9e13]:
+          - generic [aria-hidden] [ref=f9e14]: "0"
+          - generic [ref=f9e15]: "1"
+        - generic [ref=f9e16]: Issue
+      - button "Collapse issues badge" [ref=f9e17]
+  - alert [ref=f9e20]

@@ -1,0 +1,66 @@
+- generic [active] [ref=f14e1]:
+  - region "Notifications Alt+T"
+  - generic [ref=f14e6] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f14e7]
+    - generic [ref=f14e11]:
+      - button "Open issues overlay" [ref=f14e12]:
+        - generic [ref=f14e13]:
+          - generic [aria-hidden] [ref=f14e14]: "-1"
+          - generic [ref=f14e15]: "0"
+      - button "Collapse issues badge" [ref=f14e16]
+  - alert [ref=f14e19]
+  - generic [ref=f14e20]:
+    - complementary [ref=f14e21]:
+      - link [ref=f14e23] [cursor=pointer]:
+        - /url: /
+        - img "Hopping Deals" [ref=f14e24]
+        - generic [ref=f14e25]: Businessportal
+      - link "Create promotion" [ref=f14e27] [cursor=pointer]:
+        - /url: /business/create-promotion
+      - navigation "Business" [ref=f14e28]:
+        - link "Dashboard" [ref=f14e29] [cursor=pointer]:
+          - /url: /business/dashboard
+        - link "My promotions" [ref=f14e35] [cursor=pointer]:
+          - /url: /business/promotions
+        - link "Saved templates" [ref=f14e39] [cursor=pointer]:
+          - /url: /business/promotion-templates
+        - link "Subscription" [ref=f14e44] [cursor=pointer]:
+          - /url: /business/subscription
+      - generic [ref=f14e47]:
+        - link "View public page" [ref=f14e48] [cursor=pointer]:
+          - /url: /business/preview-business
+        - button "Log out" [ref=f14e53] [cursor=pointer]
+    - generic [ref=f14e57]:
+      - banner [ref=f14e58]:
+        - paragraph [ref=f14e60]: Dashboard
+        - button "M Moonlight Bakery owner@moonlight.example" [ref=f14e61] [cursor=pointer]:
+          - generic [ref=f14e62]: M
+          - generic [ref=f14e64]:
+            - paragraph [ref=f14e65]: Moonlight Bakery
+            - paragraph [ref=f14e66]: owner@moonlight.example
+      - main [ref=f14e69]:
+        - generic [ref=f14e71]:
+          - generic [ref=f14e72]:
+            - generic [ref=f14e73]:
+              - heading "Welcome back, Moonlight Bakery" [level=1] [ref=f14e74]
+              - paragraph [ref=f14e75]: How often your promotions run, and the momentum they build.
+            - generic [ref=f14e76]:
+              - link "New template" [ref=f14e77] [cursor=pointer]:
+                - /url: /business/promotion-templates/create
+              - link "Create promotion" [ref=f14e78] [cursor=pointer]:
+                - /url: /business/create-promotion
+          - generic [ref=f14e80]:
+            - generic [ref=f14e81]:
+              - paragraph [ref=f14e82]: No active subscription
+              - paragraph [ref=f14e85]: Your free business page lets you design banner templates now. Subscribe when you’re ready to run a live promotion.
+            - generic [ref=f14e86]:
+              - link "Create Template" [ref=f14e87] [cursor=pointer]:
+                - /url: /business/promotion-templates/create
+              - link "Subscribe" [ref=f14e88] [cursor=pointer]:
+                - /url: /business/subscription
+          - heading "Promotion intensity and momentum" [level=2] [ref=f14e94]
+          - generic [ref=f14e101]:
+            - heading "Saved templates" [level=2] [ref=f14e102]
+            - link "Create Template" [ref=f14e104] [cursor=pointer]:
+              - /url: /business/promotion-templates/create
+          - heading "Recent promotions" [level=2] [ref=f14e110]

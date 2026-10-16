@@ -1,0 +1,22 @@
+- generic [active] [ref=f2e1]:
+  - region "Notifications Alt+T"
+  - generic [ref=f2e2]:
+    - generic [ref=f2e3]: street
+    - generic [ref=f2e325]: directory
+    - generic [ref=f2e470]: observatory
+    - generic [ref=f2e564]: ideas
+    - generic [ref=f2e692]: gallery
+    - generic [ref=f2e806]: lighthouse
+    - generic [ref=f2e903]: phone
+    - generic [ref=f2e1007]: bags
+    - generic [ref=f2e1128]:
+      - img [aria-hidden] [ref=f2e1129]:
+        - generic [ref=f2e1208]: OPEN
+      - generic [ref=f2e1327]: storefront
+    - generic [ref=f2e1328]: launch
+    - generic [ref=f2e1449]: tower
+    - generic [ref=f2e1548]: lost
+    - generic [ref=f2e1642]: celebrate
+    - generic [ref=f2e1862]: orbit
+  - button "Open Next.js Dev Tools" [ref=f2e1963] [cursor=pointer]
+  - alert [ref=f2e1967]

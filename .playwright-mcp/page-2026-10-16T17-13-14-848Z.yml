@@ -1,0 +1,142 @@
+- generic [active] [ref=f5e1]:
+  - region "Notifications Alt+T"
+  - generic [ref=f5e2]:
+    - banner [ref=f5e3]:
+      - generic [ref=f5e4]:
+        - link [ref=f5e6] [cursor=pointer]:
+          - /url: /
+          - img "Hopping Deals logo" [ref=f5e7]
+        - generic [ref=f5e8]:
+          - button "Set Location" [ref=f5e10] [cursor=pointer]
+          - link "Log in" [ref=f5e16] [cursor=pointer]:
+            - /url: /auth/login
+        - generic [ref=f5e17]:
+          - link "Business Portal" [ref=f5e18] [cursor=pointer]:
+            - /url: /business/visitor
+          - button "Open menu" [ref=f5e24] [cursor=pointer]:
+            - generic [ref=f5e26]: Menu
+    - main [ref=f5e27]:
+      - region "Hopping Deals local coupon hero" [ref=f5e28]:
+        - generic [ref=f5e29]:
+          - generic "Popular deal categories" [ref=f5e30]:
+            - link "RESTAURANTS $10 OFF" [ref=f5e31] [cursor=pointer]:
+              - /url: /category/restaurants
+              - generic:
+                - generic: RESTAURANTS
+                - generic:
+                  - generic: $10
+                  - generic: "OFF"
+            - link "BEAUTY & SPAS 30% OFF" [ref=f5e36] [cursor=pointer]:
+              - /url: /category/beauty-&-spas
+              - generic:
+                - generic: BEAUTY & SPAS
+                - generic:
+                  - generic: 30%
+                  - generic: "OFF"
+            - link "HOME SERVICES HOME DEALS" [ref=f5e42] [cursor=pointer]:
+              - /url: /category/home-services
+              - generic:
+                - generic: HOME SERVICES
+                - generic:
+                  - generic: HOME
+                  - generic: DEALS
+            - link "COFFEE & TEAS SUPER SAVINGS" [ref=f5e48] [cursor=pointer]:
+              - /url: /category/coffee-&-tea
+              - generic:
+                - generic: COFFEE & TEAS
+                - generic:
+                  - generic: SUPER
+                  - generic: SAVINGS
+            - link "AUTO SERVICES OIL DEALS" [ref=f5e54] [cursor=pointer]:
+              - /url: /category/auto-services
+              - generic:
+                - generic: AUTO SERVICES
+                - generic:
+                  - generic: OIL
+                  - generic: DEALS
+            - link "PETS PET SAVINGS" [ref=f5e59] [cursor=pointer]:
+              - /url: /category/pets
+              - generic:
+                - generic: PETS
+                - generic:
+                  - generic: PET
+                  - generic: SAVINGS
+            - link "SHOPPING 20% OFF" [ref=f5e64] [cursor=pointer]:
+              - /url: /category/shopping
+              - generic:
+                - generic: SHOPPING
+                - generic:
+                  - generic: 20%
+                  - generic: "OFF"
+          - button [ref=f5e69] [cursor=pointer]:
+            - img "More Categories" [ref=f5e70]
+      - generic [ref=f5e71]:
+        - heading "Featured deals" [level=2] [ref=f5e76]
+        - generic [ref=f5e108]:
+          - heading "Food & drinks" [level=2] [ref=f5e110]
+          - link "See all" [ref=f5e111] [cursor=pointer]:
+            - /url: /category/restaurants
+        - generic [ref=f5e143]:
+          - heading "Beauty & spas" [level=2] [ref=f5e145]
+          - link "See all" [ref=f5e146] [cursor=pointer]:
+            - /url: /category/beauty-&-spas
+        - generic [ref=f5e178]:
+          - heading "Products" [level=2] [ref=f5e180]
+          - link "See all" [ref=f5e181] [cursor=pointer]:
+            - /url: /category/shopping
+        - generic [ref=f5e213]:
+          - heading "Own a local business? Put your deal on the moon." [level=2] [ref=f5e214]
+          - paragraph [ref=f5e215]: Build a coupon in minutes, choose the cities that see it, and track who saves it.
+          - generic [ref=f5e216]:
+            - link "Start with the business portal" [ref=f5e217] [cursor=pointer]:
+              - /url: /business/visitor
+            - link "Browse the directory" [ref=f5e218] [cursor=pointer]:
+              - /url: /hopping-deals-business-directory
+    - contentinfo [ref=f5e219]:
+      - generic [ref=f5e220]:
+        - generic [ref=f5e221]:
+          - generic [ref=f5e222]:
+            - link [ref=f5e223] [cursor=pointer]:
+              - /url: /
+              - img "Hopping Deals" [ref=f5e224]
+            - paragraph [ref=f5e225]: Coupons and promotions from local businesses, updated by the owners themselves.
+          - generic [ref=f5e226]:
+            - heading "Support" [level=3] [ref=f5e227]
+            - paragraph [ref=f5e228]: Shopper or business owner? Send us a message and we’ll reply by email.
+            - button "Message support" [ref=f5e229] [cursor=pointer]
+          - generic [ref=f5e230]:
+            - heading "For businesses" [level=3] [ref=f5e231]
+            - list [ref=f5e232]:
+              - listitem [ref=f5e233]:
+                - link "List your business" [ref=f5e234] [cursor=pointer]:
+                  - /url: /business/visitor
+              - listitem [ref=f5e235]:
+                - link "Promotion strategy" [ref=f5e236] [cursor=pointer]:
+                  - /url: /blog
+              - listitem [ref=f5e237]:
+                - link "Business directory" [ref=f5e238] [cursor=pointer]:
+                  - /url: /hopping-deals-business-directory
+          - generic [ref=f5e239]:
+            - heading "Hopping Deals" [level=3] [ref=f5e240]
+            - list [ref=f5e241]:
+              - listitem [ref=f5e242]:
+                - link "About us" [ref=f5e243] [cursor=pointer]:
+                  - /url: /about-us
+              - listitem [ref=f5e244]:
+                - button "Media & news" [ref=f5e245] [cursor=pointer]
+              - listitem [ref=f5e246]:
+                - button "Careers" [ref=f5e247] [cursor=pointer]
+              - listitem [ref=f5e248]:
+                - button "Investors" [ref=f5e249] [cursor=pointer]
+              - listitem [ref=f5e250]:
+                - button "Non-profit organizations" [ref=f5e251] [cursor=pointer]
+        - generic [ref=f5e252]:
+          - paragraph [ref=f5e253]: © 2026 Hopping Deals, Inc.
+          - navigation "Legal" [ref=f5e254]:
+            - link "Terms & privacy" [ref=f5e255] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f5e256] [cursor=pointer]:
+              - /url: /sitemap.xml
+            - generic [ref=f5e257]: English (US), USD
+  - button "Open Next.js Dev Tools" [ref=f5e266] [cursor=pointer]
+  - alert [ref=f5e270]

@@ -1,0 +1,97 @@
+- generic [active] [ref=f22e1]:
+  - region "Notifications Alt+T":
+    - generic [ref=f22e2]:
+      - alert [ref=f22e3]:
+        - generic [ref=f22e7]:
+          - generic [ref=f22e8]: Failed to load photos
+          - generic [ref=f22e9]: Invalid token
+        - button "close" [ref=f22e10] [cursor=pointer]
+        - progressbar "notification timer" [ref=f22e15]
+      - alert [ref=f22e16]:
+        - generic [ref=f22e20]:
+          - generic [ref=f22e21]: Failed to load photos
+          - generic [ref=f22e22]: Invalid token
+        - button "close" [ref=f22e23] [cursor=pointer]
+        - progressbar "notification timer" [ref=f22e28]
+  - generic [ref=f22e33] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f22e34]
+    - generic [ref=f22e38]:
+      - button "Open issues overlay" [ref=f22e39]:
+        - generic [ref=f22e40]:
+          - generic [aria-hidden] [ref=f22e41]: "0"
+          - generic [ref=f22e42]: "1"
+        - generic [ref=f22e43]: Issue
+      - button "Collapse issues badge" [ref=f22e44]
+  - alert [ref=f22e47]
+  - generic [ref=f22e48]:
+    - complementary [ref=f22e49]:
+      - link [ref=f22e51] [cursor=pointer]:
+        - /url: /
+        - img "Hopping Deals" [ref=f22e52]
+        - generic [ref=f22e53]: Missioncontrol
+      - generic [ref=f22e55]:
+        - navigation "Admin" [ref=f22e56]:
+          - link "Dashboard" [ref=f22e57] [cursor=pointer]:
+            - /url: /admin/dashboard
+          - link "Users" [ref=f22e64] [cursor=pointer]:
+            - /url: /admin/users
+          - link "Businesses" [ref=f22e71] [cursor=pointer]:
+            - /url: /admin/businesses
+          - link "Promotions" [ref=f22e77] [cursor=pointer]:
+            - /url: /admin/promotions
+          - link "Templates" [ref=f22e83] [cursor=pointer]:
+            - /url: /admin/templates
+          - link "Photos" [ref=f22e89] [cursor=pointer]:
+            - /url: /admin/photos
+          - link "Roles & Permissions" [ref=f22e96] [cursor=pointer]:
+            - /url: /admin/roles
+          - link "Support Messages" [ref=f22e101] [cursor=pointer]:
+            - /url: /admin/support-messages
+          - link "Business Tagging" [ref=f22e106] [cursor=pointer]:
+            - /url: /admin/business-tagging
+        - button "Log out" [ref=f22e111] [cursor=pointer]
+    - generic [ref=f22e116]:
+      - banner [ref=f22e117]:
+        - generic [ref=f22e118]:
+          - button "Collapse sidebar" [ref=f22e119] [cursor=pointer]
+          - paragraph [ref=f22e123]: Photos
+        - generic [ref=f22e124]:
+          - generic [ref=f22e125]:
+            - generic [ref=f22e126]: PA
+            - generic [ref=f22e127]:
+              - paragraph [ref=f22e128]: Preview Admin
+              - paragraph [ref=f22e129]: Super admin
+          - button "Log out" [ref=f22e130] [cursor=pointer]
+      - main [ref=f22e134]:
+        - generic [ref=f22e136]:
+          - generic [ref=f22e137]:
+            - generic [ref=f22e138]:
+              - heading "Photos Gallery" [level=1] [ref=f22e139]
+              - paragraph [ref=f22e140]: Manage the public photos page with image, header, and paragraph content.
+            - button "Add Photo" [ref=f22e141] [cursor=pointer]
+          - generic [ref=f22e142]:
+            - generic [ref=f22e144]:
+              - paragraph [ref=f22e145]: Total Items
+              - heading "0" [level=3] [ref=f22e146]
+            - generic [ref=f22e148]:
+              - paragraph [ref=f22e149]: Active on Public Page
+              - heading "0" [level=3] [ref=f22e150]
+            - generic [ref=f22e152]:
+              - paragraph [ref=f22e153]: Inactive Items
+              - heading "0" [level=3] [ref=f22e154]
+          - generic [ref=f22e155]:
+            - generic [ref=f22e156]:
+              - heading "Filter Photos" [level=3] [ref=f22e157]
+              - paragraph [ref=f22e158]: Search by title, paragraph, or alt text.
+            - generic [ref=f22e159]:
+              - textbox "Search photos..." [ref=f22e165]
+              - combobox [ref=f22e166] [cursor=pointer]:
+                - generic: All photos
+              - button "Search" [ref=f22e169] [cursor=pointer]
+          - generic [ref=f22e170]:
+            - generic [ref=f22e171]:
+              - heading "Gallery Items" [level=3] [ref=f22e172]
+              - paragraph [ref=f22e173]: Active items are visible on the public photos page.
+            - generic [ref=f22e175]:
+              - paragraph [ref=f22e181]: No gallery items found
+              - paragraph [ref=f22e182]: Add your first photo to show it on the public page.

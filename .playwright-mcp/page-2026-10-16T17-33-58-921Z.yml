@@ -1,0 +1,70 @@
+- generic [active] [ref=f19e1]:
+  - region "Notifications Alt+T"
+  - generic [ref=f19e6] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f19e7]
+    - generic [ref=f19e11]:
+      - button "Open issues overlay" [ref=f19e12]:
+        - generic [ref=f19e13]:
+          - generic [aria-hidden] [ref=f19e14]: "-1"
+          - generic [ref=f19e15]: "0"
+      - button "Collapse issues badge" [ref=f19e16]
+  - alert [ref=f19e19]
+  - generic [ref=f19e20]:
+    - complementary [ref=f19e21]:
+      - link [ref=f19e23] [cursor=pointer]:
+        - /url: /
+        - img "Hopping Deals" [ref=f19e24]
+        - generic [ref=f19e25]: Missioncontrol
+      - generic [ref=f19e27]:
+        - navigation "Admin" [ref=f19e28]:
+          - link "Dashboard" [ref=f19e29] [cursor=pointer]:
+            - /url: /admin/dashboard
+          - link "Users" [ref=f19e36] [cursor=pointer]:
+            - /url: /admin/users
+          - link "Businesses" [ref=f19e43] [cursor=pointer]:
+            - /url: /admin/businesses
+          - link "Promotions" [ref=f19e49] [cursor=pointer]:
+            - /url: /admin/promotions
+          - link "Templates" [ref=f19e55] [cursor=pointer]:
+            - /url: /admin/templates
+          - link "Photos" [ref=f19e61] [cursor=pointer]:
+            - /url: /admin/photos
+          - link "Roles & Permissions" [ref=f19e68] [cursor=pointer]:
+            - /url: /admin/roles
+          - link "Support Messages" [ref=f19e73] [cursor=pointer]:
+            - /url: /admin/support-messages
+          - link "Business Tagging" [ref=f19e78] [cursor=pointer]:
+            - /url: /admin/business-tagging
+        - button "Log out" [ref=f19e83] [cursor=pointer]
+    - generic [ref=f19e88]:
+      - banner [ref=f19e89]:
+        - generic [ref=f19e90]:
+          - button "Collapse sidebar" [ref=f19e91] [cursor=pointer]
+          - paragraph [ref=f19e95]: Businesses
+        - generic [ref=f19e96]:
+          - generic [ref=f19e97]:
+            - generic [ref=f19e98]: PA
+            - generic [ref=f19e99]:
+              - paragraph [ref=f19e100]: Preview Admin
+              - paragraph [ref=f19e101]: Super admin
+          - button "Log out" [ref=f19e102] [cursor=pointer]
+      - main [ref=f19e106]:
+        - generic [ref=f19e108]:
+          - generic [ref=f19e109]:
+            - generic [ref=f19e110]:
+              - heading "Business Management" [level=1] [ref=f19e111]
+              - paragraph [ref=f19e112]: Manage all registered businesses
+            - generic [ref=f19e113]:
+              - spinbutton "Rows" [ref=f19e115]: "100"
+              - button "Export CSV" [ref=f19e116] [cursor=pointer]
+              - generic [ref=f19e117]: 0 Total
+          - generic [ref=f19e118]:
+            - textbox "Search by name, email, or phone..." [ref=f19e124]
+            - combobox [ref=f19e125] [cursor=pointer]:
+              - generic: All Businesses
+            - button "Search" [ref=f19e128] [cursor=pointer]
+          - generic [ref=f19e129]:
+            - button "All Businesses" [ref=f19e130] [cursor=pointer]
+            - button "Active" [ref=f19e131] [cursor=pointer]
+            - button "Inactive" [ref=f19e132] [cursor=pointer]
+          - paragraph [ref=f19e135]: No businesses found

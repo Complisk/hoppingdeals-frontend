@@ -1,0 +1,139 @@
+- generic [active] [ref=f6e1]:
+  - region "Notifications Alt+T"
+  - banner [ref=f6e2]:
+    - generic [ref=f6e3]:
+      - link [ref=f6e5] [cursor=pointer]:
+        - /url: /
+        - img "Hopping Deals logo" [ref=f6e6]
+      - generic [ref=f6e7]:
+        - button "Set Location" [ref=f6e9] [cursor=pointer]
+        - link "Log in" [ref=f6e15] [cursor=pointer]:
+          - /url: /auth/login
+      - generic [ref=f6e16]:
+        - link "Business Portal" [ref=f6e17] [cursor=pointer]:
+          - /url: /business/visitor
+        - button "Open menu" [ref=f6e23] [cursor=pointer]:
+          - generic [ref=f6e25]: Menu
+  - generic [ref=f6e26]:
+    - main [ref=f6e27]:
+      - generic [ref=f6e29]:
+        - navigation "Breadcrumb" [ref=f6e30]:
+          - list [ref=f6e31]:
+            - listitem [ref=f6e32]:
+              - link "Home" [ref=f6e33] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f6e36]:
+              - generic [ref=f6e37]: About us
+        - heading "About Hopping Deals" [level=1] [ref=f6e38]
+        - paragraph [ref=f6e39]: Local deals created by the business owners themselves, with no middleman taking a cut.
+      - generic [ref=f6e40]:
+        - navigation "On this page" [ref=f6e41]:
+          - list [ref=f6e42]:
+            - listitem [ref=f6e43]:
+              - link "Our mission" [ref=f6e44] [cursor=pointer]:
+                - /url: "#mission"
+            - listitem [ref=f6e45]:
+              - link "Direct to consumer" [ref=f6e46] [cursor=pointer]:
+                - /url: "#direct"
+            - listitem [ref=f6e47]:
+              - link "Our story" [ref=f6e48] [cursor=pointer]:
+                - /url: "#story"
+            - listitem [ref=f6e49]:
+              - link "For shoppers" [ref=f6e50] [cursor=pointer]:
+                - /url: "#shoppers"
+            - listitem [ref=f6e51]:
+              - link "For businesses" [ref=f6e52] [cursor=pointer]:
+                - /url: "#businesses"
+            - listitem [ref=f6e53]:
+              - link "How we’re different" [ref=f6e54] [cursor=pointer]:
+                - /url: "#different"
+        - article [ref=f6e55]:
+          - generic [ref=f6e56]:
+            - heading "Our mission" [level=2] [ref=f6e57]
+            - paragraph [ref=f6e58]: Hopping Deals is a specialized promotion platform designed to bridge the gap between businesses and consumers. Our goal is to empower business owners to create customizable promotional banners targeted to specific locations, allowing users to discover active, relevant deals based on their current category interests and geography.
+          - generic [ref=f6e59]:
+            - heading "The direct-to-consumer advantage" [level=2] [ref=f6e60]
+            - paragraph [ref=f6e61]: We believe in a transparent marketplace. Every deal banner you see on our platform is created directly by the business owner for you. By eliminating the "middleman," Hopping Deals takes no commissions or cuts from these transactions. This allows businesses to save money on marketing and pass those direct savings on to their customers.
+          - generic [ref=f6e62]:
+            - heading "Our story" [level=2] [ref=f6e63]
+            - paragraph [ref=f6e64]: Hopping Deals was born from real-world experience. Our founder, a former business owner, understood the immense effort and high costs required to attract new customers. For years, small local businesses have sought a technology platform that offers a simple, automated way to launch micro-promotions without the complexity of social media advertising, SEO, or traditional coupon sites. Hopping Deals is the solution to those challenges.
+          - generic [ref=f6e65]:
+            - heading "For shoppers" [level=2] [ref=f6e66]
+            - heading "Your Local Deals, All in One Place" [level=3] [ref=f6e67]
+            - paragraph [ref=f6e68]: Hopping Deals is your all-in-one platform for discovering the best deals and promotions right in your neighborhood. We partner with local merchants to bring you exclusive offers, making it easier than ever to spend consciously and save money.
+            - heading "You Build the Platform" [level=3] [ref=f6e69]
+            - paragraph [ref=f6e70]: Don't see your favorite local business on Hopping Deals? You have the power to change that! Simply sign up and use the Tagging feature on your Profile Page to nominate your go-to spots. Once a business receives enough tags from our community, our team will personally reach out to bring their deals directly to you.
+          - generic [ref=f6e71]:
+            - heading "For businesses" [level=2] [ref=f6e72]
+            - paragraph [ref=f6e73]: We help business owners design, launch, and track 30-day geo-targeted campaigns in specific cities and regions with full control over timing and reach. No bidding wars. No subscriptions. No commissions. Just flat-fee promotions that run exactly where and when you choose.
+            - paragraph [ref=f6e74]: Businesses create visual promotions using customizable templates or their own uploaded artwork. Text elements can be added, positioned, resized, styled, and scheduled. Promotions can be set with exact start and end dates and times, giving complete control over when offers run. Campaigns can also be created in advance and scheduled to launch automatically, allowing structured marketing without daily manual effort.
+            - paragraph [ref=f6e75]: Campaigns are built around geographic reach. Every promotion begins with city-level targeting based on your campaign level, with the ability to expand to additional cities or upgrade to statewide coverage. Increased reach expands exposure, not platform access. This structure keeps pricing predictable while giving businesses scalable visibility.
+            - paragraph [ref=f6e76]: Every promotion includes a unique QR code (future version release), allowing customers to scan directly from the promotion. This creates measurable engagement and trackable response. Hopping Deals provides real-time analytics so businesses can monitor views, QR scans, and overall engagement. Promotion dashboards display activity over the last 7 days, 30 days, and total campaign performance, giving clear visibility into results.
+          - generic [ref=f6e77]:
+            - heading "How Hopping Deals is different" [level=2] [ref=f6e78]
+            - paragraph [ref=f6e79]: Traditional advertising platforms are often expensive, complicated, and unpredictable. Hopping Deals is structured around clarity and control. Each campaign runs for up to a fixed 30-day period from your selected start date. Businesses know exactly what they are paying and exactly how long their promotion will run. There are no percentage cuts from your revenue and no algorithm-driven bidding systems.
+            - heading "Every campaign includes" [level=3] [ref=f6e80]
+            - list [ref=f6e81]:
+              - listitem [ref=f6e82]:
+                - generic [ref=f6e84]: 30-day campaign run from selected start date
+              - listitem [ref=f6e85]:
+                - generic [ref=f6e87]: Real-time analytics to track views, scans, and engagement
+              - listitem [ref=f6e88]:
+                - generic [ref=f6e90]: Unique QR code for every promotion (future version release)
+              - listitem [ref=f6e91]:
+                - generic [ref=f6e93]: Time-based scheduling with defined start date and time (runs up to 30 days)
+              - listitem [ref=f6e94]:
+                - generic [ref=f6e96]: Future promotion banner launch planning – create and schedule campaigns in advance
+              - listitem [ref=f6e97]:
+                - generic [ref=f6e99]: City-level targeting with optional statewide upgrade
+              - listitem [ref=f6e100]:
+                - generic [ref=f6e102]: Custom promotion builder with full text and design controls
+            - paragraph [ref=f6e103]: Hopping Deals was built from real-world business experience. We understand how difficult and costly it can be to attract new customers through traditional social media advertising, search engine ads, or coupon marketplaces. Hopping Deals provides a direct, structured alternative — predictable cost, geographic precision, measurable performance, and full control in the hands of the business owner.
+    - contentinfo [ref=f6e104]:
+      - generic [ref=f6e105]:
+        - generic [ref=f6e106]:
+          - generic [ref=f6e107]:
+            - link [ref=f6e108] [cursor=pointer]:
+              - /url: /
+              - img "Hopping Deals" [ref=f6e109]
+            - paragraph [ref=f6e110]: Coupons and promotions from local businesses, updated by the owners themselves.
+          - generic [ref=f6e111]:
+            - heading "Support" [level=3] [ref=f6e112]
+            - paragraph [ref=f6e113]: Shopper or business owner? Send us a message and we’ll reply by email.
+            - button "Message support" [ref=f6e114] [cursor=pointer]
+          - generic [ref=f6e115]:
+            - heading "For businesses" [level=3] [ref=f6e116]
+            - list [ref=f6e117]:
+              - listitem [ref=f6e118]:
+                - link "List your business" [ref=f6e119] [cursor=pointer]:
+                  - /url: /business/visitor
+              - listitem [ref=f6e120]:
+                - link "Promotion strategy" [ref=f6e121] [cursor=pointer]:
+                  - /url: /blog
+              - listitem [ref=f6e122]:
+                - link "Business directory" [ref=f6e123] [cursor=pointer]:
+                  - /url: /hopping-deals-business-directory
+          - generic [ref=f6e124]:
+            - heading "Hopping Deals" [level=3] [ref=f6e125]
+            - list [ref=f6e126]:
+              - listitem [ref=f6e127]:
+                - link "About us" [ref=f6e128] [cursor=pointer]:
+                  - /url: /about-us
+              - listitem [ref=f6e129]:
+                - button "Media & news" [ref=f6e130] [cursor=pointer]
+              - listitem [ref=f6e131]:
+                - button "Careers" [ref=f6e132] [cursor=pointer]
+              - listitem [ref=f6e133]:
+                - button "Investors" [ref=f6e134] [cursor=pointer]
+              - listitem [ref=f6e135]:
+                - button "Non-profit organizations" [ref=f6e136] [cursor=pointer]
+        - generic [ref=f6e137]:
+          - paragraph [ref=f6e138]: © 2026 Hopping Deals, Inc.
+          - navigation "Legal" [ref=f6e139]:
+            - link "Terms & privacy" [ref=f6e140] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f6e141] [cursor=pointer]:
+              - /url: /sitemap.xml
+            - generic [ref=f6e142]: English (US), USD
+  - button "Open Next.js Dev Tools" [ref=f6e151] [cursor=pointer]
+  - alert [ref=f6e155]

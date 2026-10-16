@@ -1,0 +1,113 @@
+- generic [active] [ref=f16e1]:
+  - region "Notifications Alt+T"
+  - banner [ref=f16e2]:
+    - generic [ref=f16e3]:
+      - link [ref=f16e5] [cursor=pointer]:
+        - /url: /
+        - img "Hopping Deals logo" [ref=f16e6]
+      - generic [ref=f16e7]:
+        - button "Set Location" [ref=f16e9] [cursor=pointer]
+        - link "Log in" [ref=f16e15] [cursor=pointer]:
+          - /url: /auth/login
+      - generic [ref=f16e16]:
+        - link "Business Portal" [ref=f16e17] [cursor=pointer]:
+          - /url: /business/visitor
+        - button "Open menu" [ref=f16e18] [cursor=pointer]:
+          - generic [ref=f16e20]: Menu
+  - main [ref=f16e21]:
+    - generic [ref=f16e23]:
+      - navigation "Breadcrumb" [ref=f16e24]:
+        - list [ref=f16e25]:
+          - listitem [ref=f16e26]:
+            - link "Home" [ref=f16e27] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f16e30]:
+            - generic [ref=f16e31]: Categories
+          - listitem [ref=f16e34]:
+            - generic [ref=f16e35]: Beauty & Spas
+      - heading "Beauty & Spas" [level=1] [ref=f16e36]
+      - paragraph [ref=f16e37]: Set your location in the header to see deals near you.
+    - navigation "Other categories" [ref=f16e38]:
+      - generic [ref=f16e39]:
+        - link "Restaurants" [ref=f16e40] [cursor=pointer]:
+          - /url: /category/restaurants
+        - link "Beauty & Spas" [ref=f16e41] [cursor=pointer]:
+          - /url: /category/beauty-&-spas
+        - link "Home Services" [ref=f16e42] [cursor=pointer]:
+          - /url: /category/home-services
+        - link "Coffee & Tea" [ref=f16e43] [cursor=pointer]:
+          - /url: /category/coffee-&-tea
+        - link "Food" [ref=f16e44] [cursor=pointer]:
+          - /url: /category/food
+        - link "Auto Services" [ref=f16e45] [cursor=pointer]:
+          - /url: /category/auto-services
+        - link "Pets" [ref=f16e46] [cursor=pointer]:
+          - /url: /category/pets
+        - link "Shopping" [ref=f16e47] [cursor=pointer]:
+          - /url: /category/shopping
+        - link "Professional Services" [ref=f16e48] [cursor=pointer]:
+          - /url: /category/professional-services
+        - link "Health & Medical" [ref=f16e49] [cursor=pointer]:
+          - /url: /category/health-&-medical
+        - link "Event Planning & Services" [ref=f16e50] [cursor=pointer]:
+          - /url: /category/event-planning-&-services
+        - link "Hotels & Casinos" [ref=f16e51] [cursor=pointer]:
+          - /url: /category/hotels-&-casinos
+        - link "Nightlife" [ref=f16e52] [cursor=pointer]:
+          - /url: /category/nightlife
+        - link "Active Life" [ref=f16e53] [cursor=pointer]:
+          - /url: /category/active-life
+        - link "Education" [ref=f16e54] [cursor=pointer]:
+          - /url: /category/education
+        - link "Arts & Entertainment" [ref=f16e55] [cursor=pointer]:
+          - /url: /category/arts-&-entertainment
+        - link "Travel & Activities" [ref=f16e56] [cursor=pointer]:
+          - /url: /category/travel-&-activities
+  - contentinfo [ref=f16e99]:
+    - generic [ref=f16e100]:
+      - generic [ref=f16e101]:
+        - generic [ref=f16e102]:
+          - link [ref=f16e103] [cursor=pointer]:
+            - /url: /
+            - img "Hopping Deals" [ref=f16e104]
+          - paragraph [ref=f16e105]: Coupons and promotions from local businesses, updated by the owners themselves.
+        - generic [ref=f16e106]:
+          - heading "Support" [level=3] [ref=f16e107]
+          - paragraph [ref=f16e108]: Shopper or business owner? Send us a message and we’ll reply by email.
+          - button "Message support" [ref=f16e109] [cursor=pointer]
+        - generic [ref=f16e110]:
+          - heading "For businesses" [level=3] [ref=f16e111]
+          - list [ref=f16e112]:
+            - listitem [ref=f16e113]:
+              - link "List your business" [ref=f16e114] [cursor=pointer]:
+                - /url: /business/visitor
+            - listitem [ref=f16e115]:
+              - link "Promotion strategy" [ref=f16e116] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=f16e117]:
+              - link "Business directory" [ref=f16e118] [cursor=pointer]:
+                - /url: /hopping-deals-business-directory
+        - generic [ref=f16e119]:
+          - heading "Hopping Deals" [level=3] [ref=f16e120]
+          - list [ref=f16e121]:
+            - listitem [ref=f16e122]:
+              - link "About us" [ref=f16e123] [cursor=pointer]:
+                - /url: /about-us
+            - listitem [ref=f16e124]:
+              - button "Media & news" [ref=f16e125] [cursor=pointer]
+            - listitem [ref=f16e126]:
+              - button "Careers" [ref=f16e127] [cursor=pointer]
+            - listitem [ref=f16e128]:
+              - button "Investors" [ref=f16e129] [cursor=pointer]
+            - listitem [ref=f16e130]:
+              - button "Non-profit organizations" [ref=f16e131] [cursor=pointer]
+      - generic [ref=f16e132]:
+        - paragraph [ref=f16e133]: © 2026 Hopping Deals, Inc.
+        - navigation "Legal" [ref=f16e134]:
+          - link "Terms & privacy" [ref=f16e135] [cursor=pointer]:
+            - /url: /terms
+          - link "Sitemap" [ref=f16e136] [cursor=pointer]:
+            - /url: /sitemap.xml
+          - generic [ref=f16e137]: English (US), USD
+  - button "Open Next.js Dev Tools" [ref=f16e146] [cursor=pointer]
+  - alert [ref=f16e150]
