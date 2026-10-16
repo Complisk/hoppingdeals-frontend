@@ -13,7 +13,7 @@ const dialogLinkClass =
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative mt-16 overflow-hidden border-t border-gold/15 bg-[hsl(233_58%_8%)]">
+    <footer className="relative mt-16 overflow-hidden border-t border-gold/15 bg-[hsl(258_55%_8%)]">
       {/* Moon horizon glow along the top edge */}
       <div
         aria-hidden="true"

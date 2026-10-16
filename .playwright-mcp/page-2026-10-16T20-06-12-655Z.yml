@@ -1,0 +1,45 @@
+- generic [active] [ref=f2e1]:
+  - region "Notifications Alt+T"
+  - generic [ref=f2e2]:
+    - generic [ref=f2e4]:
+      - link [ref=f2e5] [cursor=pointer]:
+        - /url: /
+        - img "Hopping Deals" [ref=f2e6]
+      - heading "Business portal" [level=1] [ref=f2e7]
+      - paragraph [ref=f2e8]: Log in to create deals, manage templates and see how your promotions are doing.
+      - generic [ref=f2e10]:
+        - generic [ref=f2e11]:
+          - text: Business email
+          - textbox "Business email" [ref=f2e14]:
+            - /placeholder: business@example.com
+        - generic [ref=f2e15]:
+          - generic [ref=f2e16]:
+            - generic [ref=f2e17]: Password
+            - link "Forgot password?" [ref=f2e18] [cursor=pointer]:
+              - /url: /business/forgot-password
+          - textbox "Password" [ref=f2e21]:
+            - /placeholder: Your password
+        - button "Log in" [ref=f2e22] [cursor=pointer]
+      - generic [ref=f2e23]:
+        - paragraph [ref=f2e24]:
+          - text: New to Hopping Deals?
+          - link "Create a business account" [ref=f2e25] [cursor=pointer]:
+            - /url: /business/register
+        - link "Back to the shopper site" [ref=f2e26] [cursor=pointer]:
+          - /url: /
+    - complementary [ref=f2e29]:
+      - generic:
+        - img [aria-hidden]:
+          - generic: OPEN
+      - generic [ref=f2e30]:
+        - paragraph [ref=f2e31]: For business owners
+        - heading "Your deal, in front of the neighbors who’ll use it." [level=2] [ref=f2e32]
+        - list [ref=f2e33]:
+          - listitem [ref=f2e34]:
+            - generic [ref=f2e36]: Design a coupon from a template or your own artwork.
+          - listitem [ref=f2e37]:
+            - generic [ref=f2e39]: Pick the cities and dates it runs.
+          - listitem [ref=f2e40]:
+            - generic [ref=f2e42]: See views and who tagged your business.
+  - button "Open Next.js Dev Tools" [ref=f2e48] [cursor=pointer]
+  - alert [ref=f2e52]

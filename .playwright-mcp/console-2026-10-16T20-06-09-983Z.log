@@ -1,0 +1,68 @@
+[    1713ms] [LOG] [Fast Refresh] done in 2166ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js:776
+[    2415ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js:776
+[    2441ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js:776
+[    2692ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+      <InnerScrollHandlerNew focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+        <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+          <LoadingBoundary name="login/" loading={null}>
+            <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <InnerLayoutRouter url="/business/..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                    <SegmentViewNode type="page" pagePath="business/l...">
+                      <SegmentTrieNode>
+                      <BusinessLoginPage>
+                        <BusinessLogin>
+                          <Seo>
+                          <AuthShell title="Business p..." subtitle="Log in to ..." aside={{scene:"sto...", ...}} ...>
+                            <div className="flex min-h...">
+                              <div>
+                              <aside
++                               className="relative isolate hidden w-[44%] max-w-[44rem] shrink-0 overflow-hidden bord..."
+-                               className="relative isolate hidden w-[44%] max-w-[44rem] shrink-0 overflow-hidden bord..."
+                              >
+                                <div className="pointer-ev...">
+                                  <Scene name="storefront" className="h-full w-full">
+                                    <svg viewBox="0 0 1440 520" preserveAspectRatio="xMaxYMax s..." ...>
+                                      <defs>
+                                        <linearGradient id="scRbaatpes..." x1="0" y1="0" x2="0" y2="1">
+                                          <stop
+                                            offset="0"
++                                           stopColor="#0d0826"
+-                                           stopColor="#090c27"
+                                          >
+                                          <stop
+                                            offset="0.65"
++                                           stopColor="#1c1250"
+-                                           stopColor="#121852"
+                                          >
+                                          <stop
+                                            offset="1"
++                                           stopColor="#2a1a62"
+-                                           stopColor="#1a1f62"
+                                          >
+                                        ...
+                                      ...
+                                  <div
+                                    aria-hidden="true"
++                                   className="absolute inset-0 bg-[linear-gradient(180deg,#160e3c_0%,transparent_30%)]"
+-                                   className="absolute inset-0 bg-[linear-gradient(180deg,#0d1238_0%,transparent_30%)]"
+                                  >
+                                ...
+                    ...
+                  ...
+        ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js:1052

@@ -872,9 +872,9 @@ export default function Scene({
     >
       <defs>
         <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#090c27" />
-          <stop offset="0.65" stopColor="#121852" />
-          <stop offset="1" stopColor="#1a1f62" />
+          <stop offset="0" stopColor="#0d0826" />
+          <stop offset="0.65" stopColor="#1c1250" />
+          <stop offset="1" stopColor="#2a1a62" />
         </linearGradient>
         <radialGradient id={`${id}-glow`} cx="0.78" cy="0.92" r="0.62">
           <stop offset="0" stopColor={a} stopOpacity="0.55" />

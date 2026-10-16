@@ -55,13 +55,13 @@ export default function AuthShell({
       </div>
 
       {aside ? (
-        <aside className="relative isolate hidden w-[44%] max-w-[44rem] shrink-0 overflow-hidden border-l border-white/10 bg-[linear-gradient(180deg,#090c27_0%,#10164a_100%)] lg:flex lg:flex-col lg:justify-start">
+        <aside className="relative isolate hidden w-[44%] max-w-[44rem] shrink-0 overflow-hidden border-l border-white/10 bg-[linear-gradient(180deg,#0d0826_0%,#1c1250_100%)] lg:flex lg:flex-col lg:justify-start">
           {/* Scene sits in the lower part so the copy above stays clear. */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[60%]">
             <Scene name={aside.scene} className="h-full w-full" />
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-[linear-gradient(180deg,#0d1238_0%,transparent_30%)]"
+              className="absolute inset-0 bg-[linear-gradient(180deg,#160e3c_0%,transparent_30%)]"
             />
           </div>
           <div className="sticky top-0 px-12 pt-24">
